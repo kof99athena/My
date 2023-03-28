@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="sort">
+        <item>기안서</item>
+        <item>휴가원</item>
+        <item>증명서발급</item>
+    </string-array>
+
+</resources>
+
+<!--entry는 문자열일때만 가능하다. -->
