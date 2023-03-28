@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".main.MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:titleTextColor="@color/white">
+
+            <ImageView
+                android:id="@+id/iv"
+                android:layout_gravity="center"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/windows"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="8dp"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/framelayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:context=".main.MainActivity" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/nav_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemIconTint="@color/main"
+                app:itemTextColor="@color/main"
+                app:menu="@menu/menu"
+                android:layout_alignParentBottom="true"/>
+
+        </RelativeLayout>
+
+        <!--        렐러티브에서 자동으로 안써짐 android:layout_gravity="start"-->
+        <RelativeLayout
+            android:id="@+id/relative_up"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@drawable/background">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:gravity="center">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/profile" />
+
+                <TextView
+                    android:id="@+id/drawer_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@+id/profile"
+                    android:text="안혜영"
+                    android:textSize="32dp" />
+
+                <TextView
+                    android:id="@+id/drawer_idnum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/drawer_name"
+                    android:layout_alignStart="@+id/drawer_name"
+                    android:text="999999"
+                    android:textSize="32dp" />
+
+                <Button
+                    android:id="@+id/menu_daily"
+                    android:layout_width="100dp"
+                    android:layout_height="200dp"
+                    android:layout_below="@id/drawer_idnum"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginRight="8dp"
+                    android:backgroundTint="#48A1EA"
+                    android:text="근태"
+                    android:textSize="24dp" />
+
+                <Button
+                    android:id="@+id/menu_salary"
+                    android:layout_width="100dp"
+                    android:layout_height="200dp"
+                    android:layout_below="@id/drawer_idnum"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_toRightOf="@id/menu_daily"
+                    android:backgroundTint="#48A1EA"
+                    android:text="급여"
+                    android:textSize="24dp" />
+
+                <Button
+                    android:id="@+id/menu_confirm"
+                    android:layout_width="100dp"
+                    android:layout_height="200dp"
+                    android:layout_below="@id/menu_salary"
+                    android:layout_marginRight="8dp"
+                    android:backgroundTint="#48A1EA"
+                    android:text="결재"
+                    android:textSize="24dp" />
+
+                <Button
+                    android:id="@+id/menu_calendar"
+                    android:layout_width="100dp"
+                    android:layout_height="200dp"
+                    android:layout_below="@id/menu_salary"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@id/menu_confirm"
+                    android:backgroundTint="#48A1EA"
+                    android:text="일정"
+                    android:textSize="24dp" />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="8dp"
+                android:src="@drawable/baseline_settings_24" />
+
+
+        </RelativeLayout>
+
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+
+</LinearLayout>

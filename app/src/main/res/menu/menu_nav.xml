@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:title=" 내 메뉴 ">
+
+        <menu>
+            <item android:id="@+id/menu_daily" android:title="근태"/>
+            <item android:id="@+id/menu_salary" android:title="급여"/>
+            <item android:id="@+id/menu_confirm" android:title="결재"/>
+            <item android:id="@+id/menu_calendar" android:title="일정"/>
+
+        </menu>
+
+
+    </item>
+
+</menu>
