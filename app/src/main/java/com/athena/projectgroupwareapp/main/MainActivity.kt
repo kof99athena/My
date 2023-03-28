@@ -20,6 +20,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var tab3Fragment : Tab3Fragment
     private lateinit var binding : ActivityMainBinding
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -71,5 +73,9 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+
+
     }//onCreate
+
+
 }
