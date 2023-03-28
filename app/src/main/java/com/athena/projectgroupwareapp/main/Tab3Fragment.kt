@@ -21,12 +21,11 @@ class Tab3Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_tab3,container,false)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentTab3Binding.bind(view) //
+        binding = FragmentTab3Binding.bind(view) // binding을 초기화 해줘야한다. inflate가 필요없으니까 바로 bind 해준다.
 
         var pager = binding.pager
         var tabLayout = binding.tabLayout

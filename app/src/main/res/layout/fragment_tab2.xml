@@ -3,12 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".main.Tab2Fragment">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <TextView
-        android:text="안녕"
-        android:textSize="40dp"
+        android:text="대화"
+        android:textSize="32dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:iconifiedByDefault="false"
+            app:queryHint="검색어를 입력하세요" />
+
+        <TextView
+            android:text="대화창 리사이클러뷰"
+            android:textSize="32dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
 
 </FrameLayout>
