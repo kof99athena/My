@@ -13,6 +13,12 @@
         android:theme="@style/Theme.ProjectGroupwareApp"
         tools:targetApi="31">
         <activity
+            android:name=".main.tab1.MyteamActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.tab1.TotalviewActivity"
+            android:exported="false" />
+        <activity
             android:name=".drawer.CalendarActivity"
             android:exported="false" />
         <activity
@@ -25,13 +31,13 @@
             android:name=".drawer.SalaryActivity"
             android:exported="false" />
         <activity
-            android:name=".main.Tab3Fragment"
+            android:name=".main.tab3.Tab3Fragment"
             android:exported="false" />
         <activity
-            android:name=".main.Tab2Fragment"
+            android:name=".main.tab2.Tab2Fragment"
             android:exported="false" />
         <activity
-            android:name=".main.Tab1Fragment"
+            android:name=".main.tab1.Tab1Fragment"
             android:exported="false" />
         <activity
             android:name=".login.LoginActivity"

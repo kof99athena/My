@@ -1,17 +1,17 @@
 package com.athena.projectgroupwareapp.main
 
-import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.view.View.OnClickListener
 import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.databinding.ActivityMainBinding
 import com.athena.projectgroupwareapp.drawer.CalendarActivity
 import com.athena.projectgroupwareapp.drawer.ConfirmActivity
 import com.athena.projectgroupwareapp.drawer.DailyActivity
 import com.athena.projectgroupwareapp.drawer.SalaryActivity
+import com.athena.projectgroupwareapp.main.tab1.Tab1Fragment
+import com.athena.projectgroupwareapp.main.tab2.Tab2Fragment
+import com.athena.projectgroupwareapp.main.tab3.Tab3Fragment
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package com.athena.projectgroupwareapp.main
+package com.athena.projectgroupwareapp.main.tab3
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +12,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 class Tab3Fragment : Fragment() {
 
     private lateinit var binding : FragmentTab3Binding
+
     var tabtitle = listOf<String>("영업팀","디자인팀","인사팀")
     lateinit var mediator : TabLayoutMediator
 

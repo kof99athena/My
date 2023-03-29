@@ -1,4 +1,4 @@
-package com.athena.projectgroupwareapp.main
+package com.athena.projectgroupwareapp.main.tab3
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -9,7 +9,7 @@ class PersonAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(f
     //var fragments : MutableList<Fragment> = mutableListOf()
     //MutableList은 인터페이스이므로 바로 쓸수없다. MutableList를 상속받은 mutableListOf()써야한다.
 
-   var frag = listOf(Tab1teamFragment(),Tab2teamFragment(),Tab3teamFragment())
+   var frag = listOf(Tab1teamFragment(), Tab2teamFragment(), Tab3teamFragment())
 
     //
 
