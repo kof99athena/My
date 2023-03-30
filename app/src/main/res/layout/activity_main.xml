@@ -23,7 +23,7 @@
                 android:id="@+id/iv"
                 android:layout_gravity="center"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/logo"
+                android:src="@drawable/logo_icon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_margin="8dp"/>
