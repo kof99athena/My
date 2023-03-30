@@ -15,9 +15,17 @@
 
         <TextView
             android:id="@+id/tv1"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:text="전사 공지사항"
             android:textSize="24sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv1_total"
+            android:text="전체보기"
+            android:layout_alignBottom="@id/tv1"
+            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -27,14 +35,23 @@
             android:layout_below="@id/tv1"
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
-            android:layout_height="200dp"/>
+            android:layout_marginBottom="4dp"
+            android:layout_height="250dp"/>
 
         <TextView
             android:id="@+id/tv2"
-            android:text="업무 지시사항"
+            android:text="우리팀 공지사항"
             android:textSize="24sp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:layout_below="@id/recycler_main_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv2_myteam"
+            android:text="전체보기"
+            android:layout_alignBottom="@id/tv2"
+            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -42,7 +59,7 @@
             android:id="@+id/recycler_main_2"
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="250dp"
             android:layout_below="@+id/tv2"/>
 
     </RelativeLayout>

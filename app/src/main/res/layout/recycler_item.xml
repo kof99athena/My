@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_margin="8dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -9,7 +9,7 @@
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/iv_total"
-            android:src="@drawable/icon_new"
+            android:src="@drawable/newitem"
             android:layout_width="40dp"
             android:layout_height="40dp"/>
 
@@ -19,7 +19,7 @@
             android:textColor="@color/black"
             android:layout_toRightOf="@id/iv_total"
             android:textSize="16sp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -33,4 +33,4 @@
 
     </RelativeLayout>
 
-</androidx.cardview.widget.CardView>
+</RelativeLayout>

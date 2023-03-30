@@ -20,7 +20,9 @@ class Tab1Fragment : Fragment() {
 
     lateinit var binding : FragmentTab1Binding
 
-    var items : MutableList<TotalItem> = mutableListOf()
+    var totalitems : MutableList<TotalItem> = mutableListOf()
+    var myteamitems : MutableList<MyteamItem> = mutableListOf()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,16 +37,28 @@ class Tab1Fragment : Fragment() {
 
         binding = FragmentTab1Binding.bind(view)
 
-        items.add(TotalItem("전 직원 상반기 워크샵 안내 ",R.drawable.icon_new,"2023/03/29"))
-        items.add(TotalItem("2023년 직장인 건강보험 실시(홀수년도) ",R.drawable.icon_must,"2023/03/18"))
-        items.add(TotalItem(" 국내 최초 타임머신 기술 특허 출허 (과기부장관 상장) ",R.drawable.icon_congra,"2023/02/22"))
-        items.add(TotalItem("연말정산 안내 (~1/31일까지)",R.drawable.icon_new,"2023/01/05"))
-        items.add(TotalItem("근로계약서 작성 안내 및 개인면담 실시 (~1/31일까지)",R.drawable.icon_must,"2023/01/05"))
-        items.add(TotalItem("12월 연말 시무식안내 (12/26일) ",R.drawable.icon_new,"2022/12/14"))
-        items.add(TotalItem("백데이터 이관 작업 안내 ",R.drawable.icon_new,"2022/12/11"))
+        totalitems.add(TotalItem("전 직원 상반기 워크샵 안내 ",R.drawable.newitem,"2023/03/29"))
+        totalitems.add(TotalItem("2023년 직장인 건강보험 실시(홀수년도) ",R.drawable.mustitem,"2023/03/18"))
+        totalitems.add(TotalItem("국내 최초 타임머신 기술 특허 출허 \n(과기부장관 상장) ",R.drawable.congra,"2023/02/22"))
+        totalitems.add(TotalItem("연말정산 안내 (~1/31일까지)",R.drawable.newitem,"2023/01/05"))
+        totalitems.add(TotalItem("근로계약서 작성 안내 및 개인면담 실시 (~1/31일까지)",R.drawable.mustitem,"2023/01/05"))
+        totalitems.add(TotalItem("12월 연말 시무식안내 (12/26일) ",R.drawable.newitem,"2022/12/14"))
+        totalitems.add(TotalItem("백데이터 이관 작업 안내 ",R.drawable.newitem,"2022/12/11"))
 
-        binding.recyclerMain1.adapter = TotalAdapter(requireActivity(),items)
+        binding.recyclerMain1.adapter = TotalAdapter(requireActivity(),totalitems)
         binding.recyclerMain1.layoutManager= LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+
+
+        myteamitems.add(MyteamItem("인사파트 회의 (4/1 16시)",R.drawable.task,"2023/03/29"))
+        myteamitems.add(MyteamItem("파트 회식있습니다. (4/5) ",R.drawable.task,"2023/03/18"))
+        myteamitems.add(MyteamItem("안전관리에 유의 부탁드립니다. ",R.drawable.task,"2023/02/22"))
+        myteamitems.add(MyteamItem("코로나 감염 예방에 최선을 다해주세요. ",R.drawable.task,"2023/01/05"))
+        myteamitems.add(MyteamItem("출퇴근 관리 부탁드려요. 지각하지마세요.",R.drawable.task,"2023/01/05"))
+        myteamitems.add(MyteamItem("시무식 참석 여부 확인해주세요",R.drawable.task,"2022/12/14"))
+        myteamitems.add(MyteamItem("데이터 이관 확인하시고 사인해주세요. ",R.drawable.task,"2022/12/11"))
+
+        binding.recyclerMain2.adapter = MyteamAdapter(requireActivity(), myteamitems)
+        binding.recyclerMain2.layoutManager= LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
 
     }
 
