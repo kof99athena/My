@@ -56,6 +56,9 @@ class MainActivity : AppCompatActivity() {
 
 
 
+        binding.drawerHbg.setOnClickListener{
+            binding.drawerLayout.openDrawer(binding.relativeUp)
+        }// 햄버거버튼을 누르면 서랍이 나온다.
 
 
         binding.menuSalary.setOnClickListener{
@@ -85,7 +88,6 @@ class MainActivity : AppCompatActivity() {
 
 
     }//onCreate
-
 
 
 
