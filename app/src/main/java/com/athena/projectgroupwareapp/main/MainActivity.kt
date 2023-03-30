@@ -3,6 +3,7 @@ package com.athena.projectgroupwareapp.main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.drawerlayout.widget.DrawerLayout
 import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.databinding.ActivityMainBinding
 import com.athena.projectgroupwareapp.drawer.CalendarActivity
@@ -12,6 +13,7 @@ import com.athena.projectgroupwareapp.drawer.SalaryActivity
 import com.athena.projectgroupwareapp.main.tab1.Tab1Fragment
 import com.athena.projectgroupwareapp.main.tab2.Tab2Fragment
 import com.athena.projectgroupwareapp.main.tab3.Tab3Fragment
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -52,6 +54,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
+
+
+
         binding.menuSalary.setOnClickListener{
             var intent : Intent = Intent(this@MainActivity,SalaryActivity::class.java)
             startActivity(intent)
@@ -72,10 +78,15 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.setting.setOnClickListener{
+            Snackbar.make(binding.drawerLayout,"권한이 없습니다. \n관리자에게 문의하세요.",Snackbar.LENGTH_INDEFINITE).setAction("X", {}).show()
+        }
 
 
 
     }//onCreate
+
+
 
 
 }
