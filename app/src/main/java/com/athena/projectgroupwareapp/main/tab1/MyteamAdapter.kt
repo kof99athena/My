@@ -1,6 +1,5 @@
 package com.athena.projectgroupwareapp.main.tab1
 
-import android.content.ClipData.Item
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -23,7 +22,7 @@ class MyteamAdapter constructor(var context: Context, var items : MutableList<My
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        var itemView : View = LayoutInflater.from(context).inflate(R.layout.recycler_item,parent,false)
+        var itemView : View = LayoutInflater.from(context).inflate(R.layout.recycler_item_notification,parent,false)
         return VH(itemView)
     }
 

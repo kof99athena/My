@@ -3,25 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.tab3.Tab3teamFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".main.tab3.management.Tab3teamFragment">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="인사팀" />
 
-    <TextView
-        android:text="리사이클러뷰"
-        android:textSize="56sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout_manage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabGravity="start"
+            app:tabMode="scrollable"
+            app:tabIndicatorColor="@color/white"
+            app:tabSelectedTextColor="@color/maincolor"
+            />
 
-        </LinearLayout>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pager_manage"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+        </androidx.viewpager2.widget.ViewPager2>
+
+    </LinearLayout>
 </FrameLayout>

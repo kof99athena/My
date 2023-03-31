@@ -13,7 +13,7 @@ class Tab3Fragment : Fragment() {
 
     private lateinit var binding : FragmentTab3Binding
 
-    var tabtitle = listOf<String>("영업팀","디자인팀","인사팀")
+    var tabtitle = listOf<String>("사업부문","IT부문","관리부문")
     lateinit var mediator : TabLayoutMediator
 
     override fun onCreateView(

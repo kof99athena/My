@@ -3,6 +3,9 @@ package com.athena.projectgroupwareapp.main.tab3
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.athena.projectgroupwareapp.main.tab3.business.Tab1teamFragment
+import com.athena.projectgroupwareapp.main.tab3.management.Tab3teamFragment
+import com.athena.projectgroupwareapp.main.tab3.it.Tab2teamFragment
 
 class PersonAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
 

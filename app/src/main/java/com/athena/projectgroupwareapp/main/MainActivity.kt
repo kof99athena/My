@@ -3,6 +3,8 @@ package com.athena.projectgroupwareapp.main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.databinding.ActivityMainBinding
@@ -21,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var tab2Fragment : Tab2Fragment
     lateinit var tab3Fragment : Tab3Fragment
     private lateinit var binding : ActivityMainBinding
-
+    lateinit var toggle: ActionBarDrawerToggle
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,10 +57,11 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
-        binding.drawerHbg.setOnClickListener{
-            binding.drawerLayout.openDrawer(binding.relativeUp)
-        }// 햄버거버튼을 누르면 서랍이 나온다.
+        setSupportActionBar(binding.toolbar)
+        toggle= ActionBarDrawerToggle(this,binding.drawerLayout,R.string.drawer_open,R.string.drawer_close)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.drawerLayout.addDrawerListener(toggle) //삼선모양과 백버튼이 자동으로 연결된다.
+        toggle.syncState()
 
 
         binding.menuSalary.setOnClickListener{
@@ -85,10 +88,14 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(binding.drawerLayout,"권한이 없습니다. \n관리자에게 문의하세요.",Snackbar.LENGTH_INDEFINITE).setAction("X", {}).show()
         }
 
-
+        binding.drawerLayout.closeDrawers()
 
     }//onCreate
 
-
-
+    override fun onOptionsItemSelected(item: MenuItem): Boolean { // 이 함수가 있어야 서랍을 열고 닫을 수 있다.
+        if(toggle.onOptionsItemSelected(item)){
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }

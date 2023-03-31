@@ -3,23 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.tab3.Tab2teamFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".main.tab3.it.Tab2teamFragment">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout_it"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="인사팀" />
+            app:tabGravity="start"
+            app:tabMode="scrollable"
+            app:tabIndicatorColor="@color/white"
+            app:tabSelectedTextColor="@color/maincolor"
+            />
 
-        <TextView
-            android:text="리사이클러뷰"
-            android:textSize="56sp"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pager_it"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent">
+
+        </androidx.viewpager2.widget.ViewPager2>
 
     </LinearLayout>
-
 </FrameLayout>
