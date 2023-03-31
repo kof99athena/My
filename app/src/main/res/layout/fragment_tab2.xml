@@ -13,22 +13,24 @@
 
     <TextView
         android:text="대화"
-        android:textSize="32dp"
+        android:layout_margin="8dp"
+        android:textSize="24dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
         <androidx.appcompat.widget.SearchView
+            android:layout_margin="2dp"
             android:id="@+id/search_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:iconifiedByDefault="false"
             app:queryHint="검색어를 입력하세요" />
 
-        <TextView
-            android:text="대화창 리사이클러뷰"
-            android:textSize="32dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_message"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 

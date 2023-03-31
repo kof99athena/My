@@ -19,7 +19,7 @@
         <AutoCompleteTextView
             android:id="@+id/confirm_select"
             android:inputType="none"
-            android:dropDownHeight="100dp"
+            android:dropDownHeight="wrap_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 

@@ -12,9 +12,9 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:layout_margin="4dp"
+            android:layout_margin="8dp"
             android:text="조직도"
-            android:textSize="32sp"
+            android:textSize="24sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
