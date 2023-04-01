@@ -37,21 +37,6 @@
             android:layout_height="wrap_content"/>
 
 
-        <View
-            android:layout_below="@id/message"
-            android:layout_alignStart="@id/name"
-            android:layout_marginTop="8dp"
-            android:background="#BFC2C5"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"/>
-
-        <View
-            android:layout_toRightOf="@id/iv_person"
-            android:layout_alignStart="@id/name"
-            android:background="#BFC2C5"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"/>
-
         <TextView
             android:id="@+id/date"
             android:text="2023/04/01"

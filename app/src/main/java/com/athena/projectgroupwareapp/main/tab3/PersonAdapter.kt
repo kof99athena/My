@@ -14,9 +14,6 @@ class PersonAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(f
 
    var frag = listOf(Tab1teamFragment(), Tab2teamFragment(), Tab3teamFragment())
 
-    //
-
-
     //    var fragments : MutableList<Fragment> = mutableListOf(Tab1teamFragment(),Tab2teamFragment(),Tab3teamFragment())
   //코틀린에서 배열은 MutableList<--->로 만든다. 만들고 객체에 프래그먼트를 바로넣어준다.
 

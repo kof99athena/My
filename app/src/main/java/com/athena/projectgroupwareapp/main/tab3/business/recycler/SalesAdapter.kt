@@ -1,6 +1,7 @@
 package com.athena.projectgroupwareapp.main.tab3.business.recycler
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,20 +10,22 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.athena.projectgroupwareapp.R
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.athena.projectgroupwareapp.main.tab3.IdCardActivity
 import com.bumptech.glide.Glide
 
 class SalesAdapter constructor(var context : Context , var items : MutableList<SalesItem>) : Adapter<SalesAdapter.VH>() {
 
+    lateinit var itemView :View
 
     inner class VH(itemView: View) : ViewHolder(itemView){
 
         val name : TextView by lazy { itemView.findViewById(R.id.name) }
-        val tel : TextView by lazy { itemView.findViewById(R.id.tell) }
+        val tel : TextView by lazy { itemView.findViewById(R.id.tel) }
         val iv : ImageView by lazy { itemView.findViewById(R.id.iv_person) }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        var itemView : View = LayoutInflater.from(context).inflate(R.layout.recycler_item_person,parent,false)
+        itemView = LayoutInflater.from(context).inflate(R.layout.recycler_item_person,parent,false)
         return VH(itemView)
     }
 
@@ -34,7 +37,17 @@ class SalesAdapter constructor(var context : Context , var items : MutableList<S
         holder.tel.setText(item.tel)
         Glide.with(context).load(item.imgId).into(holder.iv)
 
-    }
+        holder.itemView.setOnClickListener {
 
+           val intent : Intent = Intent(context,IdCardActivity::class.java)
+            intent.putExtra("name",item.name)
+            intent.putExtra("tel",item.tel)
+            intent.putExtra("imgId",item.imgId)
+
+
+            context.startActivity(intent)
+        }
+
+    }
 
 }

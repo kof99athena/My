@@ -28,15 +28,14 @@ class Tab2Fragment : Fragment() {
         binding= FragmentTab2Binding.bind(view)
 
         messageItem.add(MessageItem("안혜영","개발팀인데요","2024/04/01","3",R.drawable.pro1))
-        messageItem.add(MessageItem("안혜영","넵","2024/04/01","1",R.drawable.pro2))
-        messageItem.add(MessageItem("안혜영","아니요 그거 못들엇어요","2024/04/01","1",R.drawable.pro3))
-        messageItem.add(MessageItem("안혜영","즐퇴하세요","2024/04/01","2",R.drawable.pro4))
-        messageItem.add(MessageItem("안혜영","ㅋㅋㅋㅋㅋㅋㅋㅋ","2024/04/01","3",R.drawable.pro5))
-        messageItem.add(MessageItem("안혜영","개발팀인데요","2024/04/01","2",R.drawable.pro6))
+        messageItem.add(MessageItem("김민수","넵","2024/04/01","1",R.drawable.pro2))
+        messageItem.add(MessageItem("이지영, 김지수, 우영우","아니요 그거 못들엇어요","2024/04/01","1",R.drawable.pro10))
+        messageItem.add(MessageItem("Kim junsoo","즐퇴하세요","2024/04/01","2",R.drawable.pro4))
+        messageItem.add(MessageItem("한준희","ㅋㅋㅋㅋㅋㅋㅋㅋ","2024/04/01","3",R.drawable.pro5))
+        messageItem.add(MessageItem("최주영","개발팀인데요","2024/04/01","2",R.drawable.pro6))
 
         binding.recyclerMessage.adapter = MsgAdapter(requireActivity(),messageItem)
         binding.recyclerMessage.layoutManager = LinearLayoutManager(requireActivity(),LinearLayoutManager.VERTICAL,false)
-
 
     }
 

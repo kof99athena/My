@@ -10,7 +10,7 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_person"
-            android:src="@drawable/pro1"
+            android:src="@drawable/pro8"
             android:scaleType="centerCrop"
             android:layout_width="56dp"
             android:layout_height="56dp"/>
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:id="@+id/tell"
+            android:id="@+id/tel"
             android:layout_marginTop="8dp"
             android:layout_below="@id/name"
             android:text="02-1111-1111"
