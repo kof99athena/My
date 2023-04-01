@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -35,6 +36,20 @@ class Tab1Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        totalNotification(view)
+        myteamNotification(view)
+
+        binding.viewTotalall.setOnClickListener {
+            Toast.makeText(context, "잠시만 기다려주세요.", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.viewMyteamall.setOnClickListener {
+            Toast.makeText(context, "잠시만 기다려주세요.", Toast.LENGTH_SHORT).show()
+        }
+
+    }
+
+    fun totalNotification(view: View){
         binding = FragmentTab1Binding.bind(view)
 
         totalitems.add(TotalItem("전 직원 상반기 워크샵 안내 ",R.drawable.newitem,"2023/03/29"))
@@ -47,7 +62,10 @@ class Tab1Fragment : Fragment() {
 
         binding.recyclerMain1.adapter = TotalAdapter(requireActivity(),totalitems)
         binding.recyclerMain1.layoutManager= LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+    }
 
+    fun myteamNotification(view: View){
+        binding = FragmentTab1Binding.bind(view)
 
         myteamitems.add(MyteamItem("인사파트 회의 (4/1 16시)",R.drawable.task,"2023/03/29"))
         myteamitems.add(MyteamItem("파트 회식있습니다. (4/5) ",R.drawable.task,"2023/03/18"))
@@ -59,7 +77,5 @@ class Tab1Fragment : Fragment() {
 
         binding.recyclerMain2.adapter = MyteamAdapter(requireActivity(), myteamitems)
         binding.recyclerMain2.layoutManager= LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
-
     }
-
 }

@@ -9,14 +9,72 @@
 
 
     <CalendarView
+        android:id="@+id/calendar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
 
+<!--    <EditText-->
+<!--        android:id="@+id/et_task"-->
+<!--        android:visibility="invisible"-->
+<!--        android:hint="일정 내용을 입력하세요. "-->
+<!--        android:textSize="24dp"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_task"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxStrokeColor="#AEDEFF"
+        app:hintTextColor="#AEDEFF"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_centerInParent="true"
+        android:hint="일정 : "
+        app:boxBackgroundColor="@color/white"
+        android:layout_margin="8dp"
+     >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/save"
+            android:text="추가"
+            android:visibility="gone"
+            android:layout_margin="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:text="취소"
+            android:visibility="gone"
+            android:layout_margin="8dp"
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
     <TextView
-        android:text="다가오는 일정"
+        android:text="내 일정"
         android:textSize="32sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+
+
 
 </LinearLayout>

@@ -4,6 +4,20 @@
     <string name="drawer_close">Close Drawer</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="Notification">
+        안녕하세요. 안혜영입니다. \n
+        공지사항 안내드리니 하기 내용 참고하시어 이번주까지 답변 부탁드리겠습니다. \n \n
+
+        - 교육내용 - \n
+        일시 : 4월 15일(14:00) \n
+        장소 : 7층 대회의실 \n
+        내용 : MZ와 같이 일하는 방법 \n \n
+
+        궁금하신 점 있으시면 저에게 문의주세요. \n
+        감사합니다.
+    </string>
 </resources>
 
 

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.athena.projectgroupwareapp.R
@@ -36,6 +37,11 @@ class Tab2Fragment : Fragment() {
 
         binding.recyclerMessage.adapter = MsgAdapter(requireActivity(),messageItem)
         binding.recyclerMessage.layoutManager = LinearLayoutManager(requireActivity(),LinearLayoutManager.VERTICAL,false)
+
+        binding.makeChat.setOnClickListener {
+            Toast.makeText(context, "대화창 시스템 작업중입니다.", Toast.LENGTH_SHORT).show()
+        }
+
 
     }
 

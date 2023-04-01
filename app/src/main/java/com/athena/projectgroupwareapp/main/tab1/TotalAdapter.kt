@@ -1,6 +1,7 @@
 package com.athena.projectgroupwareapp.main.tab1
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.athena.projectgroupwareapp.R
+import com.athena.projectgroupwareapp.main.tab2.MessageItem
+import com.athena.projectgroupwareapp.main.tab2.MsgAdapter
+import com.athena.projectgroupwareapp.main.tab3.IdCardActivity
 import com.bumptech.glide.Glide
 
 class TotalAdapter constructor(var context: Context, var items : MutableList<TotalItem>) : Adapter<TotalAdapter.VH>() {
@@ -34,6 +38,17 @@ class TotalAdapter constructor(var context: Context, var items : MutableList<Tot
         holder.title.setText(item.title)
         holder.date.setText(item.date)
         Glide.with(context).load(item.imgId).into(holder.iv)
+
+        holder.itemView.setOnClickListener {
+
+            val intent : Intent = Intent(context, NotificationActivity::class.java)
+            intent.putExtra("title",item.title)
+            intent.putExtra("date",item.date)
+
+            context.startActivity(intent)
+        }
+
+
 
 
     }
