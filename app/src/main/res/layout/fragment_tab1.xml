@@ -63,6 +63,8 @@
             android:layout_height="250dp"
             android:layout_below="@+id/view_myteamall"/>
 
+
+
     </RelativeLayout>
 
 </FrameLayout>

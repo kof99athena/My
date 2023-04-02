@@ -6,10 +6,11 @@ import android.view.View
 import androidx.core.view.isInvisible
 import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.databinding.ActivityCalendarBinding
+import java.io.FileOutputStream
 
 class CalendarActivity : AppCompatActivity() {
 
-    lateinit var binding : ActivityCalendarBinding
+    lateinit var binding: ActivityCalendarBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,14 +25,12 @@ class CalendarActivity : AppCompatActivity() {
             binding.delete.visibility = View.VISIBLE
         }
 
-
-
-
-        binding.delete.setOnClickListener{
+        binding.delete.setOnClickListener {
             binding.etTask.visibility = View.GONE
             binding.save.visibility = View.GONE
             binding.delete.visibility = View.GONE
         }
+
 
     }
 }

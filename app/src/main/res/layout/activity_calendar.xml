@@ -14,13 +14,7 @@
         android:layout_height="wrap_content"
         />
 
-<!--    <EditText-->
-<!--        android:id="@+id/et_task"-->
-<!--        android:visibility="invisible"-->
-<!--        android:hint="일정 내용을 입력하세요. "-->
-<!--        android:textSize="24dp"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"/>-->
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/et_task"
