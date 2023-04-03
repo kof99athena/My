@@ -16,6 +16,7 @@ class ApprovalActivity : AppCompatActivity() {
     //val a : Int by lazy { 1 } 메소드에 불러지지 않으면 만들어지않는다. { }안에는 a에 들어갈 값을 넣어주면된다 [ex : 1 or ApprovalRequestFragment()]
 
     val requestFragment = ApprovalRequestFragment() //미리 객체를 만들어서 쓰자!
+    val resultListFragment = ApprovalResultListFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -31,7 +32,7 @@ class ApprovalActivity : AppCompatActivity() {
             }
 
             binding.btnApprovalResult.setOnClickListener {
-                //supportFragmentManager.beginTransaction().replace(R.id.framelayout_approval,requestFragment).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.framelayout_approval,resultListFragment).commit()
             }
 
         }//onCreate

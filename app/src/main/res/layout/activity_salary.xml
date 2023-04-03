@@ -6,11 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".drawer.SalaryActivity">
 
-    <TextView
-        android:layout_margin="8dp"
-        android:text="3월 급여 명세서"
-        android:textSize="24dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInput"
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="월을 선택하세요."
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            >
+
+            <!--        Textiput Style에 오토컴플릿형식으로 리스트가 쭉 내려오게하자. arrays에 리스트 추가-->
+
+            <AutoCompleteTextView
+                android:id="@+id/salary_select"
+                android:inputType="none"
+                android:dropDownHeight="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <FrameLayout
+            android:id="@+id/framelayout_salary"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
 
 </LinearLayout>

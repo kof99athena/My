@@ -6,6 +6,7 @@ import android.view.View
 import androidx.core.view.isInvisible
 import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.databinding.ActivityCalendarBinding
+import com.google.android.material.textfield.TextInputLayout.AccessibilityDelegate
 import java.io.FileOutputStream
 
 class CalendarActivity : AppCompatActivity() {
@@ -19,6 +20,7 @@ class CalendarActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
+
         binding.calendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
             binding.etTask.visibility = View.VISIBLE
             binding.save.visibility = View.VISIBLE
@@ -29,8 +31,7 @@ class CalendarActivity : AppCompatActivity() {
             binding.etTask.visibility = View.GONE
             binding.save.visibility = View.GONE
             binding.delete.visibility = View.GONE
+
         }
-
-
     }
 }
