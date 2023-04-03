@@ -34,7 +34,7 @@
             android:name=".drawer.CalendarActivity"
             android:exported="false" />
         <activity
-            android:name=".drawer.confirm.ConfirmActivity"
+            android:name=".drawer.approval.ApprovalActivity"
             android:exported="false" />
         <activity
             android:name=".drawer.DailyActivity"

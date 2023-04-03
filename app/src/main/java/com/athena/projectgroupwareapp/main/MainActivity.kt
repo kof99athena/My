@@ -8,7 +8,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.databinding.ActivityMainBinding
 import com.athena.projectgroupwareapp.drawer.CalendarActivity
-import com.athena.projectgroupwareapp.drawer.confirm.ConfirmActivity
+import com.athena.projectgroupwareapp.drawer.approval.ApprovalActivity
 import com.athena.projectgroupwareapp.drawer.DailyActivity
 import com.athena.projectgroupwareapp.drawer.SalaryActivity
 import com.athena.projectgroupwareapp.main.tab1.Tab1Fragment
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.menuConfirm.setOnClickListener{
-            var intent : Intent = Intent(this@MainActivity, ConfirmActivity::class.java)
+            var intent : Intent = Intent(this@MainActivity, ApprovalActivity::class.java)
             startActivity(intent)
         }
 
