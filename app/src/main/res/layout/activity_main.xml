@@ -63,11 +63,13 @@
         </RelativeLayout>
 
         <!--        렐러티브에서 자동으로 안써짐 android:layout_gravity="start"-->
+        <!--숨겨진애 android:clickable="true" 우선 순위 정하기-->
         <RelativeLayout
             android:id="@+id/relative_up"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
+            android:clickable="true"
             android:background="@drawable/bg_drawer">
 
             <RelativeLayout
@@ -129,7 +131,7 @@
                     android:textSize="24dp" />
 
                 <TextView
-                    android:id="@+id/menu_confirm"
+                    android:id="@+id/menu_approval"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/menu_salary"
@@ -146,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/menu_salary"
                     android:layout_marginLeft="4dp"
-                    android:layout_toRightOf="@id/menu_confirm"
+                    android:layout_toRightOf="@id/menu_approval"
                     android:background="@drawable/bg_btn"
                     android:layout_marginTop="8dp"
                     android:gravity="center"

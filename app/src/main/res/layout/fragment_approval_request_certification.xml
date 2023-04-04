@@ -29,52 +29,70 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <CheckBox
-            android:text="재직증명서"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <RadioGroup
+            android:id="@+id/leave_sort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <CheckBox
-            android:text="원천징수영수증"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/employment"
+                android:text="@string/certi1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-        <CheckBox
-            android:id="@+id/et_certi_ext"
-            android:text="기타"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/receipt"
+                android:text="@string/certi2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-        <EditText
-            android:id="@+id/et_certi_reason"
-            android:visibility="gone"
-            android:hint="사유를 입력하세요"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/certi_ext"
+                android:text="@string/certi3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/et_certi3_reason"
+                android:visibility="gone"
+                android:hint="사유를 입력하세요"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RadioGroup>
+
 
 
         <TextView
-            android:text="사유"
+            android:text="제출처"
             android:textColor="@color/black"
             android:layout_marginTop="16dp"
             android:textSize="24sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <CheckBox
-            android:text="관공서제출용"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <RadioGroup
+            android:id="@+id/leave_reason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <CheckBox
-            android:text="금융기관 제출용"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:text="@string/reason4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-        <CheckBox
-            android:text="회사제출용"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:text="@string/reason5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:text="@string/reason6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </RadioGroup>
 
 
     </LinearLayout>

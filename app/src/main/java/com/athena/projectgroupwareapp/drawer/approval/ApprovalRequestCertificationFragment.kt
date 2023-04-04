@@ -32,27 +32,28 @@ class ApprovalRequestCertificationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        certiExt()
         btnFreeUpload()
+
+        binding.leaveSort.setOnCheckedChangeListener(object : OnCheckedChangeListener{
+            override fun onCheckedChanged(p0: RadioGroup?, p1: Int) {
+               if(binding.receipt.isChecked){
+                   binding.etCerti3Reason.visibility = View.GONE
+               }else if(binding.employment.isChecked){
+                   binding.etCerti3Reason.visibility = View.GONE
+               }else if(binding.certiExt.isChecked){
+                   binding.etCerti3Reason.visibility = View.VISIBLE
+                   binding.etCerti3Reason.text.clear()
+               }
+
+            }//onCheckedChanged
+
+        })//setOnCheckedChangeListener
+
 
     }//onViewCreated
 
     //증명서 발급 시 기타를 눌렀을때 사유가 나오는 메소드
-    fun certiExt(){
-        binding.etCertiExt.setOnCheckedChangeListener(object :
-            CompoundButton.OnCheckedChangeListener {
-            override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
-                if (isChecked) {
-                    binding.etCertiReason.visibility = View.VISIBLE
-                }else{
-                    binding.etCertiReason.visibility = View.GONE
-                    binding.etCertiReason.setText("")
-                }
-            }
 
-        }) //setOnCheckedChangeListener
-    }
 
     //상신버튼 눌렀을 때 메소드
     fun btnFreeUpload(){

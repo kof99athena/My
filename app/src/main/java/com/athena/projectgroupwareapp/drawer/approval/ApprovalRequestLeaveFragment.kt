@@ -21,8 +21,13 @@ class ApprovalRequestLeaveFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        btnFreeUpload()
 
 
+
+    }//onViewCreated
+
+    fun btnFreeUpload(){
         binding.btnFreeUpload.setOnClickListener {
             AlertDialog.Builder(requireActivity())
                 .setTitle("상신하시겠습니까?")
@@ -32,6 +37,7 @@ class ApprovalRequestLeaveFragment : Fragment() {
                 .show()
         }//setOnClickListener
 
-    }//onViewCreated
+    }
+
 
 }

@@ -18,6 +18,22 @@
         궁금하신 점 있으시면 저에게 문의주세요. \n
         감사합니다.
     </string>
+
+    <string name="day">연차 (9:00~18:00)</string>
+    <string name="halfday">반차 (9:00~14:00 or 14:00~18:00)</string>
+
+    <string name="reason1">개인사정</string>
+    <string name="reason2">질병휴가</string>
+    <string name="reason3">경조휴가</string>
+
+    <string name="certi1">재직증명서</string>
+    <string name="certi2">원천징수영수증</string>
+    <string name="certi3">기타</string>
+
+    <string name="reason4">관공서 제출용</string>
+    <string name="reason5">금융기관 제출용</string>
+    <string name="reason6">회사 제출용</string>
+
 </resources>
 
 

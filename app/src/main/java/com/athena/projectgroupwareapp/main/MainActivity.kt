@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.menuConfirm.setOnClickListener{
+        binding.menuApproval.setOnClickListener{
             var intent : Intent = Intent(this@MainActivity, ApprovalActivity::class.java)
             startActivity(intent)
         }

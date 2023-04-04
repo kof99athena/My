@@ -37,6 +37,7 @@
             <EditText
                 android:hint="2023"
                 android:inputType="number"
+                android:maxLength="4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -47,6 +48,7 @@
 
             <EditText
                 android:hint="04"
+                android:maxLength="2"
                 android:inputType="number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -59,6 +61,7 @@
 
             <EditText
                 android:hint="10"
+                android:maxLength="2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -83,15 +86,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <CheckBox
-            android:text="연차 (9:00~18:00) "
+        <RadioGroup
+            android:id="@+id/leave_sort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:text="@string/day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:text="@string/halfday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <CheckBox
-            android:text="반차 (9:00~14:00 or 14:00~18:00) "
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        </RadioGroup>
 
         <TextView
             android:text="사유"
@@ -101,21 +110,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <CheckBox
-            android:text="개인사정"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <RadioGroup
+            android:id="@+id/leave_reason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <CheckBox
-            android:text="질병휴가"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:text="@string/reason1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-        <CheckBox
-            android:text="경조휴가"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:text="@string/reason2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:text="@string/reason3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </RadioGroup>
 
     </LinearLayout>
 

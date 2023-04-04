@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.databinding.ActivityApprovalBinding
 import com.athena.projectgroupwareapp.drawer.CalendarActivity
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 
 
 class ApprovalActivity : AppCompatActivity() {
@@ -27,13 +29,25 @@ class ApprovalActivity : AppCompatActivity() {
             //객체를 만들고나서 함수를 써야한다. 객체 만들기 :  requestFragment = Approval_request_Fragment()  멤버변수에 적어줬다.
             supportFragmentManager.beginTransaction().replace(R.id.framelayout_approval,requestFragment).commit()
 
-            binding.btnRequest.setOnClickListener {
-                supportFragmentManager.beginTransaction().replace(R.id.framelayout_approval,requestFragment).commit()
-            }
+            binding.layout.addOnTabSelectedListener(object :OnTabSelectedListener{
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                    //선택할때만 반응하게 한다.
+                    if (tab?.text=="결재신청"){
+                        supportFragmentManager.beginTransaction().replace(R.id.framelayout_approval,ApprovalRequestFragment()).commit()
+                    }else if(tab?.text=="결재함"){
+                        supportFragmentManager.beginTransaction().replace(R.id.framelayout_approval,ApprovalResultListFragment()).commit()
+                    }
+                }
 
-            binding.btnApprovalResult.setOnClickListener {
-                supportFragmentManager.beginTransaction().replace(R.id.framelayout_approval,resultListFragment).commit()
-            }
+                override fun onTabUnselected(tab: TabLayout.Tab?) {
+                   //생략
+                }
+
+                override fun onTabReselected(tab: TabLayout.Tab?) {
+                    //생략
+                }
+
+            })
 
         }//onCreate
 
