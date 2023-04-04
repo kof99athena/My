@@ -10,6 +10,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+
+        //카카오맵
+        maven(url = "https://devrepo.kakao.com/nexus/content/groups/public/")
     }
 }
 rootProject.name = "ProjectGroupwareApp"
