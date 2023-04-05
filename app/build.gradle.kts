@@ -1,6 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+
+    //buildscript :  Firebase를 쓰기위한 작업
+    id ("com.google.gms.google-services")
 }
 
 android {
@@ -48,6 +51,14 @@ dependencies {
     //카카오 맵
     implementation (files ("libs/libDaumMapAndroid.jar"))
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+
+
+    // Firebase core library - 꼭 필요한 코어 라이브러리
+    implementation(platform("com.google.firebase:firebase-bom:31.3.0"))
+    // Firebase product SDK - 데이터베이스
+    implementation("com.google.firebase:firebase-firestore-ktx")
+    // Firebase product SDK - 이미지
+    implementation("com.google.firebase:firebase-storage-ktx")
 
 
     implementation("androidx.core:core-ktx:1.9.0")

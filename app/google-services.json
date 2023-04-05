@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1038848952355",
+    "project_id": "projectgroupwaremy-5a237",
+    "storage_bucket": "projectgroupwaremy-5a237.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1038848952355:android:9ae4be4623ad20328a0996",
+        "android_client_info": {
+          "package_name": "com.athena.projectgroupwareapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1038848952355-0jrqf0leol6uq9j2pdd7a9n48fsfljpg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzirmT-XbEX2d86EYR3sd3iGglxF1rjIQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1038848952355-0jrqf0leol6uq9j2pdd7a9n48fsfljpg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
