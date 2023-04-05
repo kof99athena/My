@@ -20,6 +20,7 @@ class SalaryActivity : AppCompatActivity() {
 
 
         var sort : Array<String> = resources.getStringArray(R.array.salary) //array에 등록된 결재종류들
+        
 
         val adapter = ArrayAdapter.createFromResource(this,R.array.salary,android.R.layout.simple_list_item_1)
         binding.salarySelect.setAdapter(adapter)

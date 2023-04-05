@@ -1,70 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="8dp"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:weightSum="2"
     tools:context=".main.tab1.Tab1Fragment">
 
 
 
     <RelativeLayout
+        android:layout_margin="8dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tv1"
-            android:layout_margin="8dp"
-            android:text="전사 공지사항"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tv1"
+                android:text="전사 공지사항"
+                android:textSize="24sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/view_totalall"
-            android:text="전체보기"
-            android:layout_margin="8dp"
-            android:layout_alignBottom="@id/tv1"
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_main_1"
-            android:layout_below="@id/tv1"
-            android:layout_marginTop="8dp"
-            android:layout_width="match_parent"
-            android:layout_marginBottom="4dp"
-            android:layout_height="250dp"/>
-
-        <TextView
-            android:id="@+id/view_myteamall"
-            android:text="우리팀 공지사항"
-            android:textSize="24sp"
-            android:layout_margin="8dp"
-            android:layout_below="@id/recycler_main_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tv_myteam"
-            android:text="전체보기"
-            android:layout_margin="8dp"
-            android:layout_alignBottom="@id/view_myteamall"
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_main_2"
-            android:layout_marginTop="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_below="@+id/view_myteamall"/>
-
-
-
+            <TextView
+                android:id="@+id/view_totalall"
+                android:text="전체보기"
+                android:layout_alignBottom="@id/tv1"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
     </RelativeLayout>
 
-</FrameLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_main_1"
+                android:layout_below="@id/tv1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+    <RelativeLayout
+        android:layout_margin="8dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+            <TextView
+                    android:id="@+id/view_myteamall"
+                    android:text="우리팀 공지사항"
+                    android:textSize="24sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_myteam"
+                android:text="전체보기"
+                android:layout_alignBottom="@id/view_myteamall"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_main_2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+</LinearLayout>
