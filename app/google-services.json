@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "1038848952355",
-    "project_id": "projectgroupwaremy-5a237",
-    "storage_bucket": "projectgroupwaremy-5a237.appspot.com"
+    "project_number": "978708861730",
+    "project_id": "groupwaremy-803bb",
+    "storage_bucket": "groupwaremy-803bb.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1038848952355:android:9ae4be4623ad20328a0996",
+        "mobilesdk_app_id": "1:978708861730:android:a35ddd698d858816e08b7b",
         "android_client_info": {
           "package_name": "com.athena.projectgroupwareapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1038848952355-0jrqf0leol6uq9j2pdd7a9n48fsfljpg.apps.googleusercontent.com",
+          "client_id": "978708861730-1hoe9upqm8j5vsbg0lumkjb306eb3dps.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCzirmT-XbEX2d86EYR3sd3iGglxF1rjIQ"
+          "current_key": "AIzaSyDKmkulbgfHTZctFZRLuLslsLlD7vZUn-Q"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1038848952355-0jrqf0leol6uq9j2pdd7a9n48fsfljpg.apps.googleusercontent.com",
+              "client_id": "978708861730-1hoe9upqm8j5vsbg0lumkjb306eb3dps.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

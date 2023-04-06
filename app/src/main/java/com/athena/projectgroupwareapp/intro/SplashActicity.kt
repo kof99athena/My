@@ -18,6 +18,7 @@ class SplashActicity : AppCompatActivity() {
             startActivity(intent)
         },2000)
         //핸들러 작업 시 Looper.getMainLooper() 해줘야 에러가 나지않는다. 루퍼를 안쓰면 에러
+
     }
 
 

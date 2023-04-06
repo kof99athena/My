@@ -18,17 +18,14 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.btnLogin.setOnClickListener {
+            var intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
 
 
         }//onCreate
-
-    private fun clickSignIn() {
-        //이 함수를 호출하면 로그인과 관련된 실행문이 작동한다. 즉
-        //파이어베이스에 있는 ID와 Password가 일치하면 로그인하도록한다.
-
-        var id : String = binding.etIdnum.toString()
-
-    }
 
 
 

@@ -17,12 +17,14 @@ class IdCardActivity : AppCompatActivity() {
         setContentView(binding.root)
 
        var name : String? = intent.getStringExtra("name")
+       var email : String? = intent.getStringExtra("email")
        var tel : String? = intent.getStringExtra("tel") as String
        var imgId : Int = intent.getIntExtra("imgId", R.drawable.pro1)
 
         Glide.with(this).load(imgId).into(binding.iv)
         binding.name.setText(name)
         binding.tel.setText(tel)
+        binding.email.setText(email)
 
 
     }
