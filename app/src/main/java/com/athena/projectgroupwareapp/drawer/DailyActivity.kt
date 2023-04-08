@@ -26,7 +26,7 @@ class DailyActivity : AppCompatActivity() {
 
         //키 해쉬값을 얻어오자
         var keyHash : String = Utility.getKeyHash(this)
-        Log.i("key",keyHash)
+        Log.i("keyhash",keyHash)
 
         //MapView 객체 생성 및 ViewGroup에 붙이기
         var mapView : MapView = MapView(this)

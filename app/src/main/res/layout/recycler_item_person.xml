@@ -31,8 +31,19 @@
             android:layout_below="@id/name"
             android:text="02-1111-1111"
             android:layout_alignStart="@id/name"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_below="@id/name"
+            android:text="korea@my.com"
+            android:layout_toRightOf="@id/tel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
 
         <ImageView
             android:id="@+id/go"

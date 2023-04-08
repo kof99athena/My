@@ -10,7 +10,8 @@ import com.athena.projectgroupwareapp.databinding.FragmentTab1teamBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
 //영업
-class Tab1teamFragment : Fragment() {
+class
+Tab1teamFragment : Fragment() {
 
     lateinit var binding : FragmentTab1teamBinding
 

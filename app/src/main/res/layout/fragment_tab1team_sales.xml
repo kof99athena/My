@@ -6,7 +6,7 @@
     tools:context=".main.tab3.business.Tab1teamSalesFragment">
 
    <androidx.recyclerview.widget.RecyclerView
-       android:id="@+id/recycler_sales"
+       android:id="@+id/recycler_person"
        android:layout_width="match_parent"
        android:layout_height="match_parent"/>
 

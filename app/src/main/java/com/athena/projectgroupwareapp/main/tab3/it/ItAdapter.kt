@@ -6,7 +6,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class ItAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
 
-    var frag = listOf(Tab2teamAppFragment(),Tab2teamAIFragment(),Tab2teamItsecurityFragment())
+    var frag = listOf(Tab2teamAppFragment(),Tab2teamAIFragment(),Tab2teamSecurityFragment())
     override fun getItemCount(): Int {
         return frag.size
     }

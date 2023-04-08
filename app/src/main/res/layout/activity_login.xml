@@ -36,6 +36,7 @@
         app:counterMaxLength="6">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/id"
             android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -63,6 +64,7 @@
         app:endIconMode="password_toggle">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
             android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

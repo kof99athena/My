@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
-<!--    카카오맵 사용을 위한 퍼미션-->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- 카카오맵 사용을 위한 퍼미션 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,20 +12,21 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectGroupwareApp"
         android:usesCleartextTraffic="true"
-        android:networkSecurityConfig="@xml/network_security_config"
         tools:targetApi="31">
-
+        <activity
+            android:name=".main.tab2.ChattingActivity"
+            android:exported="false" />
         <activity
             android:name=".main.tab1.NotificationActivity"
             android:exported="false" />
         <activity
             android:name=".main.tab3.IdCardActivity"
             android:exported="false" />
-
         <activity
             android:name=".drawer.CalendarActivity"
             android:exported="false" />
@@ -59,19 +59,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".main.MainActivity"
-            android:exported="false" />
-
-<!--        메타데이터를 추가한다. 액티비티밖, 어플리케이션안에 위치한다.  -->
-<!--        이곳에 앱 키를 넣어준다. -->
-        <meta-data android:name="com.kakao.sdk.AppKey" android:value="08c31f5d5e4b7569642d4feb46ed251d"/>
-
-
-
-
+            android:exported="false" /> <!-- 메타데이터를 추가한다. 액티비티밖, 어플리케이션안에 위치한다. -->
+        <!-- 이곳에 앱 키를 넣어준다. -->
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="08c31f5d5e4b7569642d4feb46ed251d" />
     </application>
 
 </manifest>

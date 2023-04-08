@@ -33,9 +33,13 @@ class ApprovalActivity : AppCompatActivity() {
                 override fun onTabSelected(tab: TabLayout.Tab?) {
                     //선택할때만 반응하게 한다.
                     if (tab?.text=="결재신청"){
-                        supportFragmentManager.beginTransaction().replace(R.id.framelayout_approval,ApprovalRequestFragment()).commit()
+                        supportFragmentManager.beginTransaction().replace(R.id.framelayout_approval,
+                            ApprovalRequestFragment()
+                        ).commit()
                     }else if(tab?.text=="결재함"){
-                        supportFragmentManager.beginTransaction().replace(R.id.framelayout_approval,ApprovalResultListFragment()).commit()
+                        supportFragmentManager.beginTransaction().replace(R.id.framelayout_approval,
+                            ApprovalResultListFragment()
+                        ).commit()
                     }
                 }
 
