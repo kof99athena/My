@@ -14,15 +14,15 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 
 class Tab3teamAccountingFragment : Fragment() {
-    lateinit var binding : FragmentTab3teamAccountingBinding
-    var personnalItem : MutableList<PersonnalItem> = mutableListOf()
+    lateinit var binding: FragmentTab3teamAccountingBinding
+    var personnalItem: MutableList<PersonnalItem> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_tab3team_accounting,container,false)
+        return inflater.inflate(R.layout.fragment_tab3team_accounting, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,19 +30,20 @@ class Tab3teamAccountingFragment : Fragment() {
 
         binding = FragmentTab3teamAccountingBinding.bind(view)
 
-        var firebase : FirebaseFirestore = FirebaseFirestore.getInstance()
-        firebase.collection("employee").document("ManageHeadquarters").collection("accounting").get().addOnSuccessListener {
-            for (snapshot in it.documents){
-                var name : String = snapshot.get("name").toString()
-                var email : String = snapshot.get("email").toString()
-                var tel : String = snapshot.get("tel").toString()
-                var imgUri : String = snapshot.get("profileUrl").toString()
+        var firebase: FirebaseFirestore = FirebaseFirestore.getInstance()
+        firebase.collection("employee").document("ManageHeadquarters").collection("accounting")
+            .get().addOnSuccessListener {
+            for (snapshot in it.documents) {
+                var name: String = snapshot.get("name").toString()
+                var email: String = snapshot.get("email").toString()
+                var tel: String = snapshot.get("tel").toString()
+                var imgUri: String = snapshot.get("profileUrl").toString()
 
-                personnalItem.add(PersonnalItem(imgUri,name,email,tel))
+                personnalItem.add(PersonnalItem(imgUri, name, email, tel))
             }
 
-            binding.recyclerPerson.adapter = PersonnalAdapter(requireActivity(),personnalItem)
-            binding.recyclerPerson.layoutManager = LinearLayoutManager(requireActivity(),LinearLayoutManager.VERTICAL,false)
+            binding.recyclerPerson.adapter = PersonnalAdapter(requireActivity(), personnalItem)
+            binding.recyclerPerson.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         }
 
     }

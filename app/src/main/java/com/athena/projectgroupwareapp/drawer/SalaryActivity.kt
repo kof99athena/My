@@ -2,10 +2,12 @@ package com.athena.projectgroupwareapp.drawer
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.databinding.ActivityApprovalBinding
 import com.athena.projectgroupwareapp.databinding.ActivitySalaryBinding
+import com.google.android.material.snackbar.Snackbar
 
 class SalaryActivity : AppCompatActivity() {
 
@@ -24,5 +26,20 @@ class SalaryActivity : AppCompatActivity() {
 
         val adapter = ArrayAdapter.createFromResource(this,R.array.salary,android.R.layout.simple_list_item_1)
         binding.salarySelect.setAdapter(adapter)
+
+
+
+        binding.salarySelect.setOnItemClickListener { parent, view, position, id ->
+            var s : String = binding.salarySelect.text.toString()
+            Log.i("tag",s)
+
+            when{
+                s.equals("2022년 급여명세서")->{
+                    Snackbar.make(binding.framelayoutSalary,"22년 급여명세서는 관리자에게 문의하세요.", Snackbar.LENGTH_INDEFINITE).setAction("X", {}).show()
+                }
+                else -> false
+            }
+
+        }//onItemCLickListener
     }
 }

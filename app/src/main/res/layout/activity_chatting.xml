@@ -6,7 +6,22 @@
     android:padding="8dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.tab2.ChattingActivity">
+    tools:context=".main.tab2.chatting.ChattingActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        app:elevation="0dp"
+        android:background="@android:color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+<!-- 특정 화면에만 액션바를 부여하자 : 채팅방 이름때문에 액션바가 필요하다-->
+<!-- 엘리베이션 0, 백그라운드는 투명하게 설정한다.-->
+        <Toolbar
+            android:id="@+id/toolbar_chat"
+            android:title="상대방 이름"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <!--    stackFromEnd 스크롤을 항상 밑에 둔다 -->
 
@@ -41,7 +56,7 @@
             android:background="@drawable/bg_edit"/>
         <!--        최대 3줄까지만 커진다. 3줄이상쓸수는 있다  -->
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn"
             android:layout_width="32dp"
             android:layout_height="32dp"

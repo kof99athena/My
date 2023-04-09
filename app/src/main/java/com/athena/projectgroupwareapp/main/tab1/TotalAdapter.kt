@@ -10,9 +10,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.athena.projectgroupwareapp.R
-import com.athena.projectgroupwareapp.main.tab2.MessageItem
-import com.athena.projectgroupwareapp.main.tab2.MsgAdapter
-import com.athena.projectgroupwareapp.main.tab3.IdCardActivity
 import com.bumptech.glide.Glide
 
 class TotalAdapter constructor(var context: Context, var items : MutableList<TotalItem>) : Adapter<TotalAdapter.VH>() {

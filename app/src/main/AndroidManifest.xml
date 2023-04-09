@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <!-- 카카오맵 사용을 위한 퍼미션 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 위치정보제공에대한 퍼미션도 필요하다 정확도가 높은 FINE, 또한 네트워크 퍼미션도 사용해야 한다.(COARSE) -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -19,8 +19,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".main.tab2.ChattingActivity"
-            android:exported="false" />
+            android:name=".main.tab2.chatting.ChattingActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".main.tab1.NotificationActivity"
             android:exported="false" />

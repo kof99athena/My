@@ -9,12 +9,20 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.databinding.FragmentTab2Binding
+import com.athena.projectgroupwareapp.login.G
+import com.athena.projectgroupwareapp.main.tab2.chatting.GU
+import com.athena.projectgroupwareapp.main.tab2.recycler.MessageListItem
+import com.athena.projectgroupwareapp.main.tab2.recycler.MsgListAdapter
+import com.athena.projectgroupwareapp.main.tab3.recycler.PersonnalAdapter
+import com.athena.projectgroupwareapp.main.tab3.recycler.PersonnalItem
+import com.google.firebase.firestore.FirebaseFirestore
 
 class Tab2Fragment : Fragment() {
 
     lateinit var binding : FragmentTab2Binding
 
-    var messageItem : MutableList<MessageItem> = mutableListOf()
+    var messageItem : MutableList<MessageListItem> = mutableListOf()
+    var chatName : String = G.employeeAccount?.name.toString() //내이름으로 된 컬렉션이 있으면 가져온다. 왜냐면 그건 다른사람이 나한테 메세지를 건거니까.
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,22 +36,25 @@ class Tab2Fragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding= FragmentTab2Binding.bind(view)
 
-        messageItem.add(MessageItem("안혜영","개발팀인데요","2024/04/01","3",R.drawable.pro1))
-        messageItem.add(MessageItem("김민수","넵","2024/04/01","1",R.drawable.pro2))
-        messageItem.add(MessageItem("이지영, 김지수, 우영우","아니요 그거 못들엇어요","2024/04/01","1",R.drawable.pro10))
-        messageItem.add(MessageItem("Kim junsoo","즐퇴하세요","2024/04/01","2",R.drawable.pro4))
-        messageItem.add(MessageItem("한준희","ㅋㅋㅋㅋㅋㅋㅋㅋ","2024/04/01","3",R.drawable.pro5))
-        messageItem.add(MessageItem("최주영","개발팀인데요","2024/04/01","2",R.drawable.pro6))
 
-        binding.recyclerMessage.adapter = MsgAdapter(requireActivity(),messageItem)
-        binding.recyclerMessage.layoutManager = LinearLayoutManager(requireActivity(),LinearLayoutManager.VERTICAL,false)
+        var firebase : FirebaseFirestore = FirebaseFirestore.getInstance()
+        firebase.collection(chatName).get().addOnSuccessListener {
+            for (snapshot in it.documents){
+                var name : String = snapshot.get("name").toString()
+                var message : String = snapshot.get("message").toString()
+                var date : String = snapshot.get("time").toString()
+                var num : String = snapshot.get("num").toString() ?: ""
+                var profileUrl : String = snapshot.get("imgUrl").toString()
 
-        binding.makeChat.setOnClickListener {
-            Toast.makeText(context, "대화창 시스템 작업중입니다.", Toast.LENGTH_SHORT).show()
-        }
+                messageItem.add(MessageListItem(name,message,date,num,profileUrl))
+            }
+
+            binding.recyclerMessage.adapter = MsgListAdapter(requireActivity(),messageItem)
+            binding.recyclerMessage.layoutManager = LinearLayoutManager(requireActivity(),LinearLayoutManager.VERTICAL,false)
+
+        }//addOnSuccessListener
+
+    }//onViewCreated
 
 
-    }
-
-
-}
+  }//Fragment

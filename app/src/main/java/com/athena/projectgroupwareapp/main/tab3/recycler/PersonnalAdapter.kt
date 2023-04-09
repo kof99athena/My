@@ -16,6 +16,8 @@ import com.athena.projectgroupwareapp.login.G
 import com.athena.projectgroupwareapp.main.tab3.IdCardActivity
 import com.bumptech.glide.Glide
 
+
+//조직도의 리스트를 보여주는 아답터, 잡고있는 item을 연결하여 개인 IDcard로 넘겨준다.
 class PersonnalAdapter constructor(var context : Context, var items : MutableList<PersonnalItem>) : Adapter<PersonnalAdapter.VH>() {
 
     lateinit var itemView :View

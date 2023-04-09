@@ -1,10 +1,12 @@
 package com.athena.projectgroupwareapp.main.tab3
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.databinding.ActivityIdCardBinding
+import com.athena.projectgroupwareapp.main.tab2.chatting.ChattingActivity
+import com.athena.projectgroupwareapp.main.tab2.chatting.GU
+import com.athena.projectgroupwareapp.main.tab2.chatting.OtherAccount
 import com.bumptech.glide.Glide
 
 class IdCardActivity : AppCompatActivity() {
@@ -28,9 +30,20 @@ class IdCardActivity : AppCompatActivity() {
         binding.tel.setText(tel)
         binding.email.setText(email)
 
-        Log.i("email",email.toString())
-        Log.i("email",name.toString())
-        Log.i("email",imgId.toString())
+
+//        Log.i("email",email.toString())
+//        Log.i("email",name.toString())
+//        Log.i("email",imgId.toString())
+
+        binding.btnLogin.setOnClickListener {
+
+            GU.otherAccount = OtherAccount(name.toString(),imgId.toString())
+
+            var intent : Intent = Intent(this, ChattingActivity::class.java)
+            startActivity(intent)
+        }
+
+
     }
 
 }
