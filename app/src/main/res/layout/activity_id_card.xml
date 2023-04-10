@@ -30,10 +30,37 @@
         android:text="안혜영"
         android:layout_below="@+id/iv"
         android:textColor="@color/black"
-        android:layout_centerInParent="true"
+        android:layout_marginLeft="110dp"
         android:textSize="20sp"
         android:textStyle="bold"
         android:padding="8dp"/>
+
+    <TextView
+        android:id="@+id/ext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/"
+        android:layout_toRightOf="@id/name"
+        android:layout_below="@+id/iv"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:padding="8dp"/>
+
+    <TextView
+        android:id="@+id/id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="999999"
+        android:layout_toRightOf="@id/ext"
+        android:layout_below="@+id/iv"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:padding="8dp"/>
+
+
+
 
     <TextView
         android:id="@+id/tel"

@@ -35,7 +35,8 @@ class Tab2teamSecurityFragment : Fragment() {
                 var email : String = snapshot.get("email").toString()
                 var tel : String = snapshot.get("tel").toString()
                 var imgUri : String = snapshot.get("profileUrl").toString()
-                personnalItem.add(PersonnalItem(imgUri, name , email, tel))
+                var id : String = snapshot.get("ID").toString()
+                personnalItem.add(PersonnalItem(imgUri, name , email, tel,id))
 
             }
 

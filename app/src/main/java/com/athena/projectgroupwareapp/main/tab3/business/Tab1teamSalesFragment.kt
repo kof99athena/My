@@ -16,7 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 class Tab1teamSalesFragment : Fragment() {
     lateinit var binding : FragmentTab1teamSalesBinding
 
-    var personnalItem : MutableList<PersonnalItem> = mutableListOf()
+    var personnalItems : MutableList<PersonnalItem> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,12 +43,16 @@ class Tab1teamSalesFragment : Fragment() {
                 Log.i("tag1111",name+tel+email)
 
                 var imgUri : String = snapshot.get("profileUrl").toString()
-                personnalItem.add(PersonnalItem(imgUri, name , email, tel))
+
+
+                var id : String = snapshot.get("ID").toString()
+
+                personnalItems.add(PersonnalItem(imgUri, name , email, tel, id))
             }
 
             //아답터를 여기에 붙이는 이유는? 성공한 다음에 아답터를 불러와야하니까. 이 메소드 밖에 쓰면 이상하다.
             //왜? 불러오지도 않았는데 아답터를 쓰는건 잘못된거니까
-            binding.recyclerPerson.adapter = PersonnalAdapter(requireActivity(),personnalItem)
+            binding.recyclerPerson.adapter = PersonnalAdapter(requireActivity(),personnalItems)
             binding.recyclerPerson.layoutManager = LinearLayoutManager(requireActivity(),LinearLayoutManager.VERTICAL,false)
 
         }.addOnFailureListener {

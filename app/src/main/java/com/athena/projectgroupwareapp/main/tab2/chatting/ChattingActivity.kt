@@ -1,6 +1,7 @@
 package com.athena.projectgroupwareapp.main.tab2.chatting
 
 import android.content.Context
+import android.icu.number.IntegerWidth
 import android.os.Bundle
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
@@ -8,6 +9,7 @@ import android.widget.Adapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.athena.projectgroupwareapp.databinding.ActivityChattingBinding
+import com.athena.projectgroupwareapp.login.EmployeeAccount
 import com.athena.projectgroupwareapp.login.G
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentChange
@@ -27,8 +29,19 @@ import java.util.Objects
 class ChattingActivity : AppCompatActivity() {
     lateinit var binding : ActivityChattingBinding
     lateinit var firebase : FirebaseFirestore //파이어스토어 : 많이 쓸 예정이니까 미리 프로퍼티를 설정하자
+
     lateinit var chatRef : CollectionReference //컬렉션 참조(→)하는 변수
-    var chatName : String = GU.otherAccount?.name.toString()
+    lateinit var chatRefMy : CollectionReference //컬렉션 참조(→)하는 변수 :  내 ID
+    lateinit var chatRefOther : CollectionReference //컬렉션 참조(→)하는 변수 : Other ID
+
+    var chatName : String = GU.otherAccount?.id.toString()//상대방 사원번호와와
+    var chatName2 : String = G.employeeAccount?.id.toString()//내 사원번호를 더해서 collection을 만들자
+
+    var collectionname : Int = chatName.toInt()+chatName2.toInt()
+
+    var chatName3 : String = GU.otherAccount?.name.toString() //대화방이름
+
+    //회원번호
 
 
     //채팅방에 리사이클러뷰를 띄워보자
@@ -42,7 +55,7 @@ class ChattingActivity : AppCompatActivity() {
 
 
         //채팅방 이름은 상대방 이름으로 표시하자
-        binding.toolbarChat.setTitle(chatName)
+        binding.toolbarChat.setTitle(chatName3)
         Log.i("chatname",chatName)
 
         //아답터 띄우기
@@ -51,9 +64,17 @@ class ChattingActivity : AppCompatActivity() {
 
         //Log.i("recycler",msgadapter.toString())
 
-        //chatting이라는 컬렉션을 만들자
+        //chatting이라는 컬렉션을 만들자 - 회원번호를 더한 값으로 만들자.
         firebase = FirebaseFirestore.getInstance()
-        chatRef = firebase.collection(chatName)
+
+        chatRef = firebase.collection("chatting").document(collectionname.toString()).collection("message")
+        chatRefMy = firebase.collection("chatting").document(collectionname.toString()).collection("my")
+        chatRefOther = firebase.collection("chatting").document(collectionname.toString()).collection("other")
+        //chatMyRef = firebase.collection("chatting").document(collectionname.toString()).collection("my")
+        //chatRef = firebase.collection("chatting").document(collectionname.toString()).collection("other")
+        Log.i("ahn1111",collectionname.toString())
+
+
 
         //컬렉션에있는 내용을 가져오자
         chatRef.addSnapshotListener(object : EventListener<QuerySnapshot>{
@@ -72,16 +93,19 @@ class ChattingActivity : AppCompatActivity() {
                     //이제 Document에 있는 필드값 가져오기, 여기 조금 이상함
                     var msg : MutableMap<String, Any>? = snapshot.data
 
+
                     var name : String = msg?.get("name").toString()
                     var message : String = msg?.get("message").toString()
                     var time : String = msg?.get("time").toString()
                     var profileUrl : String = msg?.get("imgUrl").toString()
+                    var id : String = msg?.get("ID").toString()
+                    //var my : String = msg?.get("my").toString()
+                    //var other : String = msg?.get("other").toString()
 
                     Log.i("total",name+message+time+profileUrl)
 
-
                     //읽어온메세지를 리스트에 추가
-                    messageItems.add(MessageItem(name,message,profileUrl,time))
+                    messageItems.add(MessageItem(name,message,profileUrl,time, id))
 
                     //데이터 체인지 할때마다 부르자
                     msgadapter.notifyItemInserted(messageItems.size-1)
@@ -104,10 +128,18 @@ class ChattingActivity : AppCompatActivity() {
     fun clickSend(){
 
         //firebase에 저장할 나의 정보들
-        var name : String = G.employeeAccount?.name.toString()
-        var message : String = binding.et.text.toString()
-        var imgUrl : String = G.employeeAccount?.imgProfile.toString()
+        var myname : String = G.employeeAccount?.name.toString()
+        var myid : String = G.employeeAccount?.id.toString()
+        var mymessage : String = binding.et.text.toString()
+        var myimgUrl : String = G.employeeAccount?.imgProfile.toString()
         //Log.i("myaccount",name+message+imgUrl)
+
+        //firebase에 저장할 다른사람의 정보들
+        var othername : String = GU.otherAccount?.name.toString()
+        var otherid : String = GU.otherAccount?.id.toString()
+        var otherimgUrl : String = GU.otherAccount?.imgProfile.toString()
+        //Log.i("myaccount",name+message+imgUrl)
+
 
         //채팅방에 들어갈 시간 정보 만들기
         var calendar : Calendar = Calendar.getInstance()
@@ -115,7 +147,9 @@ class ChattingActivity : AppCompatActivity() {
         //Log.i("myaccount",time)
 
         //필드값들을 HashMap에 만들지말고 객체로 만들어서 넣어버리자. MessageItem을 만들자
-        var messageItem : MessageItem = MessageItem(name, message, imgUrl, time)
+        var messageItem : MessageItem = MessageItem(myname, mymessage, myimgUrl, time, myid)
+        var myItem : EmployeeAccount = EmployeeAccount(myid,myname,myimgUrl)
+        var otherItem : OtherAccount = OtherAccount(othername,otherimgUrl,otherid)
 
         //컬렉션에 채팅 메세지 저장하기 - 도큐먼트는 상대방 이름으로 정하자
 
@@ -123,7 +157,10 @@ class ChattingActivity : AppCompatActivity() {
         val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         val today = sdf.format(Date())
 
-        chatRef.document(chatName+" "+today).set(messageItem)
+        chatRef.document(today).set(messageItem)
+        chatRefMy.document(today).set(myItem)
+        chatRefOther.document(today).set(otherItem)
+        //chatRefMy.document(chatName+" "+today).set(messageItem)
         binding.et.setText("")
 
         //소프트 키보드 내리기

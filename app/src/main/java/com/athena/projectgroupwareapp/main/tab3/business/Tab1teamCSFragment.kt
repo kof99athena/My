@@ -41,8 +41,9 @@ class Tab1teamCSFragment : Fragment() {
                 var tel : String = snapshot.get("tel").toString()
                 var email : String = snapshot.get("email").toString()
                 var imgUri : String = snapshot.get("profileUrl").toString()
+                var id : String = snapshot.get("ID").toString()
 
-                personnalItems.add(PersonnalItem(imgUri, name , email, tel))
+                personnalItems.add(PersonnalItem(imgUri, name , email, tel, id))
             }
             binding.recyclerPerson.adapter = PersonnalAdapter(requireActivity(),personnalItems)
             binding.recyclerPerson.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL,false)

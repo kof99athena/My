@@ -36,8 +36,9 @@ class Tab3teamHRFragment : Fragment() {
                 var email : String = snapshot.get("email").toString()
                 var tel : String = snapshot.get("tel").toString()
                 var imgUri : String = snapshot.get("profileUrl").toString()
+                var id : String = snapshot.get("ID").toString()
 
-                personnalItem.add(PersonnalItem(imgUri,name,email,tel))
+                personnalItem.add(PersonnalItem(imgUri,name,email,tel,id))
             }
 
             binding.recyclerPerson.adapter = PersonnalAdapter(requireActivity(),personnalItem)

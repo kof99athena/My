@@ -1,6 +1,7 @@
 package com.athena.projectgroupwareapp.main.tab2
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import com.athena.projectgroupwareapp.main.tab2.recycler.MessageListItem
 import com.athena.projectgroupwareapp.main.tab2.recycler.MsgListAdapter
 import com.athena.projectgroupwareapp.main.tab3.recycler.PersonnalAdapter
 import com.athena.projectgroupwareapp.main.tab3.recycler.PersonnalItem
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 
 class Tab2Fragment : Fragment() {
@@ -22,7 +24,13 @@ class Tab2Fragment : Fragment() {
     lateinit var binding : FragmentTab2Binding
 
     var messageItem : MutableList<MessageListItem> = mutableListOf()
-    var chatName : String = G.employeeAccount?.name.toString() //내이름으로 된 컬렉션이 있으면 가져온다. 왜냐면 그건 다른사람이 나한테 메세지를 건거니까.
+
+    var chatName : String = GU.otherAccount?.id.toString() // 이 값은 없다 지금은.. 나는 다른사람(안혜영) 즉 내게 말 건 사람의 사번이 필요하다.
+    var chatName2 : String = G.employeeAccount?.id.toString() //이 값은 로그인할때 가져온다
+    lateinit var chatRefMy : CollectionReference //컬렉션 참조(→)하는 변수 :  내 ID
+    var collectionname : Int = chatName.toInt()+ chatName2.toInt()
+
+    //var collectionname : Int = chatName.toInt()+chatName2.toInt()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,9 +44,16 @@ class Tab2Fragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding= FragmentTab2Binding.bind(view)
 
+        Log.i("collection",chatName)
+        Log.i("collection",chatName2)
 
         var firebase : FirebaseFirestore = FirebaseFirestore.getInstance()
-        firebase.collection(chatName).get().addOnSuccessListener {
+        //채팅방 리스트에는 내가 대화했던 목록이 떠야한다.
+        //collection 내의 my 혹은 other 필드의 ID값이 나랑 일치하는지보자
+
+        chatRefMy = firebase.collection("chatting").document(collectionname.toString()).collection("my")
+
+        firebase.collection(chatName2.toString()).get().addOnSuccessListener {
             for (snapshot in it.documents){
                 var name : String = snapshot.get("name").toString()
                 var message : String = snapshot.get("message").toString()

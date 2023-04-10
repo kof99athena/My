@@ -30,6 +30,7 @@ class PersonnalAdapter constructor(var context : Context, var items : MutableLis
         val tel : TextView by lazy { itemView.findViewById(R.id.tel) }
         val email : TextView by lazy { itemView.findViewById(R.id.email) }
         val iv : ImageView by lazy { itemView.findViewById(R.id.iv_person) }
+        val id : TextView by lazy { itemView.findViewById(R.id.id) }
 
     }
 
@@ -48,6 +49,7 @@ class PersonnalAdapter constructor(var context : Context, var items : MutableLis
         holder.name.setText(item.name)
         holder.tel.setText(item.tel)
         holder.email.setText(item.email)
+        holder.id.setText(item.id)
 
         Glide.with(context).load(item.imgId).into(holder.iv)
 
@@ -60,6 +62,7 @@ class PersonnalAdapter constructor(var context : Context, var items : MutableLis
             intent.putExtra("tel",item.tel)
             intent.putExtra("email",item.email)
             intent.putExtra("imgId",item.imgId)
+            intent.putExtra("id",item.id)
 
 
             context.startActivity(intent)
