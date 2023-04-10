@@ -54,6 +54,8 @@ class ChattingActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
+        //Log.i("collectionname",firebase.collection("chatting").get().toString())
+
         //채팅방 이름은 상대방 이름으로 표시하자
         binding.toolbarChat.setTitle(chatName3)
         Log.i("chatname",chatName)
@@ -67,12 +69,13 @@ class ChattingActivity : AppCompatActivity() {
         //chatting이라는 컬렉션을 만들자 - 회원번호를 더한 값으로 만들자.
         firebase = FirebaseFirestore.getInstance()
 
-        chatRef = firebase.collection("chatting").document(collectionname.toString()).collection("message")
+        chatRef = firebase.collection("chatting").document(collectionname.toString()).collection("companyMessage") //메세지에 내용을 등록한다.
+        //chatRef = firebase.collection(collectionname.toString())
         chatRefMy = firebase.collection("chatting").document(collectionname.toString()).collection("my")
         chatRefOther = firebase.collection("chatting").document(collectionname.toString()).collection("other")
         //chatMyRef = firebase.collection("chatting").document(collectionname.toString()).collection("my")
         //chatRef = firebase.collection("chatting").document(collectionname.toString()).collection("other")
-        Log.i("ahn1111",collectionname.toString())
+        //Log.i("ahn1111",collectionname.toString())
 
 
 
@@ -120,6 +123,7 @@ class ChattingActivity : AppCompatActivity() {
 
         })//addSnapshotListener
 
+
         //내가 보낸 채팅 메세지를 저장한다.
         binding.btn.setOnClickListener{view->clickSend()}
 
@@ -134,11 +138,12 @@ class ChattingActivity : AppCompatActivity() {
         var myimgUrl : String = G.employeeAccount?.imgProfile.toString()
         //Log.i("myaccount",name+message+imgUrl)
 
-        //firebase에 저장할 다른사람의 정보들
-        var othername : String = GU.otherAccount?.name.toString()
-        var otherid : String = GU.otherAccount?.id.toString()
-        var otherimgUrl : String = GU.otherAccount?.imgProfile.toString()
-        //Log.i("myaccount",name+message+imgUrl)
+//        //firebase에 저장할 다른사람의 정보들
+//        var othername : String = GU.otherAccount?.name.toString()
+//        var otherid : String = GU.otherAccount?.id.toString()
+//        var otherimgUrl : String = GU.otherAccount?.imgProfile.toString()
+//        //Log.i("myaccount",name+message+imgUrl)
+
 
 
         //채팅방에 들어갈 시간 정보 만들기
@@ -148,8 +153,8 @@ class ChattingActivity : AppCompatActivity() {
 
         //필드값들을 HashMap에 만들지말고 객체로 만들어서 넣어버리자. MessageItem을 만들자
         var messageItem : MessageItem = MessageItem(myname, mymessage, myimgUrl, time, myid)
-        var myItem : EmployeeAccount = EmployeeAccount(myid,myname,myimgUrl)
-        var otherItem : OtherAccount = OtherAccount(othername,otherimgUrl,otherid)
+//        var myItem : EmployeeAccount = EmployeeAccount(myid,myname,myimgUrl)
+//        var otherItem : OtherAccount = OtherAccount(othername,otherimgUrl,otherid)
 
         //컬렉션에 채팅 메세지 저장하기 - 도큐먼트는 상대방 이름으로 정하자
 
@@ -158,10 +163,13 @@ class ChattingActivity : AppCompatActivity() {
         val today = sdf.format(Date())
 
         chatRef.document(today).set(messageItem)
-        chatRefMy.document(today).set(myItem)
-        chatRefOther.document(today).set(otherItem)
-        //chatRefMy.document(chatName+" "+today).set(messageItem)
+//        chatRefMy.document(today).set(myItem)
+//        chatRefOther.document(today).set(otherItem)
+//        //chatRefMy.document(chatName+" "+today).set(messageItem)
         binding.et.setText("")
+
+
+        //Log.i("collection",firebase.collection("chatting").document())
 
         //소프트 키보드 내리기
         var inputManager : InputMethodManager = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
