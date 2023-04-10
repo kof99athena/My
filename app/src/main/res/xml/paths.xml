@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--16. 캐쉬는 저장시간이 짧다-->
+
+
+    <!--    외부저장소의 앱 전용 영역-->
+    <external-files-path
+        name="external_file"
+        path="."/>
+
+    <!--    외부저장소의 Public Directory 영역경로 ↓ 우리예제는 이걸써야함-->
+    <external-path
+        name="external"
+        path="."/>
+
+
+    <!--    내부저장소 경로-->
+    <files-path
+        name="files"
+        path="."/>
+
+</paths>

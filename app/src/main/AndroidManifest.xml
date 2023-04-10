@@ -63,8 +63,28 @@
         </activity>
         <activity
             android:name=".main.MainActivity"
-            android:exported="false" /> <!-- 메타데이터를 추가한다. 액티비티밖, 어플리케이션안에 위치한다. -->
+            android:exported="false" />
+
+
+        <!--        15.FileProvider를 등록, 꺽쇄로 닫으면 안됨, 새로추가된 속성 : exported false해줘야함 너만쓸수있게끔,grantUriPermissions 정보들이 외부에 노출되지않도록 공개할때 일회용퍼미션을 준다.-->
+        <provider
+            android:authorities="sam"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            >
+        <!--            이 provider가 공개할 경로를 지정, meta-data: 이데이터가 뭔지 알려주는거임, 16번 paths.xml로 넘어간다-->
+        <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/paths"/>
+        <!--            이 구조는 정해진 구조이다. -->
+
+        <!-- 메타데이터를 추가한다. 액티비티밖, 어플리케이션안에 위치한다. -->
         <!-- 이곳에 앱 키를 넣어준다. -->
+        </provider>
+
+
+
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="08c31f5d5e4b7569642d4feb46ed251d" />
