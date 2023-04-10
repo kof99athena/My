@@ -3,18 +3,25 @@ package com.athena.projectgroupwareapp.drawer
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.FileProvider
 import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.databinding.ActivityApprovalBinding
 import com.athena.projectgroupwareapp.databinding.ActivitySalaryBinding
+import com.athena.projectgroupwareapp.login.G
 import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class SalaryActivity : AppCompatActivity() {
 
@@ -24,9 +31,12 @@ class SalaryActivity : AppCompatActivity() {
     var firestore : FirebaseStorage = FirebaseStorage.getInstance()  //인스턴스만들기
     var strRef : StorageReference = firestore.getReference() //storage를 참조한다
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        Log.i("ahn11111", G.employeeAccount?.id.toString())
 
 
         val til = binding.textInput  //TextInputLayout을 잡고있는녀석
@@ -42,14 +52,16 @@ class SalaryActivity : AppCompatActivity() {
             var s : String = binding.salarySelect.text.toString()
 
             var jan : String = "2023salary/999999/salary_jan.png"
-            var fev : String = "2023salary/999999/salary_fev.png"
+            var fev : String = "2023salary/999999/salary_feb.png"
             var mar : String = "2023salary/999999/salary_mar.png"
+
 
             when{
                 s.equals("2023년 1월 급여명세서")->{
                     strRef.child(jan).downloadUrl.addOnSuccessListener(object : OnSuccessListener<Uri>{
                         override fun onSuccess(p0: Uri?) {
                             Glide.with(this@SalaryActivity).load(p0).into(binding.ivSalary)
+                            p0.toString()
                             //binding.saveSalary.
                         }
 

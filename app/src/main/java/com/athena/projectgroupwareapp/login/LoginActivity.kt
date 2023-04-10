@@ -18,20 +18,11 @@ import com.google.firebase.firestore.ktx.getField
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLoginBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    var collectionPath : String = "employee"
+    var documentPath : String = "ManageHeadquarters"
+    var undercollectionPath : String = "HR"
 
 
-
-
-        binding.btnLogin.setOnClickListener { clickLogin() }
-
-
-
-        }//onCreate
 
     //로그인 버튼 눌렀을때 실행되느 함수
     private fun clickLogin(){
@@ -40,7 +31,9 @@ class LoginActivity : AppCompatActivity() {
         Log.i("id",id+password)
 
         var firebese : FirebaseFirestore = FirebaseFirestore.getInstance()
-        firebese.collection("employee").document("ManageHeadquarters").collection("HR")
+
+
+        firebese.collection(collectionPath).document(documentPath).collection(undercollectionPath )
             .whereEqualTo("ID",id)
             .whereEqualTo("password",password)
             .get().addOnSuccessListener {
@@ -76,11 +69,96 @@ class LoginActivity : AppCompatActivity() {
                 }
 
 
+            }
+
+
+    }  //관리부문 - 인사팀
+
+    private fun clickLogin2(){
+        collectionPath  = "employee"
+        documentPath  = "ManageHeadquarters"
+        undercollectionPath = "accounting"
+        clickLogin()
+    } //관리부문 - 회계팀
+
+    private fun clickLogin3(){
+        collectionPath  = "employee"
+        documentPath  = "ManageHeadquarters"
+        undercollectionPath = "compliance"
+        clickLogin()
+    } //관리부문 - 컴플라이언스팀
+
+    private fun clickLogin4(){
+        collectionPath  = "employee"
+        documentPath  = "ITHeadquarters"
+        undercollectionPath = "AI"
+        clickLogin()
+    } //IT부문 - AI팀
+
+    private fun clickLogin5(){
+        collectionPath  = "employee"
+        documentPath  = "ITHeadquarters"
+        undercollectionPath = "App"
+        clickLogin()
+    } //IT부문 - App팀
+
+    private fun clickLogin6(){
+        collectionPath  = "employee"
+        documentPath  = "ITHeadquarters"
+        undercollectionPath = "security"
+        clickLogin()
+    } //IT부문 - 정보보안팀
+
+    private fun clickLogin7(){
+        collectionPath  = "employee"
+        documentPath  = "businessHeadquarters"
+        undercollectionPath = "sales"
+        clickLogin()
+    } //사업부문 - 영업팀
+
+    private fun clickLogin8(){
+        collectionPath  = "employee"
+        documentPath  = "businessHeadquarters"
+        undercollectionPath = "CS"
+        clickLogin()
+    } //사업부문 - CS팀
+
+    private fun clickLogin9(){
+        collectionPath  = "employee"
+        documentPath  = "businessHeadquarters"
+        undercollectionPath = "design"
+        clickLogin()
+    } //사업부문 - 디자인팀
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+//        binding.btnLogin.setOnClickListener { clickLogin() } //관리부문 - 인사팀
+//        binding.btnLogin.setOnClickListener { clickLogin2() } //관리부문 - 회계팀
+//        binding.btnLogin.setOnClickListener { clickLogin3() } //관리부문 - 컴플라이언스팀
+//        binding.btnLogin.setOnClickListener { clickLogin4() } //IT부문 - AI팀
+//        binding.btnLogin.setOnClickListener { clickLogin5() } //IT부문 - App팀
+//        binding.btnLogin.setOnClickListener { clickLogin6() } //IT부문 - 정보보안팀
+//        binding.btnLogin.setOnClickListener { clickLogin7() } //사업부문 - 영업팀
+//        binding.btnLogin.setOnClickListener { clickLogin8() } //사업부문 - CS팀
+//        binding.btnLogin.setOnClickListener { clickLogin9() } //사업부문 - 디자인팀
+
+        binding.btnLogin.setOnClickListener{
+            clickLogin()
+            clickLogin2()
+            clickLogin3()
+            clickLogin4()
+            clickLogin5()
+            clickLogin6()
+            clickLogin7()
+            clickLogin8()
+            clickLogin9()
         }
 
-
-    }
-
+        }//onCreate
 
 
 
