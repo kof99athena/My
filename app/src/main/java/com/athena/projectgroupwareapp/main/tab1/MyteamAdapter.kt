@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.Adapter
@@ -19,6 +20,8 @@ class MyteamAdapter constructor(var context: Context, var items : MutableList<My
         val title : TextView by lazy { itemView.findViewById(R.id.tv_total_title) }
         val date : TextView by lazy { itemView.findViewById(R.id.tv_total_date) }
         val iv : ImageView by lazy { itemView.findViewById(R.id.iv_total) }
+        val url : WebView by lazy { itemView.findViewById(R.id.webView) }
+
 
     }
 
@@ -34,13 +37,14 @@ class MyteamAdapter constructor(var context: Context, var items : MutableList<My
         var item : MyteamItem = items[position]
         holder.title.setText(item.title)
         holder.date.setText(item.date)
-        Glide.with(context).load(item.imgId).into(holder.iv)
+        Glide.with(context).load(item.icon).into(holder.iv)
 
         holder.itemView.setOnClickListener {
 
             val intent : Intent = Intent(context, NotificationActivity::class.java)
             intent.putExtra("title",item.title)
             intent.putExtra("date",item.date)
+            intent.putExtra("url",item.url)
 
             context.startActivity(intent)
         }

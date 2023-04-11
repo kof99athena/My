@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"/>
 
         <RadioGroup
-            android:id="@+id/leave_sort"
+            android:id="@+id/sort"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -62,7 +62,6 @@
         </RadioGroup>
 
 
-
         <TextView
             android:text="제출처"
             android:textColor="@color/black"
@@ -72,21 +71,24 @@
             android:layout_height="wrap_content"/>
 
         <RadioGroup
-            android:id="@+id/leave_reason"
+            android:id="@+id/reason"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/sbm_public"
                 android:text="@string/reason4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/sbm_bank"
                 android:text="@string/reason5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/sbm_company"
                 android:text="@string/reason6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

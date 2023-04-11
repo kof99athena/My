@@ -51,9 +51,9 @@ class SalaryActivity : AppCompatActivity() {
         binding.salarySelect.setOnItemClickListener { parent, view, position, id ->
             var s : String = binding.salarySelect.text.toString()
 
-            var jan : String = "2023salary/999999/salary_jan.png"
-            var fev : String = "2023salary/999999/salary_feb.png"
-            var mar : String = "2023salary/999999/salary_mar.png"
+            var jan : String = "2023salary/${G.employeeAccount?.id}/salary_jan.png"
+            var fev : String = "2023salary/${G.employeeAccount?.id}/salary_feb.png"
+            var mar : String = "2023salary/${G.employeeAccount?.id}/salary_mar.png"
 
 
             when{
@@ -66,7 +66,7 @@ class SalaryActivity : AppCompatActivity() {
                         }
 
                     }).addOnFailureListener {
-                        Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "관리자에게 문의해주세요. ", Toast.LENGTH_SHORT).show()
                     }
                 }
 
@@ -77,7 +77,7 @@ class SalaryActivity : AppCompatActivity() {
                         }
 
                     }).addOnFailureListener {
-                        Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "관리자에게 문의해주세요. ", Toast.LENGTH_SHORT).show()
                     }
                 }
 
@@ -88,7 +88,7 @@ class SalaryActivity : AppCompatActivity() {
                         }
 
                     }).addOnFailureListener {
-                        Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "관리자에게 문의해주세요. ", Toast.LENGTH_SHORT).show()
                     }
                 }
 

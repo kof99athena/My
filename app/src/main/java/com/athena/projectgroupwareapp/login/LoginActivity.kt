@@ -22,7 +22,7 @@ class LoginActivity : AppCompatActivity() {
     var documentPath : String = "ManageHeadquarters"
     var undercollectionPath : String = "HR"
 
-
+//로그인할때 계정을 따로 만들자
 
     //로그인 버튼 눌렀을때 실행되느 함수
     private fun clickLogin(){
@@ -67,7 +67,6 @@ class LoginActivity : AppCompatActivity() {
                     inputManager.hideSoftInputFromWindow(this.currentFocus?.windowToken,InputMethodManager.HIDE_NOT_ALWAYS)
 
                 }
-
 
             }
 
@@ -136,16 +135,6 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        binding.btnLogin.setOnClickListener { clickLogin() } //관리부문 - 인사팀
-//        binding.btnLogin.setOnClickListener { clickLogin2() } //관리부문 - 회계팀
-//        binding.btnLogin.setOnClickListener { clickLogin3() } //관리부문 - 컴플라이언스팀
-//        binding.btnLogin.setOnClickListener { clickLogin4() } //IT부문 - AI팀
-//        binding.btnLogin.setOnClickListener { clickLogin5() } //IT부문 - App팀
-//        binding.btnLogin.setOnClickListener { clickLogin6() } //IT부문 - 정보보안팀
-//        binding.btnLogin.setOnClickListener { clickLogin7() } //사업부문 - 영업팀
-//        binding.btnLogin.setOnClickListener { clickLogin8() } //사업부문 - CS팀
-//        binding.btnLogin.setOnClickListener { clickLogin9() } //사업부문 - 디자인팀
-
         binding.btnLogin.setOnClickListener{
             clickLogin()
             clickLogin2()
@@ -158,9 +147,7 @@ class LoginActivity : AppCompatActivity() {
             clickLogin9()
         }
 
-        }//onCreate
-
-
+    }//onCreate
 
 }//LoginActivity
 

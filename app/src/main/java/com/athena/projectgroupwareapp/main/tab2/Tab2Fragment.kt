@@ -23,7 +23,7 @@ class Tab2Fragment : Fragment() {
 
     lateinit var binding : FragmentTab2Binding
 
-    var messageItem : MutableList<MessageListItem> = mutableListOf()
+    lateinit var messageItem : MutableList<MessageListItem> //프래그먼트가 중복으로 나오므로 lateinit을 해준다.
 
     var chatName : String = GU.otherAccount?.id.toString() // 이 값은 없다 지금은.. 나는 다른사람(안혜영) 즉 내게 말 건 사람의 사번이 필요하다.
     var chatName2 : String = G.employeeAccount?.id.toString() //이 값은 로그인할때 가져온다
@@ -43,6 +43,8 @@ class Tab2Fragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding= FragmentTab2Binding.bind(view)
 
+        messageItem = mutableListOf()
+
 //        Log.i("collection",chatName)
 //        Log.i("collection",chatName2)
 
@@ -52,7 +54,7 @@ class Tab2Fragment : Fragment() {
 
 
         //토스트를 띄우는 습관을 들이기!
-        firebase.collectionGroup("companyMessage").whereEqualTo("id",chatName2).get().addOnSuccessListener {
+        firebase.collectionGroup("companyMessage").get().addOnSuccessListener {
             Toast.makeText(requireActivity(), "${it.documents.size}", Toast.LENGTH_SHORT).show()
             for (snapshot in it.documents){
 
@@ -62,9 +64,8 @@ class Tab2Fragment : Fragment() {
                 var num : String = snapshot.get("num").toString() ?: ""
                 var profileUrl : String = snapshot.get("imgUrl").toString()
 
-                //Toast.makeText(this@ChattingActivity, "" + messageItems.size, Toast.LENGTH_SHORT).show()
                 messageItem.add(MessageListItem(name,message,date,num,profileUrl))
-                // messageItem.set(0,MessageListItem(name,message,date,num,profileUrl))
+
             }
 
             binding.recyclerMessage.adapter = MsgListAdapter(requireActivity(),messageItem)
@@ -76,24 +77,6 @@ class Tab2Fragment : Fragment() {
             Log.i("ahn1111","${it.message}")
         }
 
-
-//        firebase.collection("chatting").document( "1999945").collection("message").get().addOnSuccessListener {
-//            for (snapshot in it.documents){
-//                var name : String = snapshot.get("name").toString()
-//                var message : String = snapshot.get("message").toString()
-//                var date : String = snapshot.get("time").toString()
-//                var num : String = snapshot.get("num").toString() ?: ""
-//                var profileUrl : String = snapshot.get("imgUrl").toString()
-//
-//                //Toast.makeText(this@ChattingActivity, "" + messageItems.size, Toast.LENGTH_SHORT).show()
-//                messageItem.add(MessageListItem(name,message,date,num,profileUrl))
-//               // messageItem.set(0,MessageListItem(name,message,date,num,profileUrl))
-//            }
-//
-//            binding.recyclerMessage.adapter = MsgListAdapter(requireActivity(),messageItem)
-//            binding.recyclerMessage.layoutManager = LinearLayoutManager(requireActivity(),LinearLayoutManager.VERTICAL,false)
-//
-//        }//addOnSuccessListener
 
     }//onViewCreated
 

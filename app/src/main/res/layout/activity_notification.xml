@@ -8,30 +8,10 @@
     android:orientation="vertical"
     tools:context=".main.tab1.NotificationActivity">
 
-    <TextView
-        android:id="@+id/notification_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="타이틀"
-        android:textColor="@color/black"
-        android:textSize="40sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/notification_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="2023/04/01"
-        android:textColor="@color/black" />
-
-    <TextView
-        android:id="@+id/notification_message"
+    <WebView
+        android:id="@+id/webView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/Notification"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:layout_height="match_parent"/>
+
 
 </LinearLayout>

@@ -2,23 +2,49 @@ package com.athena.projectgroupwareapp.main.tab1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.webkit.WebChromeClient
+import android.webkit.WebViewClient
 import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.databinding.ActivityNotificationBinding
 
 class NotificationActivity : AppCompatActivity() {
 
     lateinit var binding : ActivityNotificationBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_notification)
         binding = ActivityNotificationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var title : String? = intent.getStringExtra("title")
-        var date : String? = intent.getStringExtra("date")
 
-        binding.notificationTitle.setText(title)
-        binding.notificationDate.setText(date)
+        //웹뷰를 만들때 필수속성 세가지
+        binding.webView.webViewClient = WebViewClient()
+        //기본적으로 안드로이드는 웹 주소를 보여달라하면 핸드폰에 잇는 크롬 브라우저를 먼저 킨다.
+        //그래서 얘를 써야한다. 현재 웹뷰안에서 웹문서 열리도록 한다.
+        //이걸 안주면 크롬으로 열린다... 아주귀찮아
+
+        binding.webView.webChromeClient = WebChromeClient()
+        //웹문서안에서 다이얼로그 같은 것을 발동하도록
+
+        //기본으로 웹뷰는 자바스크립트가 사용금지되어있다. settings객체를 불러오자.
+        binding.webView.settings.javaScriptEnabled= true
+        //웹뷰는 기본적으로 보안문제로 JS 동작을 막아놓았기에.. 이를 허용하는 코드를 쓰자
+
+        var place_url : String = intent.getStringExtra("url") ?: "" //앞의 것이 null이면 ""을 준다.
+        binding.webView.loadUrl(place_url) //()안에 null을 안쓴다.
+
+        //여기서 웹페이지 넘어가서 계속 본 후 뒤로가기를 누르면 LIST화면이 뚝 나온다. 중간과정생략된다.
+        //뒤로가기는 액티비티로넘어가는 성질이 있다.
+        //WebView는 history를 관리하고 있으니까 그놈을 써야한다.
 
     }
+
+    override fun onBackPressed() {
+        if(binding.webView.canGoBack()) binding.webView.goBack()
+        else super.onBackPressed() //뒤로 갈게 없으면 온백프레스해서 액티비티화면으로 넘어간다.
+        //여기를해야 뒤로갈때 상세페이지를 단계적으로뒤로가게한다.
+    }
+
+
 }
