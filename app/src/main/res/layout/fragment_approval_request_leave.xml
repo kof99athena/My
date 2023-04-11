@@ -14,6 +14,7 @@
         android:layout_weight="1">
 
         <TextView
+            android:id="@+id/title"
             android:text="휴가원"
             android:gravity="center"
             android:textColor="@color/black"
@@ -28,49 +29,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_margin="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+
 
             <EditText
-                android:hint="20XX"
-                android:inputType="number"
-                android:maxLength="4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:hint="년"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <EditText
-                android:hint="XX"
-                android:maxLength="2"
+                android:id="@+id/hollyday"
+                android:hint="20230402"
+                android:maxLength="8"
                 android:inputType="number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-            <TextView
-                android:hint="월"
-                android:inputType="number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <EditText
-                android:hint="XX"
-                android:maxLength="2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:hint="일"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-        </LinearLayout>
 
         <TextView
             android:hint="※ 일자 형식은 20230101형식으로 입력하세요."
@@ -92,10 +60,12 @@
             android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/all"
             android:text="@string/day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/half"
             android:text="@string/halfday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -116,16 +86,19 @@
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/reason_personnal"
                 android:text="@string/reason1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/reason_hospital"
                 android:text="@string/reason2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/reason_congra"
                 android:text="@string/reason3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

@@ -14,6 +14,7 @@
         android:layout_weight="1">
 
         <TextView
+            android:id="@+id/title"
             android:text="증명서발급"
             android:gravity="center"
             android:textColor="@color/black"
@@ -52,12 +53,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-            <EditText
-                android:id="@+id/et_certi3_reason"
-                android:visibility="gone"
-                android:hint="사유를 입력하세요"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
 
         </RadioGroup>
 
