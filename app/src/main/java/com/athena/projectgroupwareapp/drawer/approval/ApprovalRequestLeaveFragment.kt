@@ -73,13 +73,17 @@ class ApprovalRequestLeaveFragment : Fragment() {
                     val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                     val today = sdf.format(Date())
 
-                    var certiItem : CertiItem= CertiItem(title,result1,result2,id,name,hollydays)
+                    var certiItem : CertiItem= CertiItem(title,result1,result2,id,name,hollydays,today)
 
                     firebase = FirebaseFirestore.getInstance()
                     chatRef = firebase.collection("certification")
                     chatRef.document(today).set(certiItem)
 
                     Toast.makeText(requireActivity(), "상신완료", Toast.LENGTH_SHORT).show()
+
+                    //부모 프래그먼트를 지우고 오토컴플릿텍스트를 공백으로 만들어서 새로 나오는 느낌을 만들어준다.
+                    parentFragmentManager.beginTransaction().remove(this).commit()
+                    (parentFragment as ApprovalRequestFragment).binding.approvalSelect.setText("")
 
 
                 }

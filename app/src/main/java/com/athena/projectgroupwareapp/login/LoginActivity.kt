@@ -30,10 +30,24 @@ class LoginActivity : AppCompatActivity() {
         var password : String = binding.password.text.toString()
         Log.i("id",id+password)
 
+//        33 - 45주석
+//        if (id == "0" && password == "0"){
+//            G.employeeAccount = EmployeeAccount("999999","안혜영","null" )
+//            var intent = Intent(this, MainActivity::class.java)
+//
+//
+//
+//            //백스택을 깔끔하게 없애고 화면 전환하자
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//
+//            startActivity(intent)
+//            return
+//        }
         var firebese : FirebaseFirestore = FirebaseFirestore.getInstance()
 
 
-        firebese.collection(collectionPath).document(documentPath).collection(undercollectionPath )
+        firebese.collection(collectionPath).document(documentPath).collection(undercollectionPath)
             .whereEqualTo("ID",id)
             .whereEqualTo("password",password)
             .get().addOnSuccessListener {
@@ -51,7 +65,6 @@ class LoginActivity : AppCompatActivity() {
                     //백스택을 깔끔하게 없애고 화면 전환하자
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-
 
                     startActivity(intent)
 
@@ -137,14 +150,14 @@ class LoginActivity : AppCompatActivity() {
 
         binding.btnLogin.setOnClickListener{
             clickLogin()
-            clickLogin2()
-            clickLogin3()
-            clickLogin4()
-            clickLogin5()
-            clickLogin6()
-            clickLogin7()
-            clickLogin8()
-            clickLogin9()
+//            clickLogin2()
+//            clickLogin3()
+//            clickLogin4()
+//            clickLogin5()
+//            clickLogin6()
+//            clickLogin7()
+//            clickLogin8()
+//            clickLogin9()
         }
 
     }//onCreate

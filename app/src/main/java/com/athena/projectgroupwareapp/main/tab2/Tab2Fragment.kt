@@ -29,6 +29,7 @@ class Tab2Fragment : Fragment() {
     var chatName2 : String = G.employeeAccount?.id.toString() //이 값은 로그인할때 가져온다
     lateinit var chatRef : CollectionReference //컬렉션 참조(→)하는 변수 :  내 ID
 
+
     //var collectionname : Int = chatName.toInt()+chatName2.toInt()
 
     override fun onCreateView(
@@ -45,6 +46,7 @@ class Tab2Fragment : Fragment() {
 
         messageItem = mutableListOf()
 
+
 //        Log.i("collection",chatName)
 //        Log.i("collection",chatName2)
 
@@ -54,7 +56,7 @@ class Tab2Fragment : Fragment() {
 
 
         //토스트를 띄우는 습관을 들이기!
-        firebase.collectionGroup("companyMessage").get().addOnSuccessListener {
+        firebase.collectionGroup("companyMessage").whereEqualTo("id",G.employeeAccount?.id).get().addOnSuccessListener {
             Toast.makeText(requireActivity(), "${it.documents.size}", Toast.LENGTH_SHORT).show()
             for (snapshot in it.documents){
 

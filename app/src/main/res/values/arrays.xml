@@ -2,7 +2,6 @@
 <resources>
 
     <string-array name="sort">
-        <item>기안서</item>
         <item>휴가원</item>
         <item>증명서발급</item>
     </string-array>

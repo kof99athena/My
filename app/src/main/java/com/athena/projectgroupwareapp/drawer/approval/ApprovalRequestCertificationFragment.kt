@@ -3,6 +3,7 @@ package com.athena.projectgroupwareapp.drawer.approval
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.core.view.size
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.databinding.FragmentApprovalRequestCertificationBinding
 import com.athena.projectgroupwareapp.databinding.FragmentApprovalRequestLeaveBinding
@@ -65,7 +67,6 @@ class ApprovalRequestCertificationFragment : Fragment() {
             var result1 : String = String()
             var result2 : String = String()
 
-
             when(sort) {
                 R.id.employment -> { result1 = binding.employment.text.toString() }
                 R.id.receipt -> { result1= binding.receipt.text.toString() }
@@ -76,9 +77,6 @@ class ApprovalRequestCertificationFragment : Fragment() {
                 R.id.sbm_bank->{ result2 = binding.sbmBank.text.toString() }
                 R.id.sbm_company->{ result2= binding.sbmCompany.text.toString() }
             }
-
-//            Log.i("result11111",result1)
-//            Log.i("result11111",result2)
 
             AlertDialog.Builder(requireActivity())
                 .setTitle("상신하시겠습니까?")
@@ -91,25 +89,21 @@ class ApprovalRequestCertificationFragment : Fragment() {
                     val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                     val today = sdf.format(Date())
 
-                    var certiItem : CertiItem= CertiItem(title,result1,result2,id,name,"")
+                    var certiItem : CertiItem= CertiItem(title,result1,result2,id,name,"",today)
 
                     firebase = FirebaseFirestore.getInstance()
                     chatRef = firebase.collection("certification")
                     chatRef.document(today).set(certiItem)
 
-                    Toast.makeText(requireActivity(), "상신완료", Toast.LENGTH_SHORT).show()
+                    //부모 프래그먼트를 지우고 오토컴플릿텍스트를 공백으로 만들어서 새로 나오는 느낌을 만들어준다.
+                    parentFragmentManager.beginTransaction().remove(this).commit()
+                    (parentFragment as ApprovalRequestFragment).binding.approvalSelect.setText("")
 
-                   //childFragmentManager.beginTransaction().replace(R.id.framelayout_approval_result,ApprovalResultListFragment()).commit()
                 }
                 //결재함에 내 데이터를 저장해야함 .. 아직 작업전 일단 토스트
                 .setNegativeButton("취소") { _, _ -> }
                 .show()
         }//setOnClickListener
-    }
-
-    override fun onDestroy() {
-
-        super.onDestroy()
     }
 
 }

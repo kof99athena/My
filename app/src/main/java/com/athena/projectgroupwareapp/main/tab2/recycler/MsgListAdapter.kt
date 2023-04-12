@@ -9,12 +9,20 @@ import android.view.ViewGroup
 
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.main.tab2.chatting.ChattingActivity
 import com.athena.projectgroupwareapp.main.tab3.IdCardActivity
 import com.bumptech.glide.Glide
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.EventListener
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreException
+import com.google.firebase.firestore.QuerySnapshot
 
 //리스트모양으로 만든 리사이클러뷰
 class MsgListAdapter constructor(var context : Context, var items : MutableList<MessageListItem>) : RecyclerView.Adapter<MsgListAdapter.VH>() {
@@ -56,7 +64,10 @@ class MsgListAdapter constructor(var context : Context, var items : MutableList<
             Log.i("name",item.name.toString())
 
             context.startActivity(intent)
+
         }
+
+
     }
 
 

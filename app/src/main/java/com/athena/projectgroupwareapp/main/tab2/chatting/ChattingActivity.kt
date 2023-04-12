@@ -1,12 +1,15 @@
 package com.athena.projectgroupwareapp.main.tab2.chatting
 
 import android.content.Context
+import android.hardware.camera2.CaptureResult
 import android.icu.number.IntegerWidth
 import android.os.Bundle
 import android.util.Log
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.Adapter
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.athena.projectgroupwareapp.databinding.ActivityChattingBinding
 import com.athena.projectgroupwareapp.login.EmployeeAccount
@@ -51,8 +54,10 @@ class ChattingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChattingBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE)
+
+        setContentView(binding.root)
 
         //Log.i("collectionname",firebase.collection("chatting").get().toString())
 
@@ -78,7 +83,6 @@ class ChattingActivity : AppCompatActivity() {
         //Log.i("ahn1111",collectionname.toString())
 
 
-
         //컬렉션에있는 내용을 가져오자
         chatRef.addSnapshotListener(object : EventListener<QuerySnapshot>{
             override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
@@ -96,19 +100,18 @@ class ChattingActivity : AppCompatActivity() {
                     //이제 Document에 있는 필드값 가져오기, 여기 조금 이상함
                     var msg : MutableMap<String, Any>? = snapshot.data
 
-
                     var name : String = msg?.get("name").toString()
+                    var id : String = msg?.get("id").toString()
                     var message : String = msg?.get("message").toString()
                     var time : String = msg?.get("time").toString()
                     var profileUrl : String = msg?.get("imgUrl").toString()
-                    var id : String = msg?.get("ID").toString()
+
                     //var my : String = msg?.get("my").toString()
                     //var other : String = msg?.get("other").toString()
 
-                    Log.i("total",name+message+time+profileUrl)
 
                     //읽어온메세지를 리스트에 추가
-                    messageItems.add(MessageItem(name,message,profileUrl,time, id))
+                    messageItems.add(MessageItem(name,id,message,profileUrl,time))
 
                     //데이터 체인지 할때마다 부르자
                     msgadapter.notifyItemInserted(messageItems.size-1)
@@ -123,7 +126,6 @@ class ChattingActivity : AppCompatActivity() {
 
         })//addSnapshotListener
 
-
         //내가 보낸 채팅 메세지를 저장한다.
         binding.btn.setOnClickListener{view->clickSend()}
 
@@ -132,8 +134,8 @@ class ChattingActivity : AppCompatActivity() {
     fun clickSend(){
 
         //firebase에 저장할 나의 정보들
-        var myname : String = G.employeeAccount?.name.toString()
-        var myid : String = G.employeeAccount?.id.toString()
+        var name : String = G.employeeAccount?.name.toString()
+        var id : String = G.employeeAccount?.id.toString()
         var mymessage : String = binding.et.text.toString()
         var myimgUrl : String = G.employeeAccount?.imgProfile.toString()
         //Log.i("myaccount",name+message+imgUrl)
@@ -145,14 +147,13 @@ class ChattingActivity : AppCompatActivity() {
 //        //Log.i("myaccount",name+message+imgUrl)
 
 
-
         //채팅방에 들어갈 시간 정보 만들기
         var calendar : Calendar = Calendar.getInstance()
         var time : String = "${calendar.get(Calendar.HOUR_OF_DAY)}:${calendar.get(Calendar.MINUTE)}"
         //Log.i("myaccount",time)
 
         //필드값들을 HashMap에 만들지말고 객체로 만들어서 넣어버리자. MessageItem을 만들자
-        var messageItem : MessageItem = MessageItem(myname, mymessage, myimgUrl, time, myid)
+        var messageItem : MessageItem = MessageItem(name,id, mymessage,myimgUrl,time)
 //        var myItem : EmployeeAccount = EmployeeAccount(myid,myname,myimgUrl)
 //        var otherItem : OtherAccount = OtherAccount(othername,otherimgUrl,otherid)
 

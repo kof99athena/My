@@ -16,9 +16,6 @@ import com.athena.projectgroupwareapp.databinding.FragmentApprovalRequestBinding
 class ApprovalRequestFragment : Fragment() {
 
     val binding : FragmentApprovalRequestBinding by lazy { FragmentApprovalRequestBinding.inflate(layoutInflater) }
-    var arff = ApprovalRequestFreeFragment()
-    var arlf = ApprovalRequestLeaveFragment()
-    var arcf = ApprovalRequestCertificationFragment()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,19 +52,16 @@ class ApprovalRequestFragment : Fragment() {
             Log.i("tag",s)
 
             when{
-                s.equals("기안서")->{
-                    childFragmentManager.beginTransaction().replace(R.id.framelayout_approval_request,arff).commit()
-                    //프래그먼트 안에 프래그먼트안에 넣은거니까  childFragmentManager로 불러온다.
-                }
                 s.equals("휴가원")->{
-                    childFragmentManager.beginTransaction().replace(R.id.framelayout_approval_request,arlf).commit()
+                    childFragmentManager.beginTransaction().replace(R.id.framelayout_approval_request,ApprovalRequestLeaveFragment()).commit()
                 }
 
                 s.equals("증명서발급")->{
-                    childFragmentManager.beginTransaction().replace(R.id.framelayout_approval_request,arcf).commit()
+                    childFragmentManager.beginTransaction().replace(R.id.framelayout_approval_request,ApprovalRequestCertificationFragment()).commit()
                 }
                 else -> false
             }
+
 
 
         }//onItemCLickListener
