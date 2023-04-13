@@ -40,8 +40,8 @@ class MessageAdapter constructor(var context: Context, var items : MutableList<M
     override fun getItemViewType(position: Int): Int {
         if(items.get(position).name.equals(G.employeeAccount?.name)){
             //만약 메세지 아이템의 name이 내 계정 이름과 같다면? 내 타입을 불러와라
-            Log.i("name",items.get(position).name.toString())
-            Log.i("name",G.employeeAccount?.name.toString())
+//            Log.i("name",items.get(position).name.toString())
+//            Log.i("name",G.employeeAccount?.name.toString())
 
             return TYPE_MY
         }else{
@@ -63,6 +63,7 @@ class MessageAdapter constructor(var context: Context, var items : MutableList<M
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         var item : MessageItem = items.get(position)
+
         holder.name.setText(item.name)
         holder.message.setText(item.message)
         holder.time.setText(item.time)

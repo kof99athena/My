@@ -115,7 +115,7 @@ class MainActivity : AppCompatActivity() {
     fun employeeAccount(){
 //        Log.i("GG",G.employeeAccount?.name.toString())
 //        Log.i("GG",G.employeeAccount?.id.toString())
-//        Log.i("GG",G.employeeAccount?.imgProfile.toString())
+        Log.i("GG4730",G.employeeAccount?.team.toString())
 
         binding.drawerName.setText(G.employeeAccount?.name)
         binding.drawerIdnum.setText(G.employeeAccount?.id)

@@ -36,7 +36,6 @@ class MsgListAdapter constructor(var context : Context, var items : MutableList<
     }
 
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         var itemView : View = LayoutInflater.from(context).inflate(R.layout.recycler_item_message,parent,false)
         return VH(itemView)
@@ -46,11 +45,11 @@ class MsgListAdapter constructor(var context : Context, var items : MutableList<
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         var item : MessageListItem = items[position]
+
         holder.name.setText(item.name)
         holder.message.setText(item.message)
         holder.date.setText(item.date)
         holder.num.setText(item.num)
-
         Glide.with(context).load(item.imgID).into(holder.iv)
 
         holder.itemView.setOnClickListener {

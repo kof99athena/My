@@ -2,16 +2,20 @@ package com.athena.projectgroupwareapp.main.tab1
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.athena.projectgroupwareapp.R
+import com.athena.projectgroupwareapp.login.G
 import com.bumptech.glide.Glide
+import com.google.firebase.firestore.FirebaseFirestore
 
 class MyteamAdapter constructor(var context: Context, var items : MutableList<MyteamItem>) : Adapter<MyteamAdapter.VH>() {
 
@@ -21,7 +25,6 @@ class MyteamAdapter constructor(var context: Context, var items : MutableList<My
         val date : TextView by lazy { itemView.findViewById(R.id.tv_total_date) }
         val iv : ImageView by lazy { itemView.findViewById(R.id.iv_total) }
         val url : WebView by lazy { itemView.findViewById(R.id.webView) }
-
 
     }
 
@@ -41,14 +44,14 @@ class MyteamAdapter constructor(var context: Context, var items : MutableList<My
 
         holder.itemView.setOnClickListener {
 
-            val intent : Intent = Intent(context, NotificationActivity::class.java)
-            intent.putExtra("title",item.title)
-            intent.putExtra("date",item.date)
-            intent.putExtra("url",item.url)
+                val intent : Intent = Intent(context, NotificationActivity::class.java)
+                intent.putExtra("title",item.title)
+                intent.putExtra("date",item.date)
+                intent.putExtra("url",item.url)
 
-            context.startActivity(intent)
+                context.startActivity(intent)
+
         }
-
 
     }
 }

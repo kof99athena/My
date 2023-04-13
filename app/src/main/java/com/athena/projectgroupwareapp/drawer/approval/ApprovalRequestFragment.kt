@@ -66,11 +66,6 @@ class ApprovalRequestFragment : Fragment() {
 
         }//onItemCLickListener
 
-
-
-
-
     }
-
 
 }

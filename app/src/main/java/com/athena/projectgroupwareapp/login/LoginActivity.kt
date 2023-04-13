@@ -56,8 +56,10 @@ class LoginActivity : AppCompatActivity() {
                     var id : String = it.documents[0].id
                     var name : String = it.documents[0].get("name").toString()
                     var imgProfile : String = it.documents[0].get("profileUrl").toString()
+                    var team : String = it.documents[0].get("team").toString()
+                    var chatId : String = it.documents[0].get("chatId").toString()
 
-                    G.employeeAccount = EmployeeAccount(id,name,imgProfile )
+                    G.employeeAccount = EmployeeAccount(id,name,imgProfile,team,chatId)
                     //로그인시 사원번호와 이름, 이미지Url을 G에 넣어준다. 나중에 메신저에서 가져와야함.
 
                     var intent = Intent(this, MainActivity::class.java)
@@ -150,14 +152,14 @@ class LoginActivity : AppCompatActivity() {
 
         binding.btnLogin.setOnClickListener{
             clickLogin()
-//            clickLogin2()
-//            clickLogin3()
-//            clickLogin4()
-//            clickLogin5()
-//            clickLogin6()
-//            clickLogin7()
-//            clickLogin8()
-//            clickLogin9()
+            clickLogin2()
+            clickLogin3()
+            clickLogin4()
+            clickLogin5()
+            clickLogin6()
+            clickLogin7()
+            clickLogin8()
+            clickLogin9()
         }
 
     }//onCreate

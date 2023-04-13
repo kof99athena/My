@@ -46,21 +46,21 @@ class Tab2Fragment : Fragment() {
 
         messageItem = mutableListOf()
 
-
 //        Log.i("collection",chatName)
 //        Log.i("collection",chatName2)
 
         var firebase : FirebaseFirestore = FirebaseFirestore.getInstance()
         //채팅방 리스트에는 내가 대화했던 목록이 떠야한다.
         //collection 내의 my 혹은 other 필드의 ID값이 나랑 일치하는지보자
-
-
         //토스트를 띄우는 습관을 들이기!
         firebase.collectionGroup("companyMessage").whereEqualTo("id",G.employeeAccount?.id).get().addOnSuccessListener {
             Toast.makeText(requireActivity(), "${it.documents.size}", Toast.LENGTH_SHORT).show()
+
+            var name : String = GU.otherAccount?.name.toString()
+
             for (snapshot in it.documents){
 
-                var name : String = snapshot.get("name").toString()
+              //var name : String = snapshot.get("name").toString()
                 var message : String = snapshot.get("message").toString()
                 var date : String = snapshot.get("time").toString()
                 var num : String = snapshot.get("num").toString() ?: ""

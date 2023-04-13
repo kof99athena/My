@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.databinding.FragmentTab1Binding
 import com.athena.projectgroupwareapp.databinding.FragmentTab3Binding
+import com.athena.projectgroupwareapp.login.G
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -112,15 +113,16 @@ class Tab1Fragment : Fragment() {
         binding.viewMyteamall.setOnClickListener {
             Toast.makeText(context, "잠시만 기다려주세요.", Toast.LENGTH_SHORT).show()
         }
+
         var firebase: FirebaseFirestore = FirebaseFirestore.getInstance()
-        firebase.collection("notificationMy").get().addOnSuccessListener {
+        firebase.collection("notificationMy").whereEqualTo("team", G.employeeAccount?.team).get().addOnSuccessListener {
 
             for (snapshot in it.documents) {
 
                 var title: String = snapshot.get("title").toString()
-                var date: String = snapshot.get("date").toString()
-                var icon: String = snapshot.get("icon").toString()
-                var url : String = snapshot.get("url").toString()
+                var date : String = snapshot.get("date").toString()
+                var icon : String = snapshot.get("icon").toString()
+                var url  : String = snapshot.get("url").toString()
 
                 myteamitems.add(MyteamItem(title, icon, date, url))
             }
