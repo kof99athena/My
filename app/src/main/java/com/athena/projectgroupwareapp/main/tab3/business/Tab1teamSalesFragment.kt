@@ -33,19 +33,15 @@ class Tab1teamSalesFragment : Fragment() {
 
         //Firebase에 있는 데이터를 가져오자
         var firebase : FirebaseFirestore = FirebaseFirestore.getInstance()
-        firebase.collection("employee").document("businessHeadquarters").collection("sales").get().addOnSuccessListener {
+        firebase.collection("employeeList").whereEqualTo("team","영업팀").get().addOnSuccessListener {
             Log.i("size",it.documents.size.toString())
 
             for(snapshot in it.documents){
                 var name : String = snapshot.get("name").toString()
                 var tel : String = snapshot.get("tel").toString()
                 var email : String = snapshot.get("email").toString()
-                Log.i("tag1111",name+tel+email)
-
                 var imgUri : String = snapshot.get("profileUrl").toString()
-
-
-                var id : String = snapshot.get("ID").toString()
+                var id : String = snapshot.get("id").toString()
 
                 personnalItems.add(PersonnalItem(imgUri, name , email, tel, id))
             }

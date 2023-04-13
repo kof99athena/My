@@ -32,14 +32,14 @@ class Tab2teamAIFragment : Fragment() {
         binding = FragmentTab2teamAIBinding.bind(view)//보여줄 뷰에 바로 붙여라
 
         var firebase : FirebaseFirestore = FirebaseFirestore.getInstance()
-        firebase.collection("employee").document("ITHeadquarters").collection("AI").get().addOnSuccessListener {
+        firebase.collection("employeeList").whereEqualTo("team","AI팀").get().addOnSuccessListener {
 
             for(snapshot in it.documents){
                 var name : String = snapshot.get("name").toString()
                 var email : String = snapshot.get("email").toString()
                 var tel : String = snapshot.get("tel").toString()
                 var imgUri : String = snapshot.get("profileUrl").toString()
-                var id : String = snapshot.get("ID").toString()
+                var id : String = snapshot.get("id").toString()
 
                 personalItems.add(PersonnalItem(imgUri, name , email, tel, id))
 

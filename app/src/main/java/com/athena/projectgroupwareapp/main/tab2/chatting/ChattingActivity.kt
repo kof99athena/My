@@ -34,11 +34,12 @@ class ChattingActivity : AppCompatActivity() {
     lateinit var firebase : FirebaseFirestore //파이어스토어 : 많이 쓸 예정이니까 미리 프로퍼티를 설정하자
 
     lateinit var chatRef : CollectionReference //컬렉션 참조(→)하는 변수
+    lateinit var otherChatRef : CollectionReference //컬렉션 참조(→)하는 변수
 
     var otherId : String = GU.otherAccount?.id.toString()//상대방 사원번호와와
     var myId : String = G.employeeAccount?.id.toString()//내 사원번호를 더해서 collection을 만들자
 
-    var collectionName : Int = otherId.toInt()+myId.toInt()
+    var collectionName : Int? = otherId.toInt()+myId.toInt()
 
     var chattingRoom : String = GU.otherAccount?.name.toString() //대화방이름, 다른사람 이름이다.
 
@@ -56,6 +57,9 @@ class ChattingActivity : AppCompatActivity() {
 
         //Log.i("collectionname",firebase.collection("chatting").get().toString())
 
+        //내가 보낸 채팅 메세지를 저장한다.
+        binding.btn.setOnClickListener{view->clickSend()}
+
         //채팅방 이름은 상대방 이름으로 표시하자
         binding.toolbarChat.setTitle(chattingRoom)
 
@@ -68,8 +72,14 @@ class ChattingActivity : AppCompatActivity() {
         //chatting이라는 컬렉션을 만들자 - 회원번호를 더한 값으로 만들자.
         firebase = FirebaseFirestore.getInstance()
 
-        chatRef = firebase.collection("chatting").document(collectionName.toString()).collection("companyMessage") //메세지에 내용을 등록한다. 밑에 도큐먼트 부분을 써줘야한다.
+        chatRef = firebase.collection("employeeList")
+            .document(G.employeeAccount?.id.toString())
+            .collection(collectionName.toString()) //메세지에 내용을 등록한다. 밑에 도큐먼트 부분을 써줘야한다.
 
+
+        otherChatRef = firebase.collection("employeeList")
+            .document(GU.otherAccount?.id.toString())
+            .collection(collectionName.toString()) //상대방에게도 똑같이 저장한다. 밑에 도큐먼트 부분을 써줘야한다.
 
         //컬렉션에있는 내용을 가져오자
         chatRef.addSnapshotListener(object : EventListener<QuerySnapshot>{
@@ -100,7 +110,7 @@ class ChattingActivity : AppCompatActivity() {
 
 
                     //읽어온메세지를 리스트에 추가
-                    messageItems.add(MessageItem(name,id,message,profileUrl,time,collectionName))
+                    messageItems.add(MessageItem(name,id,message,profileUrl,time,collectionName.toString()))
 
                     //데이터 체인지 할때마다 부르자
                     msgadapter.notifyItemInserted(messageItems.size-1)
@@ -115,13 +125,11 @@ class ChattingActivity : AppCompatActivity() {
 
         })//addSnapshotListener
 
-        //내가 보낸 채팅 메세지를 저장한다.
-        binding.btn.setOnClickListener{view->clickSend()}
+
 
     }//onCreate
 
     fun clickSend(){
-
 
 
         //firebase에 저장할 나의 정보들
@@ -131,9 +139,6 @@ class ChattingActivity : AppCompatActivity() {
         var myimgUrl : String = G.employeeAccount?.imgProfile.toString()
 
 
-        //나와 상대방 정보에 대화창 정보를 저장하자
-        Log.i("mytest",collectionName.toString())
-
 
         //채팅방에 들어갈 시간 정보 만들기
         var calendar : Calendar = Calendar.getInstance()
@@ -141,7 +146,9 @@ class ChattingActivity : AppCompatActivity() {
 
 
         //필드값들을 HashMap에 만들지말고 객체로 만들어서 넣어버리자. MessageItem을 만들자
-        var messageItem : MessageItem = MessageItem(name,id, mymessage,myimgUrl,time,collectionName)
+        var messageItem : MessageItem = MessageItem(name,id, mymessage,myimgUrl,time,collectionName.toString())
+
+        Log.i("messageItem",collectionName.toString())
 
 
         //참조위치명이 중복되지 않도록 날짜를 이용
@@ -149,6 +156,7 @@ class ChattingActivity : AppCompatActivity() {
         val today = sdf.format(Date())
 
         chatRef.document(today).set(messageItem)
+        otherChatRef.document(today).set(messageItem)
         binding.et.setText("")
 
         //소프트 키보드 내리기

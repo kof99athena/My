@@ -84,6 +84,7 @@ class CertiListAdapter constructor(var context : Context, var items : MutableLis
                         var contents : MutableMap<String,Any>? = snapshot.data
 
                         sort = contents?.get("sort").toString()
+
                         submit =contents?.get("submit").toString()
                     }
 

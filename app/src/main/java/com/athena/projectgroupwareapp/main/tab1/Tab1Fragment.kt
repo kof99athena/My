@@ -84,6 +84,8 @@ class Tab1Fragment : Fragment() {
         //묵시적 인텐트로 넘기기 해보기
 
         var firebase: FirebaseFirestore = FirebaseFirestore.getInstance()
+
+
         firebase.collection("notificationTotal").get().addOnSuccessListener {
             //Log.i("ahn111111","dddd")
 
@@ -97,6 +99,7 @@ class Tab1Fragment : Fragment() {
 
 
                 totalitems.add(TotalItem(title, icon, date, url))
+
                 Log.i("my",totalitems.size.toString())
             }
 

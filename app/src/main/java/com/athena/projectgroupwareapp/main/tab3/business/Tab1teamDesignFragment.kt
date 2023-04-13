@@ -31,14 +31,14 @@ class Tab1teamDesignFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         var firebase : FirebaseFirestore = FirebaseFirestore.getInstance()
-        firebase.collection("employee").document("businessHeadquarters").collection("design").get().addOnSuccessListener {
+        firebase.collection("employeeList").whereEqualTo("team","디자인팀").get().addOnSuccessListener {
 
             for(snapshot in it.documents){
                 var name : String = snapshot.get("name").toString()
                 var tel : String = snapshot.get("tel").toString()
                 var email : String = snapshot.get("email").toString()
                 var imgUri : String = snapshot.get("profileUrl").toString()
-                var id : String = snapshot.get("ID").toString()
+                var id : String = snapshot.get("id").toString()
 
                 personnalItems.add(PersonnalItem(imgUri, name , email, tel, id))
             }

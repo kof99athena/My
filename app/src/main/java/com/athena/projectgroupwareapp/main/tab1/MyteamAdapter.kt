@@ -45,6 +45,7 @@ class MyteamAdapter constructor(var context: Context, var items : MutableList<My
         holder.itemView.setOnClickListener {
 
                 val intent : Intent = Intent(context, NotificationActivity::class.java)
+
                 intent.putExtra("title",item.title)
                 intent.putExtra("date",item.date)
                 intent.putExtra("url",item.url)

@@ -31,14 +31,14 @@ class Tab3teamAccountingFragment : Fragment() {
         binding = FragmentTab3teamAccountingBinding.bind(view)
 
         var firebase: FirebaseFirestore = FirebaseFirestore.getInstance()
-        firebase.collection("employee").document("ManageHeadquarters").collection("accounting")
+        firebase.collection("employeeList").whereEqualTo("team","회계팀")
             .get().addOnSuccessListener {
             for (snapshot in it.documents) {
                 var name: String = snapshot.get("name").toString()
                 var email: String = snapshot.get("email").toString()
                 var tel: String = snapshot.get("tel").toString()
                 var imgUri: String = snapshot.get("profileUrl").toString()
-                var id : String = snapshot.get("ID").toString()
+                var id : String = snapshot.get("id").toString()
                 personnalItem.add(PersonnalItem(imgUri, name, email, tel,id))
             }
 

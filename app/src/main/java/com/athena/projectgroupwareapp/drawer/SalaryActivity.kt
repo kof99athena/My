@@ -36,9 +36,6 @@ class SalaryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        Log.i("ahn11111", G.employeeAccount?.id.toString())
-
-
         val til = binding.textInput  //TextInputLayout을 잡고있는녀석
         var s = til.editText?.text.toString() //TextInputLayout에서 잡고있는 녀석을 글씨로가져온다.
 

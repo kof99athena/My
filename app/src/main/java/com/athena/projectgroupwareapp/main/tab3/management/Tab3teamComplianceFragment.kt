@@ -12,7 +12,8 @@ import com.athena.projectgroupwareapp.main.tab3.recycler.PersonnalAdapter
 import com.athena.projectgroupwareapp.main.tab3.recycler.PersonnalItem
 import com.google.firebase.firestore.FirebaseFirestore
 
-class Tab3teamComplianceFragment : Fragment() {
+class
+Tab3teamComplianceFragment : Fragment() {
 
     lateinit var binding : FragmentTab3teamComplianceBinding
     var personnalItem : MutableList<PersonnalItem> = mutableListOf()
@@ -31,13 +32,13 @@ class Tab3teamComplianceFragment : Fragment() {
         binding = FragmentTab3teamComplianceBinding.bind(view)
 
         var firebase : FirebaseFirestore = FirebaseFirestore.getInstance()
-        firebase.collection("employee").document("ManageHeadquarters").collection("compliance").get().addOnSuccessListener {
+        firebase.collection("employeeList").whereEqualTo("team","컴플라이언스팀").get().addOnSuccessListener {
             for(snapshot in it.documents){
                 var name : String = snapshot.get("name").toString()
                 var email : String = snapshot.get("email").toString()
                 var tel : String = snapshot.get("tel").toString()
                 var imgUri : String = snapshot.get("profileUrl").toString()
-                var id : String = snapshot.get("ID").toString()
+                var id : String = snapshot.get("id").toString()
                 personnalItem.add(PersonnalItem(imgUri, name , email, tel,id))
 
             }
