@@ -16,6 +16,7 @@ import com.athena.projectgroupwareapp.login.EmployeeAccount
 import com.athena.projectgroupwareapp.login.G
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
@@ -34,10 +35,10 @@ class ChattingActivity : AppCompatActivity() {
     lateinit var firebase : FirebaseFirestore //파이어스토어 : 많이 쓸 예정이니까 미리 프로퍼티를 설정하자
 
     lateinit var chatRef : CollectionReference //컬렉션 참조(→)하는 변수
-    lateinit var chatRef2 : CollectionReference //컬렉션 참조(→)하는 변수
+    lateinit var chatRef2 : DocumentReference //컬렉션 참조(→)하는 변수
     lateinit var chatRef3 : CollectionReference //컬렉션 참조(→)하는 변수
     lateinit var otherChatRef3 : CollectionReference //컬렉션 참조(→)하는 변수
-    lateinit var otherChatRef4 : CollectionReference //컬렉션 참조(→)하는 변수
+    lateinit var otherChatRef4 : DocumentReference //컬렉션 참조(→)하는 변수
     lateinit var otherChatRef6 : CollectionReference //컬렉션 참조(→)하는 변수
 
     var otherId : String = GU.otherAccount?.id.toString()//상대방 사원번호와와
@@ -71,37 +72,35 @@ class ChattingActivity : AppCompatActivity() {
         //chatting이라는 컬렉션을 만들자 - 회원번호를 더한 값으로 만들자.
         firebase = FirebaseFirestore.getInstance()
 
-        //1. 내 정보에 메세지 저장하는 참조변수
+        //1. 내 정보에 메세지를 저장하는 레퍼런스
         chatRef = firebase.collection("employeeList")
             .document(G.employeeAccount?.id.toString())
             .collection("chatting")
             .document(GU.otherAccount?.id.toString()) //상대방ID를 저장한다. 그래야 나중에 찾을수있다.
             .collection("message")//메세지에 내용을 등록한다. 밑에 도큐먼트 부분을 써줘야한다.
 
-        //2. 메세지에 상대방 정보를 저장한다.
+        //2. 메세지에 필드를 넣는다(안그러면 내용물이 없다 착각함._
         chatRef2 = firebase.collection("employeeList")
             .document(G.employeeAccount?.id.toString())
             .collection("chatting")
             .document(GU.otherAccount?.id.toString())
-            .collection("info")//메세지에 내용을 등록한다. 밑에 도큐먼트 부분을 써줘야한다.
 
 
 
 
-
-        //3. 상대방 정보에 메세지 저장하는 참조변수
+        //3. 상대방 정보에 메세지 저장하는 참레퍼런스
         otherChatRef3 = firebase.collection("employeeList")
             .document(GU.otherAccount?.id.toString())
             .collection("chatting")
             .document(G.employeeAccount?.id.toString())
             .collection("message")//상대방에게도 똑같이 저장한다. 밑에 도큐먼트 부분을 써줘야한다.
 
-        //4. 메세지에 상대방 정보를 저장한다.
+        //4. 메세지에 필드를 넣는다(안그러면 내용물이 없다 착각함._
         otherChatRef4 = firebase.collection("employeeList")
             .document(GU.otherAccount?.id.toString())
             .collection("chatting")
             .document(G.employeeAccount?.id.toString())
-            .collection("info") //상대방 이름이 있어야 채팅방 이름에 넣을수있다.
+             //상대방 이름이 있어야 채팅방 이름에 넣을수있다.
 
 
 
@@ -199,10 +198,10 @@ class ChattingActivity : AppCompatActivity() {
         val today = sdf.format(Date())
 
         chatRef.document(today).set(messageItem1)
-        chatRef2.document("othername").set(myitem) //info에 상대방 이름 넣기
+        chatRef2.set(myitem) //info에 상대방 이름 넣기
 
         otherChatRef3.document(today).set(messageItem2)
-        otherChatRef4.document("othername").set(otheritem)
+        otherChatRef4.set(otheritem)
 
         binding.et.setText("")
 

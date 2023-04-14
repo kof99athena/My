@@ -100,6 +100,7 @@ class Tab1Fragment : Fragment() {
 
                 totalitems.add(TotalItem(title, icon, date, url))
 
+
                 Log.i("my",totalitems.size.toString())
             }
 
