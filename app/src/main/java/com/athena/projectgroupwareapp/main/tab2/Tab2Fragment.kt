@@ -18,6 +18,8 @@ import com.athena.projectgroupwareapp.main.tab3.recycler.PersonnalAdapter
 import com.athena.projectgroupwareapp.main.tab3.recycler.PersonnalItem
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.QuerySnapshot
 
 class Tab2Fragment : Fragment() {
 
@@ -55,34 +57,103 @@ class Tab2Fragment : Fragment() {
         //채팅방 리스트에는 내가 대화했던 목록이 떠야한다.
         //토스트를 띄우는 습관을 들이기!
 
-        firebase.collectionGroup("employeeList")
-            .whereEqualTo("id",G.employeeAccount?.id)
+
+
+        firebase.collection("employeeList")
+            .document(G.employeeAccount?.id.toString())
             .get().addOnSuccessListener {
 
-
-                var name: String = GU.otherAccount?.name.toString()
-                var num : String = it.documents.size.toString()
-
-                for (snapshot in it.documents) {
-
-                    //var name : String = snapshot.get("name").toString()
-                    var message: String = snapshot.get("message").toString()
-                    var date: String = snapshot.get("time").toString()
-                    var profileUrl: String = snapshot.get("imgUrl").toString()
-
-                    messageItem.add(MessageListItem(name, message, date, num, profileUrl))
-
-                }
-
-                binding.recyclerMessage.adapter = MsgListAdapter(requireActivity(), messageItem)
-                binding.recyclerMessage.layoutManager =
-                    LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+                Log.i("ahn1111",it.reference.id.toString())
+                //여기에서 레퍼런스 아이디는 900005
 
 
             }.addOnFailureListener {
-                Toast.makeText(requireActivity(), "${it.message}", Toast.LENGTH_SHORT).show()
-                Log.i("ahn1111","${it.message}")
+
+                Log.i("ahn1111",it.message.toString())
+
+            }.addOnCanceledListener{
+                Log.i("ahn1111",G.employeeAccount?.id.toString())
             }
+//
+//                //var name: String = GU.otherAccount?.name.toString()
+//                //var name: String = "기존대화"
+//
+//                var num : String = it.documents.size.toString()
+//
+//                for (snapshot in it.documents) {
+//
+//                    var name : String = snapshot.get("othername").toString()
+//                    var message: String = snapshot.get("message").toString()
+//                    var date: String = snapshot.get("time").toString()
+//                    var profileUrl: String = snapshot.get("otherprofileUrl").toString()
+//
+//                    messageItem.add(MessageListItem(name, message, date, num, profileUrl))
+//
+//                }
+//
+//                binding.recyclerMessage.adapter = MsgListAdapter(requireActivity(), messageItem)
+//                binding.recyclerMessage.layoutManager =
+//                    LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+//
+//
+//            }.addOnFailureListener {
+//                Toast.makeText(requireActivity(), "${it.message}", Toast.LENGTH_SHORT).show()
+//                Log.i("ahn1111","${it.message}")
+//            }
+
+
+//
+//        firebase.collection("employeeList")
+//            .get().addOnSuccessListener {
+//
+//                for (snapshot in it.documents){
+//
+//                    Log.i("test1111111", snapshot.reference.id)
+//
+//                    snapshot.reference.collection("chatting")
+//                        .get().addOnSuccessListener {
+//
+//                            Log.i("test1111111", it.documents.size.toString())
+//                        }
+//
+//
+//                }
+//
+//            }
+
+
+
+//            .document("100001")
+//            .collection("message")
+//            .orderBy("time",Query.Direction.DESCENDING).limit(1)
+//            .get().addOnSuccessListener {
+//
+//                //var name: String = GU.otherAccount?.name.toString()
+//                //var name: String = "기존대화"
+//
+//                var num : String = it.documents.size.toString()
+//
+//                for (snapshot in it.documents) {
+//
+//                    var name : String = snapshot.get("othername").toString()
+//                    var message: String = snapshot.get("message").toString()
+//                    var date: String = snapshot.get("time").toString()
+//                    var profileUrl: String = snapshot.get("otherprofileUrl").toString()
+//
+//                    messageItem.add(MessageListItem(name, message, date, num, profileUrl))
+//
+//                }
+//
+//                binding.recyclerMessage.adapter = MsgListAdapter(requireActivity(), messageItem)
+//                binding.recyclerMessage.layoutManager =
+//                    LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+//
+//
+//            }.addOnFailureListener {
+//                Toast.makeText(requireActivity(), "${it.message}", Toast.LENGTH_SHORT).show()
+//                Log.i("ahn1111","${it.message}")
+//            }
+//
 
 
 //        firebase.collectionGroup("employeeList")

@@ -34,7 +34,11 @@ class ChattingActivity : AppCompatActivity() {
     lateinit var firebase : FirebaseFirestore //파이어스토어 : 많이 쓸 예정이니까 미리 프로퍼티를 설정하자
 
     lateinit var chatRef : CollectionReference //컬렉션 참조(→)하는 변수
-    lateinit var otherChatRef : CollectionReference //컬렉션 참조(→)하는 변수
+    lateinit var chatRef2 : CollectionReference //컬렉션 참조(→)하는 변수
+    lateinit var chatRef3 : CollectionReference //컬렉션 참조(→)하는 변수
+    lateinit var otherChatRef3 : CollectionReference //컬렉션 참조(→)하는 변수
+    lateinit var otherChatRef4 : CollectionReference //컬렉션 참조(→)하는 변수
+    lateinit var otherChatRef6 : CollectionReference //컬렉션 참조(→)하는 변수
 
     var otherId : String = GU.otherAccount?.id.toString()//상대방 사원번호와와
     var myId : String = G.employeeAccount?.id.toString()//내 사원번호를 더해서 collection을 만들자
@@ -55,11 +59,6 @@ class ChattingActivity : AppCompatActivity() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE)
         setContentView(binding.root)
 
-        //Log.i("collectionname",firebase.collection("chatting").get().toString())
-
-        //내가 보낸 채팅 메세지를 저장한다.
-        binding.btn.setOnClickListener{view->clickSend()}
-
         //채팅방 이름은 상대방 이름으로 표시하자
         binding.toolbarChat.setTitle(chattingRoom)
 
@@ -72,15 +71,53 @@ class ChattingActivity : AppCompatActivity() {
         //chatting이라는 컬렉션을 만들자 - 회원번호를 더한 값으로 만들자.
         firebase = FirebaseFirestore.getInstance()
 
+        //1. 내 정보에 메세지 저장하는 참조변수
         chatRef = firebase.collection("employeeList")
             .document(G.employeeAccount?.id.toString())
-            .collection(collectionName.toString()) //메세지에 내용을 등록한다. 밑에 도큐먼트 부분을 써줘야한다.
+            .collection("chatting")
+            .document(GU.otherAccount?.id.toString()) //상대방ID를 저장한다. 그래야 나중에 찾을수있다.
+            .collection("message")//메세지에 내용을 등록한다. 밑에 도큐먼트 부분을 써줘야한다.
 
-
-        otherChatRef = firebase.collection("employeeList")
+        //2. 메세지에 상대방 정보를 저장한다.
+        chatRef2 = firebase.collection("employeeList")
+            .document(G.employeeAccount?.id.toString())
+            .collection("chatting")
             .document(GU.otherAccount?.id.toString())
-            .collection(collectionName.toString()) //상대방에게도 똑같이 저장한다. 밑에 도큐먼트 부분을 써줘야한다.
+            .collection("info")//메세지에 내용을 등록한다. 밑에 도큐먼트 부분을 써줘야한다.
 
+
+
+
+
+        //3. 상대방 정보에 메세지 저장하는 참조변수
+        otherChatRef3 = firebase.collection("employeeList")
+            .document(GU.otherAccount?.id.toString())
+            .collection("chatting")
+            .document(G.employeeAccount?.id.toString())
+            .collection("message")//상대방에게도 똑같이 저장한다. 밑에 도큐먼트 부분을 써줘야한다.
+
+        //4. 메세지에 상대방 정보를 저장한다.
+        otherChatRef4 = firebase.collection("employeeList")
+            .document(GU.otherAccount?.id.toString())
+            .collection("chatting")
+            .document(G.employeeAccount?.id.toString())
+            .collection("info") //상대방 이름이 있어야 채팅방 이름에 넣을수있다.
+
+
+
+
+        //기존데이터가져오기
+        getChattingData()
+
+
+        //내가 보낸 채팅 메세지를 저장한다.
+        binding.btn.setOnClickListener{view->clickSend()}
+
+
+    }//onCreate
+
+    //함수 1. 기존에 갖고있던 데이터 가져오기
+    fun getChattingData(){
         //컬렉션에있는 내용을 가져오자
         chatRef.addSnapshotListener(object : EventListener<QuerySnapshot>{
             override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
@@ -104,13 +141,14 @@ class ChattingActivity : AppCompatActivity() {
                     var message : String = msg?.get("message").toString()
                     var time : String = msg?.get("time").toString()
                     var profileUrl : String = msg?.get("imgUrl").toString()
+                    var otherprofileUrl : String = msg?.get("otherprofileUrl").toString()
 
                     //var my : String = msg?.get("my").toString()
                     //var other : String = msg?.get("other").toString()
 
 
                     //읽어온메세지를 리스트에 추가
-                    messageItems.add(MessageItem(name,id,message,profileUrl,time,collectionName.toString()))
+                    messageItems.add(MessageItem(name,id,message,profileUrl,time,name,otherprofileUrl))
 
                     //데이터 체인지 할때마다 부르자
                     msgadapter.notifyItemInserted(messageItems.size-1)
@@ -125,10 +163,11 @@ class ChattingActivity : AppCompatActivity() {
 
         })//addSnapshotListener
 
+    }
 
 
-    }//onCreate
 
+    //함수 2. 샌드버튼 누를때 실행되는 함수
     fun clickSend(){
 
 
@@ -137,8 +176,8 @@ class ChattingActivity : AppCompatActivity() {
         var id : String = G.employeeAccount?.id.toString()
         var mymessage : String = binding.et.text.toString()
         var myimgUrl : String = G.employeeAccount?.imgProfile.toString()
-
-
+        var othername : String = GU.otherAccount?.name.toString()
+        var otherprofile : String = GU.otherAccount?.imgProfile.toString()
 
         //채팅방에 들어갈 시간 정보 만들기
         var calendar : Calendar = Calendar.getInstance()
@@ -146,17 +185,25 @@ class ChattingActivity : AppCompatActivity() {
 
 
         //필드값들을 HashMap에 만들지말고 객체로 만들어서 넣어버리자. MessageItem을 만들자
-        var messageItem : MessageItem = MessageItem(name,id, mymessage,myimgUrl,time,collectionName.toString())
+        var messageItem1 : MessageItem = MessageItem(name,id, mymessage,myimgUrl,time,othername,otherprofile)
+        var messageItem2 : MessageItem = MessageItem(name,id, mymessage,myimgUrl,time,name,myimgUrl)
 
-        Log.i("messageItem",collectionName.toString())
+        var myitem : MyItem = MyItem(GU.otherAccount?.name.toString())
+
+        var otheritem : MyItem = MyItem(G.employeeAccount?.name.toString())
+
 
 
         //참조위치명이 중복되지 않도록 날짜를 이용
         val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         val today = sdf.format(Date())
 
-        chatRef.document(today).set(messageItem)
-        otherChatRef.document(today).set(messageItem)
+        chatRef.document(today).set(messageItem1)
+        chatRef2.document("othername").set(myitem) //info에 상대방 이름 넣기
+
+        otherChatRef3.document(today).set(messageItem2)
+        otherChatRef4.document("othername").set(otheritem)
+
         binding.et.setText("")
 
         //소프트 키보드 내리기
