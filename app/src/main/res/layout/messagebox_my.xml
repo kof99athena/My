@@ -19,6 +19,23 @@
         android:layout_height="wrap_content"
         android:text="nick name"
         android:textColor="@color/black"
+        android:layout_toLeftOf="@+id/bar"
+       />
+
+    <TextView
+        android:id="@+id/bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" / "
+        android:textColor="@color/black"
+        android:layout_toLeftOf="@+id/id"/>
+
+    <TextView
+        android:id="@+id/id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="000000"
+        android:textColor="@color/black"
         android:layout_toLeftOf="@+id/civ"
         android:layout_marginRight="16dp"/>
 
@@ -30,7 +47,7 @@
         android:text="this is message"
         android:textColor="@color/black"
         android:maxWidth="250dp"
-        android:layout_alignRight="@+id/tv_name"
+        android:layout_alignRight="@+id/id"
         android:layout_below="@+id/tv_name"
         android:background="@drawable/bg_mymessagebox"
         android:padding="12dp"/>

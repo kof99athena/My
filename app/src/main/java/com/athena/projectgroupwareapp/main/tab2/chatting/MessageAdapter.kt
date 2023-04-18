@@ -26,6 +26,7 @@ class MessageAdapter constructor(var context: Context, var items : MutableList<M
    //이너 클래스
     inner class VH(itemView: View) : ViewHolder(itemView) {
         val iv : CircleImageView by lazy { itemView.findViewById(R.id.civ) }
+        val id : TextView by lazy { itemView.findViewById(R.id.id) }
         val name : TextView by lazy { itemView.findViewById(R.id.tv_name) }
         val message : TextView by lazy { itemView.findViewById(R.id.msg) }
         val time : TextView by lazy { itemView.findViewById(R.id.tv_time) }
@@ -64,10 +65,15 @@ class MessageAdapter constructor(var context: Context, var items : MutableList<M
     override fun onBindViewHolder(holder: VH, position: Int) {
         var item : MessageItem = items.get(position)
 
+//        Log.i("item",item.toString())
+//        Log.i("items",items.toString())
+
         holder.name.setText(item.name)
+        holder.id.setText(item.id)
         holder.message.setText(item.message)
         holder.time.setText(item.time)
         Glide.with(context).load(item.imgUrl).into(holder.iv)
+
     }
 
 }

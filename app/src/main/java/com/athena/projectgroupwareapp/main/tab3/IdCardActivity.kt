@@ -45,14 +45,7 @@ class IdCardActivity : AppCompatActivity() {
 
         binding.btnMessage.setOnClickListener {
 
-            //여기 조심
-            var myId : String = G.employeeAccount?.id.toString()//내 사원번호를 더해서 collection을 만들자
-            var collectionName : Int = id!!.toInt()+myId.toInt()
-            Log.i("collectionname",collectionName.toString())
-
-
-            GU.otherAccount = OtherAccount(name.toString(), imgId.toString(), id.toString(), collectionName.toString())
-
+            GU.otherAccount = OtherAccount(name.toString(), imgId.toString(), id.toString())
 
             var intent: Intent = Intent(this, ChattingActivity::class.java)
             startActivity(intent)
