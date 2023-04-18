@@ -38,6 +38,7 @@ class ChattingActivity : AppCompatActivity() {
     lateinit var chatRef : CollectionReference //컬렉션 참조(→)하는 변수
     lateinit var chatRef2 : DocumentReference //컬렉션 참조(→)하는 변수
     //lateinit var chatRef3 : CollectionReference //컬렉션 참조(→)하는 변수
+
     lateinit var otherChatRef3 : CollectionReference //컬렉션 참조(→)하는 변수
     lateinit var otherChatRef4 : DocumentReference //컬렉션 참조(→)하는 변수
     //lateinit var otherChatRef6 : CollectionReference //컬렉션 참조(→)하는 변수
@@ -190,10 +191,14 @@ class ChattingActivity : AppCompatActivity() {
         var calendar : Calendar = Calendar.getInstance()
         var time : String = "${calendar.get(Calendar.HOUR_OF_DAY)}:${calendar.get(Calendar.MINUTE)}"
 
+        //참조위치명이 중복되지 않도록 날짜를 이용
+        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        val today = sdf.format(Date()).toString()
+        Log.i("dateformat",today.toString())
 
         //필드값들을 HashMap에 만들지말고 객체로 만들어서 넣어버리자. MessageItem을 만들자
-        var messageItem1 : MessageItem = MessageItem(name,id, mymessage,myimgUrl,time,othername,otherprofile,otherid)
-        var messageItem2 : MessageItem = MessageItem(name,id, mymessage,myimgUrl,time,name,myimgUrl,id)
+        var messageItem1 : MessageItem = MessageItem(name,id, mymessage,myimgUrl,today,othername,otherprofile,otherid)
+        var messageItem2 : MessageItem = MessageItem(name,id, mymessage,myimgUrl,today,name,myimgUrl,id)
 
 
         //(var name : String, var id : String, var message : String, var imgUrl : String, var time : String, var othername : String, var otherprofileUrl : String)
@@ -201,9 +206,6 @@ class ChattingActivity : AppCompatActivity() {
         var myitem : MyItem = MyItem(GU.otherAccount?.name.toString())
         var otheritem : MyItem = MyItem(G.employeeAccount?.name.toString())
 
-        //참조위치명이 중복되지 않도록 날짜를 이용
-        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-        val today = sdf.format(Date())
 
         chatRef.document(today).set(messageItem1) //내 메세지
         chatRef2.set(myitem) //info에 상대방 이름 넣기

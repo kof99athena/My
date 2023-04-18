@@ -22,6 +22,7 @@ class PersonnalAdapter constructor(var context : Context, var items : MutableLis
 
     lateinit var itemView :View
 
+
     //Firebase에 있는 데이터를 가져오자
 
     inner class VH(itemView: View) : ViewHolder(itemView){
