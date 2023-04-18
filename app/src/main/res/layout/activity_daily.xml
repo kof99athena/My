@@ -8,22 +8,24 @@
     android:weightSum="2"
     tools:context=".drawer.DailyActivity">
 
-    <net.daum.mf.map.api.MapView
+<!--    <net.daum.mf.map.api.MapView-->
+<!--        android:id="@+id/container_mapview"-->
+<!--        android:layout_margin="8dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="1.3"/>-->
+
+    <ImageView
         android:id="@+id/container_mapview"
         android:layout_margin="8dp"
+        android:background="@drawable/sakana"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.3"/>
 
     <Button
-        android:id="@+id/my_location"
-        android:text="내위치 찾기"
-        android:backgroundTint="@color/maincolor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <Button
-        android:layout_margin="16dp"
+        android:id="@+id/attendance"
+        android:layout_margin="8dp"
         android:text="출근하기"
         android:backgroundTint="@color/maincolor"
         android:layout_width="match_parent"
