@@ -28,6 +28,7 @@ class Tab2Fragment : Fragment() {
     lateinit var messageItem : MutableList<MessageListItem> //프래그먼트가 중복으로 나오므로 lateinit을 해준다.
 
 
+
 //    var otherId : String = GU.otherAccount?.id.toString()//상대방 사원번호와와
 //    var myId : String = G.employeeAccount?.id.toString()//내 사원번호를 더해서 collection을 만들자
 //
@@ -73,6 +74,7 @@ class Tab2Fragment : Fragment() {
 
                            for(snapshot in it.documents){
                                Log.i("test77777", it.documents.size.toString())
+                               Log.i("test77777", it.documents.toString())
 
                                //var name: String = GU.otherAccount?.name.toString()
                                //var name: String = "기존대화"

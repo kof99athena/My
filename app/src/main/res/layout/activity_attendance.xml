@@ -13,7 +13,7 @@
         android:layout_margin="8dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.3"/>
+        android:layout_weight="1.7"/>
 
 
     <LinearLayout
@@ -46,16 +46,17 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:background="@drawable/bg_atten"
         android:layout_marginTop="24dp"
+        android:padding="24dp"
         android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="400dp"
+        android:layout_height="240dp">
 
         <TextView
             android:id="@+id/id1"
             android:text="출근"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginLeft="50dp"
             android:textSize="40sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -64,14 +65,14 @@
             android:id="@+id/id2"
             android:text="퇴근"
             android:textSize="40sp"
-            android:layout_marginLeft="40dp"
             android:layout_toRightOf="@id/id3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/time_in"
-            android:text="___:___"
+            android:text="__:__"
+            android:layout_marginLeft="50dp"
             android:layout_below="@id/id1"
             android:textSize="40sp"
             android:layout_width="wrap_content"
@@ -79,6 +80,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_in"
+            android:layout_marginLeft="50dp"
             android:text="출근하기"
             android:backgroundTint="#BCE0C7"
             android:layout_below="@id/time_in"
@@ -96,7 +98,7 @@
 
         <ImageView
             android:id="@+id/id3"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="40dp"
             android:background="@drawable/baseline_keyboard_double_arrow_right_24"
             android:layout_toRightOf="@id/id1"
             android:layout_marginLeft="16dp"
@@ -105,7 +107,7 @@
 
         <TextView
             android:id="@+id/time_out"
-            android:text="___:___"
+            android:text="__:__"
             android:layout_below="@id/id2"
             android:layout_alignStart="@id/id2"
             android:textSize="40sp"

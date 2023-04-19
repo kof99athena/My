@@ -19,6 +19,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class MyteamAdapter constructor(var context: Context, var items : MutableList<MyteamItem>) : Adapter<MyteamAdapter.VH>() {
 
+    lateinit var firebase : FirebaseFirestore
+
     inner class VH(itemView: View) : ViewHolder(itemView){
 
         val title : TextView by lazy { itemView.findViewById(R.id.tv_total_title) }

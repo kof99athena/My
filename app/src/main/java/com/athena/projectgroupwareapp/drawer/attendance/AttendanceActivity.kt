@@ -1,9 +1,11 @@
 package com.athena.projectgroupwareapp.drawer.attendance
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
+import android.location.LocationManager
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
@@ -30,6 +32,7 @@ import com.kakao.util.maps.helper.Utility
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
+import net.daum.mf.map.api.MapView.POIItemEventListener
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -75,14 +78,67 @@ class AttendanceActivity : AppCompatActivity() {
         var keyHash : String = Utility.getKeyHash(this)
         Log.i("keyhash",keyHash)
 
+
+
         //MapView 객체 생성 및 ViewGroup에 붙이기
         val containerMapview : ViewGroup? = null
         containerMapview?.addView(mapView)
 
 
+        myLocation()
+
+
         attendance() //출퇴근버튼 및 내역 눌렀을때 발동하는 메소드
 
     }//onCreate
+
+
+
+    //현재 사용자 위치추적
+    fun myLocation(){
+        binding.containerMapview.currentLocationTrackingMode =
+            MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading
+
+        val locationManager : LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val request : com.google.android.gms.location.LocationRequest = com.google.android.gms.location.LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY,1000).build()
+        //위치정보는 얘가 가져옴 , 외우지말라고
+        //PRIORITY_HIGH_ACCURACY  : GPS로 우선 적용해주세요
+
+        //실시간 위치정보 갱신 요청 - 이 정보는 위치정보가 있을때만 쓸수있다. 동적허가 받앗는지 실행문이 써야한다. -> 그걸 onCreate메소드에서 썼으니까 이 지역에서는 못본다.
+        //그걸 명시해줘야했다. addpermissioncheck를 자동으로 실행해줘야한다
+        //providerClient.requestLocationUpdates(request, locationCallback, Looper.getMainLooper())
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return
+        }
+        providerClient.requestLocationUpdates(request, locationCallback2, Looper.getMainLooper())
+
+
+    }
+
+    //위치검색결과 콜백객체
+    private val locationCallback2 : LocationCallback= object : LocationCallback(){
+        override fun onLocationResult(p0: LocationResult) {
+            super.onLocationResult(p0)
+            myLocation = p0.lastLocation
+            //정보 얻어왔으니까 실시간 업데이트 종료
+            providerClient.removeLocationUpdates(this) //this는 메인이 아니다. locationCallback2이다
+
+        }
+    }
 
 
     //퍼미션 받아오는 객체이다.

@@ -10,15 +10,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.recyclerview.widget.OrientationHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.athena.projectgroupwareapp.R
-import com.athena.projectgroupwareapp.login.G
-import com.athena.projectgroupwareapp.main.MainActivity
 import com.athena.projectgroupwareapp.main.tab2.chatting.ChattingActivity
 import com.athena.projectgroupwareapp.main.tab2.chatting.GU
-import com.athena.projectgroupwareapp.main.tab2.chatting.MyItem
 import com.athena.projectgroupwareapp.main.tab2.chatting.OtherAccount
 import com.athena.projectgroupwareapp.main.tab3.IdCardActivity
 import com.bumptech.glide.Glide
@@ -32,7 +28,6 @@ import com.google.firebase.firestore.QuerySnapshot
 
 //리스트모양으로 만든 리사이클러뷰
 class MsgListAdapter constructor(var context : Context, var items : MutableList<MessageListItem>) : RecyclerView.Adapter<MsgListAdapter.VH>() {
-
 
     inner class VH(itemView: View) : ViewHolder(itemView) {
         val name : TextView by lazy { itemView.findViewById(R.id.name) }
@@ -62,7 +57,6 @@ class MsgListAdapter constructor(var context : Context, var items : MutableList<
         Glide.with(context).load(item.imgID).into(holder.iv)
 
         holder.itemView.setOnClickListener {
-
 
             val intent : Intent = Intent(context, ChattingActivity::class.java)
 

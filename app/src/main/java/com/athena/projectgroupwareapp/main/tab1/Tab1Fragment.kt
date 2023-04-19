@@ -38,7 +38,7 @@ class Tab1Fragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.i("states","onCreateView")
+        //Log.i("states","onCreateView")
         return inflater.inflate(R.layout.fragment_tab1, container, false)
     }
 
@@ -50,7 +50,7 @@ class Tab1Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.i("states","onViewCreated")
+        //Log.i("states","onViewCreated")
 
         totalNotification(view)
         myteamNotification(view)

@@ -1,12 +1,7 @@
 package com.athena.projectgroupwareapp.drawer
 
-import android.app.Activity
 import android.content.ContentValues
-import android.content.Context
-import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -19,11 +14,8 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.view.drawToBitmap
-
 import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.databinding.ActivityApprovalBinding
 import com.athena.projectgroupwareapp.databinding.ActivitySalaryBinding
@@ -34,10 +26,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
 import java.io.OutputStream
-import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Objects
@@ -173,28 +162,3 @@ class SalaryActivity : AppCompatActivity() {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
