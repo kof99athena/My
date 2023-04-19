@@ -4,11 +4,9 @@
     <!-- 카카오맵 사용을 위한 퍼미션 -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 위치정보제공에대한 퍼미션도 필요하다 정확도가 높은 FINE, 또한 네트워크 퍼미션도 사용해야 한다.(COARSE) -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-<!--    급여명세서 이미지 저장을 위한 작업-->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 급여명세서 이미지 저장을 위한 작업 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -16,16 +14,19 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectGroupwareApp"
         android:usesCleartextTraffic="true"
-        android:requestLegacyExternalStorage="true"
         tools:targetApi="31">
+        <activity
+            android:name=".drawer.attendance.AttendanceListActivity"
+            android:exported="false" />
         <activity
             android:name=".main.tab2.chatting.ChattingActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".main.tab1.NotificationActivity"
             android:exported="false" />
@@ -39,7 +40,7 @@
             android:name=".drawer.approval.ApprovalActivity"
             android:exported="false" />
         <activity
-            android:name=".drawer.DailyActivity"
+            android:name=".drawer.attendance.AttendanceActivity"
             android:exported="false" />
         <activity
             android:name=".drawer.SalaryActivity"
@@ -68,7 +69,6 @@
         <activity
             android:name=".main.MainActivity"
             android:exported="false" />
-
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"

@@ -103,6 +103,7 @@ class ApprovalRequestCertificationFragment : Fragment() {
                 //결재함에 내 데이터를 저장해야함 .. 아직 작업전 일단 토스트
                 .setNegativeButton("취소") { _, _ -> }
                 .show()
+
         }//setOnClickListener
     }
 

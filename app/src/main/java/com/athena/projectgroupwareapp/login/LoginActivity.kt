@@ -11,7 +11,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.view.size
 import com.athena.projectgroupwareapp.main.MainActivity
 import com.athena.projectgroupwareapp.R
-import com.athena.projectgroupwareapp.databinding.ActivityDailyBinding
 import com.athena.projectgroupwareapp.databinding.ActivityLoginBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.getField

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_atten_num"
+            android:layout_marginTop="10dp"
+            android:text="1"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/tv_atten_date"
+            android:text="2023/04/19"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_toRightOf="@id/tv_atten_num"
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/tv_atten_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_atten_date"
+            android:layout_alignStart="@id/tv_atten_date"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="6dp"
+            android:text="출근 시간 "
+            android:textColor="@color/black" />
+
+
+        <TextView
+            android:id="@+id/tv_atten_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_atten_date"
+            android:layout_toRightOf="@id/tv_atten_1"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="6dp"
+            android:text="08:19"
+            android:textColor="@color/black" />
+
+
+        <TextView
+            android:id="@+id/tv_atten_2"
+            android:text="퇴근시간"
+            android:layout_marginLeft="16dp"
+            android:textColor="@color/black"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@id/tv_atten_in"
+            android:layout_below="@id/tv_atten_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_atten_out"
+            android:text="18:00"
+            android:textColor="@color/black"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@id/tv_atten_2"
+            android:layout_below="@id/tv_atten_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
