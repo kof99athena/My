@@ -79,7 +79,7 @@ class Tab2Fragment : Fragment() {
                                //var name: String = GU.otherAccount?.name.toString()
                                //var name: String = "기존대화"
 
-                               var num : String = it.documents.size.toString()
+                               var num : String = "new"
                                var name : String = snapshot.get("othername").toString()
                                var message: String = snapshot.get("message").toString()
                                var id: String = snapshot.get("id").toString() //내 아이디가 아니라 상대방
