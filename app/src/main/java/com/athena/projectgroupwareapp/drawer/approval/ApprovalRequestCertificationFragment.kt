@@ -43,6 +43,12 @@ class ApprovalRequestCertificationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val sdf = SimpleDateFormat("yyyy/MM/dd")
+        val today = sdf.format(Date())
+        binding.date.text = today.toString()
+
+
         //여기에서 값을 부르는게 아니다. 상신버튼을 눌렀을 때 그때의 String값을 가져오는 것이다.
         binding.sort.setOnCheckedChangeListener(object : OnCheckedChangeListener{
             override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {

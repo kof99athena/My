@@ -1,0 +1,36 @@
+Index: app/src/main/res/layout/activity_splash_acticity.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".intro.SplashActicity\">\r\n\r\n    <ImageView\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:src=\"@drawable/splash03\"\r\n        android:scaleType=\"centerCrop\"/>\r\n\r\n   <TextView\r\n       android:layout_width=\"wrap_content\"\r\n       android:layout_height=\"wrap_content\"\r\n       android:text=\"ⓒ Groupware My ㏇\"\r\n       android:layout_margin=\"16dp\"\r\n       android:textColor=\"@color/white\"\r\n       android:layout_alignParentBottom=\"true\"/>\r\n\r\n</RelativeLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_splash_acticity.xml b/app/src/main/res/layout/activity_splash_acticity.xml
+--- a/app/src/main/res/layout/activity_splash_acticity.xml	(revision ea9b9111c79530da40f41e3c056c176d6e52b29a)
++++ b/app/src/main/res/layout/activity_splash_acticity.xml	(date 1682044201072)
+@@ -9,7 +9,7 @@
+     <ImageView
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+-        android:src="@drawable/splash03"
++        android:src="@drawable/kyobo"
+         android:scaleType="centerCrop"/>
+ 
+    <TextView
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">Groupware</string>\r\n    <string name=\"drawer_open\">Open Drawer</string>\r\n    <string name=\"drawer_close\">Close Drawer</string>\r\n    <!-- TODO: Remove or change this placeholder text -->\r\n    <string name=\"hello_blank_fragment\">Hello blank fragment</string>\r\n\r\n\r\n    <string name=\"Notification\">\r\n        안녕하세요. 안혜영입니다. \\n\r\n        공지사항 안내드리니 하기 내용 참고하시어 이번주까지 답변 부탁드리겠습니다. \\n \\n\r\n\r\n        - 교육내용 - \\n\r\n        일시 : 4월 15일(14:00) \\n\r\n        장소 : 7층 대회의실 \\n\r\n        내용 : MZ와 같이 일하는 방법 \\n \\n\r\n\r\n        궁금하신 점 있으시면 저에게 문의주세요. \\n\r\n        감사합니다.\r\n    </string>\r\n\r\n\r\n    <string name=\"day\">연차 (9:00~18:00)</string>\r\n    <string name=\"halfday\">반차 (9:00~14:00 or 14:00~18:00)</string>\r\n\r\n    <string name=\"reason1\">개인사정</string>\r\n    <string name=\"reason2\">질병휴가</string>\r\n    <string name=\"reason3\">경조휴가</string>\r\n\r\n    <string name=\"certi1\">재직증명서</string>\r\n    <string name=\"certi2\">원천징수영수증</string>\r\n    <string name=\"certi3\">기타</string>\r\n\r\n    <string name=\"reason4\">관공서 제출용</string>\r\n    <string name=\"reason5\">금융기관 제출용</string>\r\n    <string name=\"reason6\">회사 제출용</string>\r\n\r\n</resources>\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	(revision ea9b9111c79530da40f41e3c056c176d6e52b29a)
++++ b/app/src/main/res/values/strings.xml	(date 1682045218179)
+@@ -1,5 +1,5 @@
+ <resources>
+-    <string name="app_name">Groupware</string>
++    <string name="app_name">그룹웨어 My</string>
+     <string name="drawer_open">Open Drawer</string>
+     <string name="drawer_close">Close Drawer</string>
+     <!-- TODO: Remove or change this placeholder text -->

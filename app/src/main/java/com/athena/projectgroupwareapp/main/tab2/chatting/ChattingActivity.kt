@@ -61,6 +61,11 @@ class ChattingActivity : AppCompatActivity() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE)
         setContentView(binding.root)
 
+        
+
+
+
+
         //채팅방 이름은 상대방 이름으로 표시하자
         binding.toolbarChat.setTitle(chattingRoom)
 

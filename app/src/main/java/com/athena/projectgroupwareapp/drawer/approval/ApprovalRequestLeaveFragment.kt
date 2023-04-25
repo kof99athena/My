@@ -31,6 +31,11 @@ class ApprovalRequestLeaveFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val sdf = SimpleDateFormat("yyyy/MM/dd")
+        val today = sdf.format(Date())
+        binding.date.text = today.toString()
+
         btnFreeUpload()
 
     }//onViewCreated
