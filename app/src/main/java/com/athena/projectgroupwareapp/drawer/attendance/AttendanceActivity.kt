@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Paint
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
@@ -80,6 +81,8 @@ class AttendanceActivity : AppCompatActivity() {
 
         Log.i("ahn11111","하이")
 
+
+        //binding.myattendance.paintFlags = Paint.UNDERLINE_TEXT_FLAG
 
 
         //MapView 객체 생성 및 ViewGroup에 붙이기

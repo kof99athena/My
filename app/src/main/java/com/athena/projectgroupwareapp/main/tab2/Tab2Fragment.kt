@@ -89,8 +89,14 @@ class Tab2Fragment : Fragment() {
 
 
                                messageItem.add(MessageListItem(name, message, date,id, num, profileUrl,otherId))
+
+                               //메신저 내림차순으로 만들기 - sort : quick 정렬
+                               messageItem.sortByDescending {
+                                   it.date
+                               }
                            }
 
+                           Log.i("chatting time",messageItem.toString())
                            binding.recyclerMessage.adapter = MsgListAdapter(requireActivity(), messageItem)
                            binding.recyclerMessage.layoutManager =
                                LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)

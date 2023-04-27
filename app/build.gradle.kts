@@ -14,12 +14,13 @@ android {
         applicationId = "com.athena.projectgroupwareapp"
         minSdk = 27
         targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 3
+        versionName = "1.2.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+// debug버전도 찾아보기
     buildTypes {
         release {
             isMinifyEnabled = true

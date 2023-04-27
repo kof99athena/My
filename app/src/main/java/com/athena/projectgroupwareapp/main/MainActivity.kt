@@ -51,6 +51,10 @@ class MainActivity : AppCompatActivity() {
         drawerOpen() //서랍 열었을때
 
 
+//        var keyHash : String = Utility.getKeyHash(this)
+//        Log.i("keyhash",keyHash)
+
+
     }//onCreate
 
     // 함수 1. 이 함수가 있어야 서랍을 열고 닫을 수 있다.

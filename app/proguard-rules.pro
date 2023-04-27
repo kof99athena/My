@@ -61,7 +61,6 @@
 -keep class com.athena.projectgroupwareapp.main.tab3.it.**
 -keep class com.athena.projectgroupwareapp.main.tab3.it.** { *; }
 
-
 -keep class com.athena.projectgroupwareapp.main.tab3.management.**
 -keep class com.athena.projectgroupwareapp.main.tab3.management.** { *; }
 
