@@ -1,8 +1,8 @@
 package com.athena.projectgroupwareapp.login
 
-class EmployeeAccount constructor(var id : String, var name : String, var imgProfile : String, var team : String) {
+data class EmployeeAccount constructor(var id : String, var name : String, var imgProfile : String, var team : String) {
 }
 
-class ChatName constructor(var chatName: Int){
+data class ChatName constructor(var chatName: Int){
 
 }

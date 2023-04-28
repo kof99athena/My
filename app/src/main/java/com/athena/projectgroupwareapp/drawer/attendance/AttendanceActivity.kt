@@ -42,8 +42,8 @@ import java.util.Date
 class AttendanceActivity : AppCompatActivity() {
     //파이어베이스에 데이터를 추가하자
     lateinit var firebase : FirebaseFirestore
-    lateinit var chatRef : CollectionReference //컬렉션 참조(→)하는 변수
-    lateinit var chatRef2 : DocumentReference //컬렉션 참조(→)하는 변수
+    lateinit var attenRef : CollectionReference //컬렉션 참조(→)하는 변수
+    lateinit var attenRef2 : DocumentReference //컬렉션/도큐먼트를 참조(→)하는 변수
 
 
     //카카오 맵을 추가하자
@@ -185,9 +185,9 @@ class AttendanceActivity : AppCompatActivity() {
     //출퇴근 및 내역 눌렀을때 발동하는 메소드
     fun attendance(){
         firebase = FirebaseFirestore.getInstance()
-        chatRef = firebase.collection("attendance")
+        attenRef = firebase.collection("attendance")
 
-        chatRef2 = firebase.collection("attendance")
+        attenRef2 = firebase.collection("attendance")
             .document(G.employeeAccount?.id.toString())// 안에 필드가없으면 도큐먼트 사이즈가 0이나온다. 하나는 넣어주자.
 
         //1. 오늘의 날짜를 표기하자
@@ -220,10 +220,10 @@ class AttendanceActivity : AppCompatActivity() {
             timeOut = binding.timeOut.text.toString()
 
             var attendanceItem : AttendanceItem = AttendanceItem(today,timeIn,timeOut)
-            chatRef.document(G.employeeAccount?.id.toString()).collection("attendance").document(today.toString()).set(attendanceItem)
+            attenRef.document(G.employeeAccount?.id.toString()).collection("attendance").document(today.toString()).set(attendanceItem)
 
             var myitem : MyItem = MyItem(G.employeeAccount?.name.toString())
-            chatRef2.set(myitem)
+            attenRef2.set(myitem)
         }
 
         binding.myattendance.setOnClickListener{
