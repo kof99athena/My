@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.graphics.Paint
 import android.location.Location
 import android.location.LocationManager
@@ -30,6 +31,7 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.kakao.util.maps.helper.Utility
+import net.daum.mf.map.api.MapCircle
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
@@ -89,9 +91,7 @@ class AttendanceActivity : AppCompatActivity() {
         val containerMapview : ViewGroup? = null
         containerMapview?.addView(mapView)
 
-
         myLocation()
-
 
         attendance() //출퇴근버튼 및 내역 눌렀을때 발동하는 메소드
 
@@ -232,6 +232,8 @@ class AttendanceActivity : AppCompatActivity() {
         }
 
     }
+
+
 
 
 
