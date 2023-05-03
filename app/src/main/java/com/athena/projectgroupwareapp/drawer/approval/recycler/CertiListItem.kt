@@ -1,4 +1,8 @@
 package com.athena.projectgroupwareapp.drawer.approval.recycler
 
-class CertiListItem constructor(var title : String,  var dateOfIssue : String) {
-}
+data class CertiListItem (
+    var title : String,
+    var dateOfIssue : String)
+
+
+

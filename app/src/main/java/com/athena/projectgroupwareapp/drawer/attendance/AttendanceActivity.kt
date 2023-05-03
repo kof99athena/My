@@ -4,6 +4,8 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.Paint
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
@@ -29,6 +31,7 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.kakao.util.maps.helper.Utility
+import net.daum.mf.map.api.MapCircle
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
@@ -41,8 +44,8 @@ import java.util.Date
 class AttendanceActivity : AppCompatActivity() {
     //파이어베이스에 데이터를 추가하자
     lateinit var firebase : FirebaseFirestore
-    lateinit var chatRef : CollectionReference //컬렉션 참조(→)하는 변수
-    lateinit var chatRef2 : DocumentReference //컬렉션 참조(→)하는 변수
+    lateinit var attenRef : CollectionReference //컬렉션 참조(→)하는 변수
+    lateinit var attenRef2 : DocumentReference //컬렉션/도큐먼트를 참조(→)하는 변수
 
 
     //카카오 맵을 추가하자
@@ -78,15 +81,17 @@ class AttendanceActivity : AppCompatActivity() {
         var keyHash : String = Utility.getKeyHash(this)
         Log.i("keyhash",keyHash)
 
+        Log.i("ahn11111","하이")
+
+
+        //binding.myattendance.paintFlags = Paint.UNDERLINE_TEXT_FLAG
 
 
         //MapView 객체 생성 및 ViewGroup에 붙이기
         val containerMapview : ViewGroup? = null
         containerMapview?.addView(mapView)
 
-
         myLocation()
-
 
         attendance() //출퇴근버튼 및 내역 눌렀을때 발동하는 메소드
 
@@ -101,12 +106,12 @@ class AttendanceActivity : AppCompatActivity() {
 
         val locationManager : LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val request : com.google.android.gms.location.LocationRequest = com.google.android.gms.location.LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY,1000).build()
-        //위치정보는 얘가 가져옴 , 외우지말라고
-        //PRIORITY_HIGH_ACCURACY  : GPS로 우선 적용해주세요
+        //PRIORITY_HIGH_ACCURACY  : GPS로 우선 적용
 
         //실시간 위치정보 갱신 요청 - 이 정보는 위치정보가 있을때만 쓸수있다. 동적허가 받앗는지 실행문이 써야한다. -> 그걸 onCreate메소드에서 썼으니까 이 지역에서는 못본다.
         //그걸 명시해줘야했다. addpermissioncheck를 자동으로 실행해줘야한다
         //providerClient.requestLocationUpdates(request, locationCallback, Looper.getMainLooper())
+        //이건 내가 적는게아니라 빨간불뜨면서 자동으로 써지는 메소드
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -180,9 +185,9 @@ class AttendanceActivity : AppCompatActivity() {
     //출퇴근 및 내역 눌렀을때 발동하는 메소드
     fun attendance(){
         firebase = FirebaseFirestore.getInstance()
-        chatRef = firebase.collection("attendance")
+        attenRef = firebase.collection("attendance")
 
-        chatRef2 = firebase.collection("attendance")
+        attenRef2 = firebase.collection("attendance")
             .document(G.employeeAccount?.id.toString())// 안에 필드가없으면 도큐먼트 사이즈가 0이나온다. 하나는 넣어주자.
 
         //1. 오늘의 날짜를 표기하자
@@ -215,10 +220,10 @@ class AttendanceActivity : AppCompatActivity() {
             timeOut = binding.timeOut.text.toString()
 
             var attendanceItem : AttendanceItem = AttendanceItem(today,timeIn,timeOut)
-            chatRef.document(G.employeeAccount?.id.toString()).collection("attendance").document(today.toString()).set(attendanceItem)
+            attenRef.document(G.employeeAccount?.id.toString()).collection("attendance").document(today.toString()).set(attendanceItem)
 
             var myitem : MyItem = MyItem(G.employeeAccount?.name.toString())
-            chatRef2.set(myitem)
+            attenRef2.set(myitem)
         }
 
         binding.myattendance.setOnClickListener{
@@ -227,6 +232,8 @@ class AttendanceActivity : AppCompatActivity() {
         }
 
     }
+
+
 
 
 

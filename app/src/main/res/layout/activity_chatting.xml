@@ -16,7 +16,7 @@
 <!-- 특정 화면에만 액션바를 부여하자 : 채팅방 이름때문에 액션바가 필요하다-->
 <!-- 엘리베이션 0, 백그라운드는 투명하게 설정한다.-->
 
-        <Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_chat"
             android:title="상대방 이름"
             android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_chatting"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="640dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:stackFromEnd="true"
         android:layout_above="@+id/lay"/>

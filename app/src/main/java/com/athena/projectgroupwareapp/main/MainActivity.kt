@@ -3,6 +3,7 @@ package com.athena.projectgroupwareapp.main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import com.athena.projectgroupwareapp.R
@@ -17,6 +18,7 @@ import com.athena.projectgroupwareapp.main.tab2.Tab2Fragment
 import com.athena.projectgroupwareapp.main.tab3.Tab3Fragment
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
+import com.kakao.util.maps.helper.Utility
 
 class MainActivity : AppCompatActivity() {
 
@@ -47,6 +49,11 @@ class MainActivity : AppCompatActivity() {
         employeeAccount() // 내 정보 보여주기
         bottomClick() //bottom 버튼 눌렀을때
         drawerOpen() //서랍 열었을때
+
+
+//        var keyHash : String = Utility.getKeyHash(this)
+//        Log.i("keyhash",keyHash)
+
 
     }//onCreate
 

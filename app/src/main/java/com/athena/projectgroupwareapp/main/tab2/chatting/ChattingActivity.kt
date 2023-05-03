@@ -61,6 +61,11 @@ class ChattingActivity : AppCompatActivity() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE)
         setContentView(binding.root)
 
+        
+
+
+
+
         //채팅방 이름은 상대방 이름으로 표시하자
         binding.toolbarChat.setTitle(chattingRoom)
 
@@ -188,8 +193,11 @@ class ChattingActivity : AppCompatActivity() {
         var otherid : String = GU.otherAccount?.id.toString()
 
         //채팅방에 들어갈 시간 정보 만들기
-        var calendar : Calendar = Calendar.getInstance()
-        var time : String = "${calendar.get(Calendar.HOUR_OF_DAY)}:${calendar.get(Calendar.MINUTE)}"
+//        var calendar : Calendar = Calendar.getInstance()
+//        var time : String = "${calendar.get(Calendar.HOUR_OF_DAY)}:${calendar.get(Calendar.MINUTE)}"
+
+        val chatsdf = SimpleDateFormat("M월 d일 HH:mm")
+        val chattoday = chatsdf.format(Date()).toString()
 
         //참조위치명이 중복되지 않도록 날짜를 이용
         val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
@@ -197,9 +205,8 @@ class ChattingActivity : AppCompatActivity() {
         Log.i("dateformat",today.toString())
 
         //필드값들을 HashMap에 만들지말고 객체로 만들어서 넣어버리자. MessageItem을 만들자
-        var messageItem1 : MessageItem = MessageItem(name,id, mymessage,myimgUrl,today,othername,otherprofile,otherid)
-        var messageItem2 : MessageItem = MessageItem(name,id, mymessage,myimgUrl,today,name,myimgUrl,id)
-
+        var messageItem1 : MessageItem = MessageItem(name,id, mymessage,myimgUrl,chattoday,othername,otherprofile,otherid)
+        var messageItem2 : MessageItem = MessageItem(name,id, mymessage,myimgUrl,chattoday,name,myimgUrl,id)
 
         //(var name : String, var id : String, var message : String, var imgUrl : String, var time : String, var othername : String, var otherprofileUrl : String)
 
