@@ -1,0 +1,262 @@
+Index: app/build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id(\"com.android.application\")\r\n    id(\"org.jetbrains.kotlin.android\")\r\n\r\n    //buildscript :  Firebase를 쓰기위한 작업\r\n    id (\"com.google.gms.google-services\")\r\n}\r\n\r\nandroid {\r\n    namespace = \"com.athena.projectgroupwareapp\"\r\n    compileSdk = 33\r\n\r\n    defaultConfig {\r\n        applicationId = \"com.athena.projectgroupwareapp\"\r\n        minSdk = 27\r\n        targetSdk = 33\r\n        versionCode = 3\r\n        versionName = \"1.2.1\"\r\n\r\n        testInstrumentationRunner = \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n\r\n// debug버전도 찾아보기\r\n    buildTypes {\r\n        release {\r\n            isMinifyEnabled = true\r\n            proguardFiles(\r\n                getDefaultProguardFile(\"proguard-android-optimize.txt\"),\r\n                \"proguard-rules.pro\"\r\n            )\r\n        }\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility = JavaVersion.VERSION_1_8\r\n        targetCompatibility = JavaVersion.VERSION_1_8\r\n    }\r\n    kotlinOptions {\r\n        jvmTarget = \"1.8\"\r\n    }\r\n\r\n    buildFeatures {\r\n        viewBinding = true\r\n        dataBinding = true\r\n\r\n\r\n    }\r\n\r\n}\r\n\r\ndependencies {\r\n    implementation(\"com.github.bumptech.glide:glide:4.15.1\") //글라이드\r\n    implementation(\"de.hdodenhof:circleimageview:3.1.0\") //서클뷰\r\n\r\n    //카카오 맵\r\n    implementation (files (\"libs/libDaumMapAndroid.jar\"))\r\n    implementation(fileTree(mapOf(\"dir\" to \"libs\", \"include\" to listOf(\"*.jar\"))))\r\n\r\n\r\n\r\n    // Firebase core library - 꼭 필요한 코어 라이브러리\r\n    implementation(platform(\"com.google.firebase:firebase-bom:31.3.0\"))\r\n    // Firebase product SDK - 데이터베이스\r\n    implementation(\"com.google.firebase:firebase-firestore-ktx\")\r\n    // Firebase product SDK - 이미지\r\n    implementation(\"com.google.firebase:firebase-storage-ktx\")\r\n\r\n\r\n\r\n\r\n    implementation(\"androidx.core:core-ktx:1.9.0\")\r\n    implementation(\"androidx.appcompat:appcompat:1.6.1\")\r\n    implementation(\"com.google.android.material:material:1.8.0\")\r\n    implementation(\"androidx.constraintlayout:constraintlayout:2.1.4\")\r\n    implementation(\"com.google.android.gms:play-services-location:21.0.1\")\r\n    testImplementation(\"junit:junit:4.13.2\")\r\n    androidTestImplementation(\"androidx.test.ext:junit:1.1.5\")\r\n    androidTestImplementation(\"androidx.test.espresso:espresso-core:3.5.1\")\r\n    implementation(\"androidx.drawerlayout:drawerlayout:1.1.1\")\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle.kts b/app/build.gradle.kts
+--- a/app/build.gradle.kts	
++++ b/app/build.gradle.kts	
+@@ -63,6 +63,11 @@
+     implementation("com.google.firebase:firebase-firestore-ktx")
+     // Firebase product SDK - 이미지
+     implementation("com.google.firebase:firebase-storage-ktx")
++    // Firebase FCM 메세지 notification
++    implementation("com.google.firebase:firebase-auth-ktx")
++    implementation("com.google.firebase:firebase-functions-ktx")
++    implementation("com.google.firebase:firebase-messaging-ktx")
++
+ 
+ 
+ 
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\">\r\n    <!-- 카카오맵 사용을 위한 퍼미션 -->\r\n    <uses-permission android:name=\"android.permission.INTERNET\" /> <!-- 위치정보제공에대한 퍼미션도 필요하다 정확도가 높은 FINE, 또한 네트워크 퍼미션도 사용해야 한다.(COARSE) -->\r\n    <uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />\r\n    <uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" /> <!-- 급여명세서 이미지 저장을 위한 작업 -->\r\n    <uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />\r\n    <uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />\r\n\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\r\n        android:fullBackupContent=\"@xml/backup_rules\"\r\n        android:icon=\"@mipmap/icon\"\r\n        android:label=\"@string/app_name\"\r\n        android:requestLegacyExternalStorage=\"true\"\r\n        android:roundIcon=\"@mipmap/icon_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.ProjectGroupwareApp\"\r\n        android:usesCleartextTraffic=\"true\"\r\n        tools:targetApi=\"31\">\r\n        <activity\r\n            android:name=\".drawer.attendance.AttendanceListActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".main.tab2.chatting.ChattingActivity\"\r\n            android:exported=\"false\"\r\n            android:windowSoftInputMode=\"adjustResize\" />\r\n        <activity\r\n            android:name=\".main.tab1.NotificationActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".main.tab3.IdCardActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".drawer.CalendarActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".drawer.approval.ApprovalActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".drawer.attendance.AttendanceActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".drawer.SalaryActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".main.tab3.Tab3Fragment\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".main.tab2.Tab2Fragment\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".main.tab1.Tab1Fragment\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".login.LoginActivity\"\r\n            android:exported=\"false\" />\r\n        <activity\r\n            android:name=\".intro.SplashActicity\"\r\n            android:exported=\"true\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n        <activity\r\n            android:name=\".main.MainActivity\"\r\n            android:exported=\"false\" />\r\n\r\n        <meta-data\r\n            android:name=\"com.kakao.sdk.AppKey\"\r\n            android:value=\"08c31f5d5e4b7569642d4feb46ed251d\" />\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	
++++ b/app/src/main/AndroidManifest.xml	
+@@ -71,9 +71,13 @@
+             android:name=".main.MainActivity"
+             android:exported="false" />
+ 
++
++
+         <meta-data
+             android:name="com.kakao.sdk.AppKey"
+             android:value="08c31f5d5e4b7569642d4feb46ed251d" />
++
++
+     </application>
+ 
+ </manifest>
+\ No newline at end of file
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">그룹웨어</string>\r\n    <string name=\"drawer_open\">Open Drawer</string>\r\n    <string name=\"drawer_close\">Close Drawer</string>\r\n    <!-- TODO: Remove or change this placeholder text -->\r\n    <string name=\"hello_blank_fragment\">Hello blank fragment</string>\r\n\r\n\r\n    <string name=\"Notification\">\r\n        안녕하세요. 안혜영입니다. \\n\r\n        공지사항 안내드리니 하기 내용 참고하시어 이번주까지 답변 부탁드리겠습니다. \\n \\n\r\n\r\n        - 교육내용 - \\n\r\n        일시 : 4월 15일(14:00) \\n\r\n        장소 : 7층 대회의실 \\n\r\n        내용 : MZ와 같이 일하는 방법 \\n \\n\r\n\r\n        궁금하신 점 있으시면 저에게 문의주세요. \\n\r\n        감사합니다.\r\n    </string>\r\n\r\n\r\n    <string name=\"day\">연차 (9:00~18:00)</string>\r\n    <string name=\"halfday\">반차 (9:00~14:00 or 14:00~18:00)</string>\r\n\r\n    <string name=\"reason1\">개인사정</string>\r\n    <string name=\"reason2\">질병휴가</string>\r\n    <string name=\"reason3\">경조휴가</string>\r\n\r\n    <string name=\"certi1\">재직증명서</string>\r\n    <string name=\"certi2\">원천징수영수증</string>\r\n    <string name=\"certi3\">기타</string>\r\n\r\n    <string name=\"reason4\">관공서 제출용</string>\r\n    <string name=\"reason5\">금융기관 제출용</string>\r\n    <string name=\"reason6\">회사 제출용</string>\r\n\r\n</resources>\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	
++++ b/app/src/main/res/values/strings.xml	
+@@ -19,6 +19,7 @@
+         감사합니다.
+     </string>
+ 
++    <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
+ 
+     <string name="day">연차 (9:00~18:00)</string>
+     <string name="halfday">반차 (9:00~14:00 or 14:00~18:00)</string>
+Index: app/src/main/java/com/athena/projectgroupwareapp/main/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.athena.projectgroupwareapp.main\r\n\r\nimport android.content.Intent\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport android.os.Bundle\r\nimport android.util.Log\r\nimport android.view.MenuItem\r\nimport androidx.appcompat.app.ActionBarDrawerToggle\r\nimport com.athena.projectgroupwareapp.R\r\nimport com.athena.projectgroupwareapp.databinding.ActivityMainBinding\r\nimport com.athena.projectgroupwareapp.drawer.CalendarActivity\r\nimport com.athena.projectgroupwareapp.drawer.approval.ApprovalActivity\r\nimport com.athena.projectgroupwareapp.drawer.attendance.AttendanceActivity\r\nimport com.athena.projectgroupwareapp.drawer.SalaryActivity\r\nimport com.athena.projectgroupwareapp.login.G\r\nimport com.athena.projectgroupwareapp.main.tab1.Tab1Fragment\r\nimport com.athena.projectgroupwareapp.main.tab2.Tab2Fragment\r\nimport com.athena.projectgroupwareapp.main.tab3.Tab3Fragment\r\nimport com.bumptech.glide.Glide\r\nimport com.google.android.material.snackbar.Snackbar\r\nimport com.kakao.util.maps.helper.Utility\r\n\r\nclass MainActivity : AppCompatActivity() {\r\n\r\n    lateinit var tab1Fragment : Tab1Fragment\r\n    lateinit var tab2Fragment : Tab2Fragment\r\n    lateinit var tab3Fragment : Tab3Fragment\r\n    private lateinit var binding : ActivityMainBinding\r\n    lateinit var toggle: ActionBarDrawerToggle\r\n\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        binding = ActivityMainBinding.inflate(layoutInflater)\r\n        setContentView(binding.root)\r\n\r\n        tab1Fragment= Tab1Fragment()\r\n        tab2Fragment= Tab2Fragment()\r\n        tab3Fragment= Tab3Fragment()\r\n\r\n        supportFragmentManager.beginTransaction().replace(R.id.framelayout,tab1Fragment).commit()\r\n\r\n        setSupportActionBar(binding.toolbar)\r\n        toggle= ActionBarDrawerToggle(this,binding.drawerLayout,R.string.drawer_open,R.string.drawer_close)\r\n        supportActionBar?.setDisplayHomeAsUpEnabled(true)\r\n        binding.drawerLayout.addDrawerListener(toggle) //삼선모양과 백버튼이 자동으로 연결된다.\r\n        toggle.syncState()\r\n\r\n        employeeAccount() // 내 정보 보여주기\r\n        bottomClick() //bottom 버튼 눌렀을때\r\n        drawerOpen() //서랍 열었을때\r\n\r\n\r\n//        var keyHash : String = Utility.getKeyHash(this)\r\n//        Log.i(\"keyhash\",keyHash)\r\n\r\n\r\n    }//onCreate\r\n\r\n    // 함수 1. 이 함수가 있어야 서랍을 열고 닫을 수 있다.\r\n    override fun onOptionsItemSelected(item: MenuItem): Boolean {\r\n        if(toggle.onOptionsItemSelected(item)){\r\n            return true\r\n        }\r\n        return super.onOptionsItemSelected(item)\r\n    }\r\n\r\n    //함수 2. 서랍 버튼을 눌렀을때 반응하는 함수\r\n    fun drawerOpen(){\r\n        binding.menuSalary.setOnClickListener{\r\n            var intent : Intent = Intent(this@MainActivity, SalaryActivity::class.java)\r\n            startActivity(intent)\r\n        }\r\n\r\n        binding.menuDaily.setOnClickListener{\r\n            var intent : Intent = Intent(this@MainActivity, AttendanceActivity::class.java)\r\n            startActivity(intent)\r\n        }\r\n\r\n        binding.menuApproval.setOnClickListener{\r\n            var intent : Intent = Intent(this@MainActivity, ApprovalActivity::class.java)\r\n            startActivity(intent)\r\n        }\r\n\r\n        binding.menuCalendar.setOnClickListener{\r\n            var intent : Intent = Intent(this@MainActivity, CalendarActivity::class.java)\r\n            startActivity(intent)\r\n        }\r\n\r\n        binding.setting.setOnClickListener{\r\n            Snackbar.make(binding.drawerLayout,\"권한이 없습니다. \\n관리자에게 문의하세요.\",Snackbar.LENGTH_INDEFINITE).setAction(\"X\", {}).show()\r\n        }\r\n\r\n        binding.drawerLayout.closeDrawers()\r\n\r\n    }\r\n\r\n    //함수 3. Bottom버튼을 눌렀을때 반응하는 함수\r\n    fun bottomClick(){\r\n        binding.navBottom.setOnItemSelectedListener{item->\r\n            when(item.itemId) {\r\n                R.id.home -> {\r\n                    supportFragmentManager.beginTransaction().replace(R.id.framelayout,tab1Fragment).commit()\r\n                    true\r\n                }\r\n\r\n                R.id.message -> {\r\n                    supportFragmentManager.beginTransaction().replace(R.id.framelayout,tab2Fragment).commit()\r\n                    true\r\n                }\r\n                R.id.people ->{\r\n                    supportFragmentManager.beginTransaction().replace(R.id.framelayout,tab3Fragment).commit()\r\n                    true\r\n                }\r\n                else -> false\r\n            }\r\n        }\r\n    }\r\n\r\n    //함수 4. 본인 계정 가져오기\r\n    fun employeeAccount(){\r\n//        Log.i(\"GG\",G.employeeAccount?.name.toString())\r\n//        Log.i(\"GG\",G.employeeAccount?.id.toString())\r\n        //Log.i(\"GG4730\",G.employeeAccount?.team.toString())\r\n\r\n        binding.drawerName.setText(G.employeeAccount?.name)\r\n        binding.drawerIdnum.setText(G.employeeAccount?.id)\r\n        Glide.with(this).load(G.employeeAccount?.imgProfile).into(binding.drawerProfile)\r\n\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/athena/projectgroupwareapp/main/MainActivity.kt b/app/src/main/java/com/athena/projectgroupwareapp/main/MainActivity.kt
+--- a/app/src/main/java/com/athena/projectgroupwareapp/main/MainActivity.kt	
++++ b/app/src/main/java/com/athena/projectgroupwareapp/main/MainActivity.kt	
+@@ -5,6 +5,7 @@
+ import android.os.Bundle
+ import android.util.Log
+ import android.view.MenuItem
++import android.widget.Toast
+ import androidx.appcompat.app.ActionBarDrawerToggle
+ import com.athena.projectgroupwareapp.R
+ import com.athena.projectgroupwareapp.databinding.ActivityMainBinding
+@@ -18,6 +19,7 @@
+ import com.athena.projectgroupwareapp.main.tab3.Tab3Fragment
+ import com.bumptech.glide.Glide
+ import com.google.android.material.snackbar.Snackbar
++import com.google.firebase.messaging.FirebaseMessaging
+ import com.kakao.util.maps.helper.Utility
+ 
+ class MainActivity : AppCompatActivity() {
+@@ -55,6 +57,8 @@
+ //        Log.i("keyhash",keyHash)
+ 
+ 
++
++
+     }//onCreate
+ 
+     // 함수 1. 이 함수가 있어야 서랍을 열고 닫을 수 있다.
+Index: app/src/main/java/com/athena/projectgroupwareapp/login/LoginActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.athena.projectgroupwareapp.login\r\n\r\nimport android.content.Context\r\nimport android.content.Intent\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport android.os.Bundle\r\nimport android.util.Log\r\nimport android.view.inputmethod.InputMethodManager\r\nimport android.widget.Button\r\nimport androidx.appcompat.app.AlertDialog\r\nimport androidx.core.view.size\r\nimport com.athena.projectgroupwareapp.main.MainActivity\r\nimport com.athena.projectgroupwareapp.R\r\nimport com.athena.projectgroupwareapp.databinding.ActivityLoginBinding\r\nimport com.google.firebase.firestore.FirebaseFirestore\r\nimport com.google.firebase.firestore.ktx.getField\r\n\r\nclass LoginActivity : AppCompatActivity() {\r\n    lateinit var binding: ActivityLoginBinding\r\n\r\n//로그인할때 계정을 따로 만들자\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        binding = ActivityLoginBinding.inflate(layoutInflater)\r\n        setContentView(binding.root)\r\n\r\n        binding.btnLogin.setOnClickListener{\r\n            clickLogin()\r\n        }\r\n\r\n    }//onCreate\r\n\r\n    //로그인 버튼 눌렀을때 실행되느 함수\r\n    private fun clickLogin() {\r\n        var id: String = binding.id.text.toString()\r\n        var password: String = binding.password.text.toString()\r\n        Log.i(\"id\", id + password)\r\n\r\n        var firebese: FirebaseFirestore = FirebaseFirestore.getInstance()\r\n\r\n\r\n        firebese.collection(\"employeeList\")\r\n            .whereEqualTo(\"id\", id)\r\n            .whereEqualTo(\"password\", password)\r\n            .get().addOnSuccessListener {\r\n                if (it.documents.size > 0) {\r\n                    //사이즈가 1개 이상이라는것은 즉 null이 아니다.\r\n                    var id: String = it.documents[0].id\r\n                    var name: String = it.documents[0].get(\"name\").toString()\r\n                    var imgProfile: String = it.documents[0].get(\"profileUrl\").toString()\r\n                    var team: String = it.documents[0].get(\"team\").toString()\r\n\r\n\r\n                    G.employeeAccount = EmployeeAccount(id, name, imgProfile, team)\r\n                    //로그인시 사원번호와 이름, 이미지Url을 G에 넣어준다. 나중에 메신저에서 가져와야함.\r\n\r\n                    var intent = Intent(this, MainActivity::class.java)\r\n\r\n                    //백스택을 깔끔하게 없애고 화면 전환하자\r\n                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)\r\n                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)\r\n\r\n\r\n                    startActivity(intent)\r\n\r\n                } else {\r\n                    AlertDialog.Builder(this).setMessage(\"ID와 비밀번호를 다시 확인해주세요\").show()\r\n\r\n                    binding.password.setText(\"\")\r\n                    binding.id.setText(\"\")\r\n                    binding.id.requestFocus()\r\n\r\n                    //키보드 내리기\r\n                    var inputManager: InputMethodManager =\r\n                        this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager\r\n                    inputManager.hideSoftInputFromWindow(\r\n                        this.currentFocus?.windowToken,\r\n                        InputMethodManager.HIDE_NOT_ALWAYS\r\n                    )\r\n\r\n                }\r\n\r\n            }\r\n    }\r\n\r\n\r\n}//LoginActivity\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/athena/projectgroupwareapp/login/LoginActivity.kt b/app/src/main/java/com/athena/projectgroupwareapp/login/LoginActivity.kt
+--- a/app/src/main/java/com/athena/projectgroupwareapp/login/LoginActivity.kt	
++++ b/app/src/main/java/com/athena/projectgroupwareapp/login/LoginActivity.kt	
+@@ -7,17 +7,25 @@
+ import android.util.Log
+ import android.view.inputmethod.InputMethodManager
+ import android.widget.Button
++import android.widget.Toast
+ import androidx.appcompat.app.AlertDialog
+ import androidx.core.view.size
+ import com.athena.projectgroupwareapp.main.MainActivity
+ import com.athena.projectgroupwareapp.R
+ import com.athena.projectgroupwareapp.databinding.ActivityLoginBinding
++import com.google.android.gms.common.internal.safeparcel.SafeParcelable
++import com.google.android.gms.tasks.OnCompleteListener
+ import com.google.firebase.firestore.FirebaseFirestore
+ import com.google.firebase.firestore.ktx.getField
++import com.google.firebase.messaging.FirebaseMessaging
++import org.checkerframework.checker.signature.qual.ClassGetSimpleName
+ 
+ class LoginActivity : AppCompatActivity() {
+     lateinit var binding: ActivityLoginBinding
+ 
++    //클래스 정보 가져오기
++    private val TAG = this.javaClass.simpleName
++
+ //로그인할때 계정을 따로 만들자
+ 
+     override fun onCreate(savedInstanceState: Bundle?) {
+@@ -29,6 +37,25 @@
+             clickLogin()
+         }
+ 
++
++
++        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { 
++            if (!it.isSuccessful){
++                Log.w(TAG,"FCM 토큰 불러오기 실패",it.exception)
++                return@OnCompleteListener
++            }
++            
++            val token = it.result
++            
++            val msg = getString(R.string.msg_token_fmt,token)
++            Log.i("token값", token)
++            Log.d(TAG,msg)
++            //로그인할때 토큰값이 뜬다.
++            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
++            
++        })
++
++
+     }//onCreate
+ 
+     //로그인 버튼 눌렀을때 실행되느 함수
+@@ -85,6 +112,8 @@
+     }
+ 
+ 
++
++
+ }//LoginActivity
+ 
+ 
+Index: app/src/main/res/layout/activity_chatting.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:orientation=\"vertical\"\r\n    android:padding=\"8dp\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".main.tab2.chatting.ChattingActivity\">\r\n\r\n    <com.google.android.material.appbar.AppBarLayout\r\n        app:elevation=\"0dp\"\r\n        android:background=\"@android:color/transparent\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\">\r\n<!-- 특정 화면에만 액션바를 부여하자 : 채팅방 이름때문에 액션바가 필요하다-->\r\n<!-- 엘리베이션 0, 백그라운드는 투명하게 설정한다.-->\r\n\r\n        <androidx.appcompat.widget.Toolbar\r\n            android:id=\"@+id/toolbar_chat\"\r\n            android:title=\"상대방 이름\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"/>\r\n\r\n    </com.google.android.material.appbar.AppBarLayout>\r\n\r\n    <!--    stackFromEnd 스크롤을 항상 밑에 둔다 -->\r\n\r\n    <androidx.recyclerview.widget.RecyclerView\r\n        android:id=\"@+id/recycler_chatting\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"640dp\"\r\n        app:layoutManager=\"androidx.recyclerview.widget.LinearLayoutManager\"\r\n        app:stackFromEnd=\"true\"\r\n        android:layout_above=\"@+id/lay\"/>\r\n\r\n\r\n\r\n    <LinearLayout\r\n        android:id=\"@+id/lay\"\r\n        android:layout_alignParentBottom=\"true\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"horizontal\"\r\n        android:padding=\"4dp\"\r\n        android:background=\"@color/white\">\r\n\r\n        <EditText\r\n            android:id=\"@+id/et\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_weight=\"1\"\r\n            android:padding=\"10dp\"\r\n            android:hint=\"   message\"\r\n            android:inputType=\"textMultiLine\"\r\n            android:maxLines=\"3\"\r\n            android:background=\"@drawable/bg_edit\"/>\r\n        <!--        최대 3줄까지만 커진다. 3줄이상쓸수는 있다  -->\r\n\r\n        <androidx.appcompat.widget.AppCompatButton\r\n            android:id=\"@+id/btn\"\r\n            android:layout_width=\"32dp\"\r\n            android:layout_height=\"32dp\"\r\n            android:background=\"@drawable/send_chatting\"\r\n            android:layout_marginLeft=\"8dp\"\r\n            android:layout_gravity=\"center\"/>\r\n\r\n    </LinearLayout>\r\n\r\n</RelativeLayout>
+===================================================================
+diff --git a/app/src/main/res/layout/activity_chatting.xml b/app/src/main/res/layout/activity_chatting.xml
+--- a/app/src/main/res/layout/activity_chatting.xml	
++++ b/app/src/main/res/layout/activity_chatting.xml	
+@@ -29,7 +29,7 @@
+     <androidx.recyclerview.widget.RecyclerView
+         android:id="@+id/recycler_chatting"
+         android:layout_width="match_parent"
+-        android:layout_height="640dp"
++        android:layout_height="600dp"
+         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+         app:stackFromEnd="true"
+         android:layout_above="@+id/lay"/>
+Index: app/src/main/java/com/athena/projectgroupwareapp/main/tab2/chatting/ChattingActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.athena.projectgroupwareapp.main.tab2.chatting\r\n\r\nimport android.content.Context\r\nimport android.hardware.camera2.CaptureResult\r\nimport android.icu.number.IntegerWidth\r\nimport android.os.Bundle\r\nimport android.util.Log\r\nimport android.view.WindowManager\r\nimport android.view.inputmethod.InputMethodManager\r\nimport android.widget.Adapter\r\nimport android.widget.Toast\r\nimport androidx.appcompat.app.AlertDialog\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport androidx.core.view.get\r\nimport com.athena.projectgroupwareapp.databinding.ActivityChattingBinding\r\nimport com.athena.projectgroupwareapp.login.EmployeeAccount\r\nimport com.athena.projectgroupwareapp.login.G\r\nimport com.google.firebase.firestore.CollectionReference\r\nimport com.google.firebase.firestore.DocumentChange\r\nimport com.google.firebase.firestore.DocumentReference\r\nimport com.google.firebase.firestore.DocumentSnapshot\r\nimport com.google.firebase.firestore.EventListener\r\nimport com.google.firebase.firestore.FirebaseFirestore\r\nimport com.google.firebase.firestore.FirebaseFirestoreException\r\nimport com.google.firebase.firestore.QuerySnapshot\r\nimport java.text.SimpleDateFormat\r\nimport java.util.Calendar\r\nimport java.util.Date\r\nimport java.util.Objects\r\n\r\n\r\n//파이어베이스에 저장되는 document는 상대방이름이다.\r\n//말 건 사람은 필드에서 볼수있다.\r\nclass ChattingActivity : AppCompatActivity() {\r\n    lateinit var binding : ActivityChattingBinding\r\n    lateinit var firebase : FirebaseFirestore //파이어스토어 : 많이 쓸 예정이니까 미리 프로퍼티를 설정하자\r\n\r\n    lateinit var chatRef : CollectionReference //컬렉션 참조(→)하는 변수\r\n    lateinit var chatRef2 : DocumentReference //컬렉션 참조(→)하는 변수\r\n    //lateinit var chatRef3 : CollectionReference //컬렉션 참조(→)하는 변수\r\n\r\n    lateinit var otherChatRef3 : CollectionReference //컬렉션 참조(→)하는 변수\r\n    lateinit var otherChatRef4 : DocumentReference //컬렉션 참조(→)하는 변수\r\n    //lateinit var otherChatRef6 : CollectionReference //컬렉션 참조(→)하는 변수\r\n\r\n//    var otherId : String = GU.otherAccount?.id.toString()//상대방 사원번호와와\r\n//    var myId : String = G.employeeAccount?.id.toString()//내 사원번호를 더해서 collection을 만들자\r\n//    var collectionName : Int? = otherId.toInt()+myId.toInt()\r\n\r\n    var chattingRoom : String = GU.otherAccount?.name.toString() //대화방이름, 다른사람 이름이다.\r\n\r\n    //채팅방에 리사이클러뷰를 띄워보자\r\n    lateinit var msgadapter : MessageAdapter\r\n    var messageItems : MutableList<MessageItem> = mutableListOf()\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        binding = ActivityChattingBinding.inflate(layoutInflater)\r\n\r\n        //캡쳐 불가하도록 만들자\r\n        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE)\r\n        setContentView(binding.root)\r\n\r\n        \r\n\r\n\r\n\r\n\r\n        //채팅방 이름은 상대방 이름으로 표시하자\r\n        binding.toolbarChat.setTitle(chattingRoom)\r\n\r\n\r\n        //아답터 띄우기\r\n        msgadapter = MessageAdapter(this,messageItems)\r\n        binding.recyclerChatting.adapter = msgadapter\r\n\r\n        //Log.i(\"recycler\",msgadapter.toString())\r\n\r\n        //chatting이라는 컬렉션을 만들자 - 회원번호를 더한 값으로 만들자.\r\n        firebase = FirebaseFirestore.getInstance()\r\n        reference() //레퍼런스 참조변수\r\n\r\n        //기존데이터가져오기\r\n        getChattingData()\r\n\r\n        //내가 보낸 채팅 메세지를 저장한다.\r\n        binding.btn.setOnClickListener{view->clickSend()}\r\n\r\n    }//onCreate\r\n\r\n\r\n    fun reference(){\r\n        //1. 내 정보에 메세지를 저장하는 레퍼런스\r\n        chatRef = firebase.collection(\"employeeList\")\r\n            .document(G.employeeAccount?.id.toString())\r\n            .collection(\"chatting\")\r\n            .document(GU.otherAccount?.id.toString()) //상대방ID를 저장한다. 그래야 나중에 찾을수있다.\r\n            .collection(\"message\")//메세지에 내용을 등록한다. 밑에 도큐먼트 부분을 써줘야한다.\r\n\r\n        Log.i(\"ahn777\",G.employeeAccount?.id.toString())\r\n        Log.i(\"ahn777\",GU.otherAccount?.id.toString())\r\n\r\n        //2. 메세지에 필드를 넣는다(안그러면 내용물이 없다 착각함._\r\n        chatRef2 = firebase.collection(\"employeeList\")\r\n            .document(G.employeeAccount?.id.toString())\r\n            .collection(\"chatting\")\r\n            .document(GU.otherAccount?.id.toString())\r\n\r\n        //3. 상대방 정보에 메세지 저장하는 참레퍼런스\r\n        otherChatRef3 = firebase.collection(\"employeeList\")\r\n            .document(GU.otherAccount?.id.toString())\r\n            .collection(\"chatting\")\r\n            .document(G.employeeAccount?.id.toString())\r\n            .collection(\"message\")//상대방에게도 똑같이 저장한다. 밑에 도큐먼트 부분을 써줘야한다.\r\n\r\n        //4. 메세지에 필드를 넣는다(안그러면 내용물이 없다 착각함._\r\n        otherChatRef4 = firebase.collection(\"employeeList\")\r\n            .document(GU.otherAccount?.id.toString())\r\n            .collection(\"chatting\")\r\n            .document(G.employeeAccount?.id.toString())\r\n        //상대방 이름이 있어야 채팅방 이름에 넣을수있다.\r\n    }\r\n\r\n    //함수 1. 기존에 갖고있던 데이터 가져오기\r\n    fun getChattingData(){\r\n        //컬렉션에있는 내용을 가져오자\r\n        chatRef.addSnapshotListener(object : EventListener<QuerySnapshot>{\r\n            override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {\r\n                //변경된 도큐먼트만 찾아달라고 요청하자\r\n                val documentChanges : MutableList<DocumentChange> = value!!.documentChanges\r\n\r\n                //처음시작할때! 기존에 채팅메세지가 10개있다고 한다면 10번 바뀐게 아니라는걸 말해줘야한다.\r\n                //for each문 , java보다 더 이해하기 쉽다.\r\n                for(documentChange in documentChanges){\r\n\r\n                    //변경된 문서내역 중에서 데이터를 촬영한 SnapShot 얻어오기\r\n                    var snapshot : DocumentSnapshot = documentChange.document\r\n\r\n                    //도큐먼트에 있는 필드값 가져오기\r\n\r\n                    //이제 Document에 있는 필드값 가져오기, 여기 조금 이상함\r\n                    var msg : MutableMap<String, Any>? = snapshot.data\r\n\r\n                    var name : String = msg?.get(\"name\").toString()\r\n                    var othername : String = msg?.get(\"othername\").toString()\r\n\r\n                    var otherId : String = msg?.get(\"otherId\").toString()\r\n                    var id : String = msg?.get(\"id\").toString()\r\n\r\n                    var message : String = msg?.get(\"message\").toString()\r\n                    var time : String = msg?.get(\"time\").toString()\r\n\r\n                    var profileUrl : String = msg?.get(\"imgUrl\").toString()\r\n                    var otherprofileUrl : String = msg?.get(\"otherprofileUrl\").toString()\r\n\r\n                    //var my : String = msg?.get(\"my\").toString()\r\n                    //var other : String = msg?.get(\"other\").toString()\r\n\r\n                    Log.i(\"ahn4747\",otherId.toString())\r\n                    Log.i(\"ahn4747\",othername.toString())\r\n\r\n\r\n                    var msg2 : MessageItem = MessageItem(name,id,message,profileUrl,time, othername,otherprofileUrl,otherId)\r\n                    Log.i(\"test1111\",msg2.toString())\r\n\r\n                    //읽어온메세지를 리스트에 추가\r\n                    messageItems.add(msg2)\r\n\r\n                    //데이터 체인지 할때마다 부르자\r\n                    msgadapter.notifyItemInserted(messageItems.size-1)\r\n\r\n                    //리사이클러뷰의 스크롤을 아래로 위치시키자.\r\n                    binding.recyclerChatting.scrollToPosition(messageItems.size-1)\r\n\r\n                }//for문 완료\r\n                //Toast.makeText(this@ChattingActivity, \"\" + messageItems.size, Toast.LENGTH_SHORT).show()\r\n                Log.i(\"size\",messageItems.size.toString())\r\n            }\r\n        })//addSnapshotListener\r\n    }\r\n\r\n    //함수 2. 샌드버튼 누를때 실행되는 함수\r\n    fun clickSend(){\r\n\r\n\r\n        //firebase에 저장할 나의 정보들\r\n        var name : String = G.employeeAccount?.name.toString()\r\n        var id : String = G.employeeAccount?.id.toString()\r\n        var mymessage : String = binding.et.text.toString()\r\n        var myimgUrl : String = G.employeeAccount?.imgProfile.toString()\r\n        var othername : String = GU.otherAccount?.name.toString()\r\n        var otherprofile : String = GU.otherAccount?.imgProfile.toString()\r\n        var otherid : String = GU.otherAccount?.id.toString()\r\n\r\n        //채팅방에 들어갈 시간 정보 만들기\r\n//        var calendar : Calendar = Calendar.getInstance()\r\n//        var time : String = \"${calendar.get(Calendar.HOUR_OF_DAY)}:${calendar.get(Calendar.MINUTE)}\"\r\n\r\n        val chatsdf = SimpleDateFormat(\"M월 d일 HH:mm\")\r\n        val chattoday = chatsdf.format(Date()).toString()\r\n\r\n        //참조위치명이 중복되지 않도록 날짜를 이용\r\n        val sdf = SimpleDateFormat(\"yyyy-MM-dd HH:mm:ss\")\r\n        val today = sdf.format(Date()).toString()\r\n        Log.i(\"dateformat\",today.toString())\r\n\r\n        //필드값들을 HashMap에 만들지말고 객체로 만들어서 넣어버리자. MessageItem을 만들자\r\n        var messageItem1 : MessageItem = MessageItem(name,id, mymessage,myimgUrl,chattoday,othername,otherprofile,otherid)\r\n        var messageItem2 : MessageItem = MessageItem(name,id, mymessage,myimgUrl,chattoday,name,myimgUrl,id)\r\n\r\n        //(var name : String, var id : String, var message : String, var imgUrl : String, var time : String, var othername : String, var otherprofileUrl : String)\r\n\r\n        var myitem : MyItem = MyItem(GU.otherAccount?.name.toString())\r\n        var otheritem : MyItem = MyItem(G.employeeAccount?.name.toString())\r\n\r\n\r\n        chatRef.document(today).set(messageItem1) //내 메세지\r\n        chatRef2.set(myitem) //info에 상대방 이름 넣기\r\n\r\n        otherChatRef3.document(today).set(messageItem2) //상대방 메세지\r\n        otherChatRef4.set(otheritem)\r\n\r\n        binding.et.setText(\"\")\r\n\r\n        //소프트 키보드 내리기\r\n        var inputManager : InputMethodManager = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager\r\n        inputManager.hideSoftInputFromWindow(this.currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)\r\n\r\n    }\r\n\r\n\r\n\r\n}
+===================================================================
+diff --git a/app/src/main/java/com/athena/projectgroupwareapp/main/tab2/chatting/ChattingActivity.kt b/app/src/main/java/com/athena/projectgroupwareapp/main/tab2/chatting/ChattingActivity.kt
+--- a/app/src/main/java/com/athena/projectgroupwareapp/main/tab2/chatting/ChattingActivity.kt	
++++ b/app/src/main/java/com/athena/projectgroupwareapp/main/tab2/chatting/ChattingActivity.kt	
+@@ -1,20 +1,16 @@
+ package com.athena.projectgroupwareapp.main.tab2.chatting
+ 
++import android.R
+ import android.content.Context
+-import android.hardware.camera2.CaptureResult
+-import android.icu.number.IntegerWidth
+ import android.os.Bundle
+ import android.util.Log
+ import android.view.WindowManager
+ import android.view.inputmethod.InputMethodManager
+-import android.widget.Adapter
+ import android.widget.Toast
+-import androidx.appcompat.app.AlertDialog
+ import androidx.appcompat.app.AppCompatActivity
+-import androidx.core.view.get
+ import com.athena.projectgroupwareapp.databinding.ActivityChattingBinding
+-import com.athena.projectgroupwareapp.login.EmployeeAccount
+ import com.athena.projectgroupwareapp.login.G
++import com.google.android.gms.tasks.OnCompleteListener
+ import com.google.firebase.firestore.CollectionReference
+ import com.google.firebase.firestore.DocumentChange
+ import com.google.firebase.firestore.DocumentReference
+@@ -23,10 +19,9 @@
+ import com.google.firebase.firestore.FirebaseFirestore
+ import com.google.firebase.firestore.FirebaseFirestoreException
+ import com.google.firebase.firestore.QuerySnapshot
++import com.google.firebase.messaging.FirebaseMessaging
+ import java.text.SimpleDateFormat
+-import java.util.Calendar
+ import java.util.Date
+-import java.util.Objects
+ 
+ 
+ //파이어베이스에 저장되는 document는 상대방이름이다.
+@@ -226,8 +221,10 @@
+         var inputManager : InputMethodManager = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+         inputManager.hideSoftInputFromWindow(this.currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+ 
+-    }
++
+ 
+ 
+ 
++
++    }//send
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/athena/projectgroupwareapp/drawer/attendance/AttendanceActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.athena.projectgroupwareapp.drawer.attendance\r\n\r\nimport android.Manifest\r\nimport android.content.Context\r\nimport android.content.Intent\r\nimport android.content.pm.PackageManager\r\nimport android.graphics.Paint\r\nimport android.location.Location\r\nimport android.location.LocationManager\r\nimport android.os.Bundle\r\nimport android.os.Looper\r\nimport android.util.Log\r\nimport android.view.ViewGroup\r\nimport android.widget.Toast\r\nimport androidx.activity.result.ActivityResultCallback\r\nimport androidx.activity.result.ActivityResultLauncher\r\nimport androidx.activity.result.contract.ActivityResultContracts\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport androidx.core.app.ActivityCompat\r\nimport com.athena.projectgroupwareapp.databinding.ActivityAttendanceBinding\r\nimport com.athena.projectgroupwareapp.drawer.attendance.recycler.AttendanceItem\r\nimport com.athena.projectgroupwareapp.login.G\r\nimport com.athena.projectgroupwareapp.main.tab2.chatting.MyItem\r\nimport com.google.android.gms.location.FusedLocationProviderClient\r\nimport com.google.android.gms.location.LocationCallback\r\nimport com.google.android.gms.location.LocationResult\r\nimport com.google.android.gms.location.LocationServices\r\nimport com.google.android.gms.location.Priority\r\nimport com.google.firebase.firestore.CollectionReference\r\nimport com.google.firebase.firestore.DocumentReference\r\nimport com.google.firebase.firestore.FirebaseFirestore\r\nimport com.kakao.util.maps.helper.Utility\r\nimport net.daum.mf.map.api.MapPOIItem\r\nimport net.daum.mf.map.api.MapPoint\r\nimport net.daum.mf.map.api.MapView\r\nimport net.daum.mf.map.api.MapView.POIItemEventListener\r\nimport java.text.SimpleDateFormat\r\nimport java.util.Calendar\r\nimport java.util.Date\r\n\r\n\r\nclass AttendanceActivity : AppCompatActivity() {\r\n    //파이어베이스에 데이터를 추가하자\r\n    lateinit var firebase : FirebaseFirestore\r\n    lateinit var attenRef : CollectionReference //컬렉션 참조(→)하는 변수\r\n    lateinit var attenRef2 : DocumentReference //컬렉션/도큐먼트를 참조(→)하는 변수\r\n\r\n\r\n    //카카오 맵을 추가하자\r\n    //카카오는 그래들 라이브러리가 아니라서 다른 사이트들과 다르다.\r\n\r\n    lateinit var binding : ActivityAttendanceBinding\r\n    var myLocation : Location?= null //내 위치를 못 찾아 올수도 있으니까 null로 해준다\r\n    //[ Google Fused Location API 사용 : play-services-location ]\r\n    //위치는 아주 위험하다 퍼미션 (동적 퍼미션)\r\n    val providerClient : FusedLocationProviderClient by lazy { LocationServices.getFusedLocationProviderClient(this) } //사용자측에서 제공하는 위치\r\n    //멤버변수에서는 context를 바로 쓰지 못한다. myLocation에 내 위치를 준다.\r\n\r\n\r\n    val mapView : MapView by lazy { MapView(this) } //맵뷰객체를 나중에 생성할것이다\r\n\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        binding = com.athena.projectgroupwareapp.databinding.ActivityAttendanceBinding.inflate(layoutInflater)\r\n        setContentView(binding.root)\r\n\r\n\r\n        //시작하면 내 위치 정보제공에 대한 동적 퍼미션 시작\r\n        if(checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_DENIED){\r\n            //거부되었으니 퍼미션을 받아오자! 퍼미션 받아오는 객체 준비.\r\n         permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)\r\n        }else{\r\n            requstMyLocations()\r\n        }\r\n\r\n        //사원이 회사 근처에 있다면 출퇴근 버튼을 누를수있게하자.\r\n        //일단 내 위치 찾아오기!\r\n        var keyHash : String = Utility.getKeyHash(this)\r\n        Log.i(\"keyhash\",keyHash)\r\n\r\n        Log.i(\"ahn11111\",\"하이\")\r\n\r\n\r\n        //binding.myattendance.paintFlags = Paint.UNDERLINE_TEXT_FLAG\r\n\r\n\r\n        //MapView 객체 생성 및 ViewGroup에 붙이기\r\n        val containerMapview : ViewGroup? = null\r\n        containerMapview?.addView(mapView)\r\n\r\n\r\n        myLocation()\r\n\r\n\r\n        attendance() //출퇴근버튼 및 내역 눌렀을때 발동하는 메소드\r\n\r\n    }//onCreate\r\n\r\n\r\n\r\n    //현재 사용자 위치추적\r\n    fun myLocation(){\r\n        binding.containerMapview.currentLocationTrackingMode =\r\n            MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading\r\n\r\n        val locationManager : LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager\r\n        val request : com.google.android.gms.location.LocationRequest = com.google.android.gms.location.LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY,1000).build()\r\n        //PRIORITY_HIGH_ACCURACY  : GPS로 우선 적용\r\n\r\n        //실시간 위치정보 갱신 요청 - 이 정보는 위치정보가 있을때만 쓸수있다. 동적허가 받앗는지 실행문이 써야한다. -> 그걸 onCreate메소드에서 썼으니까 이 지역에서는 못본다.\r\n        //그걸 명시해줘야했다. addpermissioncheck를 자동으로 실행해줘야한다\r\n        //providerClient.requestLocationUpdates(request, locationCallback, Looper.getMainLooper())\r\n        //이건 내가 적는게아니라 빨간불뜨면서 자동으로 써지는 메소드\r\n        if (ActivityCompat.checkSelfPermission(\r\n                this,\r\n                Manifest.permission.ACCESS_FINE_LOCATION\r\n            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(\r\n                this,\r\n                Manifest.permission.ACCESS_COARSE_LOCATION\r\n            ) != PackageManager.PERMISSION_GRANTED\r\n        ) {\r\n            // TODO: Consider calling\r\n            //    ActivityCompat#requestPermissions\r\n            // here to request the missing permissions, and then overriding\r\n            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,\r\n            //                                          int[] grantResults)\r\n            // to handle the case where the user grants the permission. See the documentation\r\n            // for ActivityCompat#requestPermissions for more details.\r\n            return\r\n        }\r\n        providerClient.requestLocationUpdates(request, locationCallback2, Looper.getMainLooper())\r\n\r\n\r\n    }\r\n\r\n    //위치검색결과 콜백객체\r\n    private val locationCallback2 : LocationCallback= object : LocationCallback(){\r\n        override fun onLocationResult(p0: LocationResult) {\r\n            super.onLocationResult(p0)\r\n            myLocation = p0.lastLocation\r\n            //정보 얻어왔으니까 실시간 업데이트 종료\r\n            providerClient.removeLocationUpdates(this) //this는 메인이 아니다. locationCallback2이다\r\n\r\n        }\r\n    }\r\n\r\n\r\n    //퍼미션 받아오는 객체이다.\r\n    val permissionLauncher : ActivityResultLauncher<String> = registerForActivityResult(ActivityResultContracts.RequestPermission(),object :ActivityResultCallback<Boolean>{\r\n        override fun onActivityResult(result: Boolean?) {\r\n            if(result!!) requstMyLocations() //내위치 찾아오는 작업메소드, resulr!!는 결과가 true일때이다.\r\n            else Toast.makeText(this@AttendanceActivity, \"위치찾기를 허용해주세요.\", Toast.LENGTH_SHORT).show()\r\n        }\r\n    })\r\n\r\n    fun requstMyLocations(){\r\n        //위치정보 기준을 설정하는 요청 객체\r\n        val request : com.google.android.gms.location.LocationRequest = com.google.android.gms.location.LocationRequest.Builder(\r\n            Priority.PRIORITY_HIGH_ACCURACY,100).build()\r\n        //PRIORITY_HIGH_ACCURACY  : GPS로 우선 적용해주세요\r\n\r\n        //실시간 위치정보 갱신 요청 - 이정보는 위치정보가 있을때만 쓸수있다. 동적 허가 받았는지 실행문 써야한다.-> 그걸 onCreate메소드에서 썼으니까 이 지역에서는 못본다.\r\n       //그걸 명시해줘야했다. addpermissioncheck를 자동으로 실행해줘야한다\r\n        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(\r\n            this,Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ){\r\n            return\r\n        }\r\n        providerClient.requestLocationUpdates(request,locationCallback, Looper.getMainLooper())\r\n\r\n    }\r\n\r\n    //위치검색결과 콜백객체\r\n    val locationCallback : LocationCallback = object : LocationCallback(){\r\n        override fun onLocationResult(p0: LocationResult) {\r\n            super.onLocationResult(p0)\r\n            myLocation = p0.lastLocation\r\n            //정보 얻어왔으니까 실시간 업데이트 종료\r\n            providerClient.removeLocationUpdates(this) //this는 메인이 아니다. locationCallback이다\r\n        }\r\n\r\n    }\r\n\r\n\r\n    //출퇴근 및 내역 눌렀을때 발동하는 메소드\r\n    fun attendance(){\r\n        firebase = FirebaseFirestore.getInstance()\r\n        attenRef = firebase.collection(\"attendance\")\r\n\r\n        attenRef2 = firebase.collection(\"attendance\")\r\n            .document(G.employeeAccount?.id.toString())// 안에 필드가없으면 도큐먼트 사이즈가 0이나온다. 하나는 넣어주자.\r\n\r\n        //1. 오늘의 날짜를 표기하자\r\n        var sdf = SimpleDateFormat(\"YYYY.MM.dd\")\r\n        var today = sdf.format(Date())\r\n        binding.today.text = today\r\n\r\n\r\n        var timeIn : String = String()\r\n        var timeOut :String = String()\r\n\r\n\r\n        //출근버튼을 누르면 출근 시간을 찍어주자.\r\n        binding.btnIn.setOnClickListener {\r\n\r\n            var calendar : Calendar = Calendar.getInstance()\r\n            var t1 : String = \"${calendar.get(Calendar.HOUR_OF_DAY)}:${calendar.get(Calendar.MINUTE)}\"\r\n            binding.timeIn.text = t1\r\n            timeIn = binding.timeIn.text.toString()\r\n\r\n            var attendanceItem : AttendanceItem = AttendanceItem(today,timeIn,timeOut)\r\n        }\r\n\r\n        //퇴근버튼을 누르면 퇴근 시간을 찍어주자.\r\n        binding.btnOut.setOnClickListener {\r\n\r\n            var calendar : Calendar = Calendar.getInstance()\r\n            var t2 : String = \"${calendar.get(Calendar.HOUR_OF_DAY)}:${calendar.get(Calendar.MINUTE)}\"\r\n            binding.timeOut.text = t2\r\n            timeOut = binding.timeOut.text.toString()\r\n\r\n            var attendanceItem : AttendanceItem = AttendanceItem(today,timeIn,timeOut)\r\n            attenRef.document(G.employeeAccount?.id.toString()).collection(\"attendance\").document(today.toString()).set(attendanceItem)\r\n\r\n            var myitem : MyItem = MyItem(G.employeeAccount?.name.toString())\r\n            attenRef2.set(myitem)\r\n        }\r\n\r\n        binding.myattendance.setOnClickListener{\r\n            var intent : Intent = Intent(this,AttendanceListActivity::class.java)\r\n            startActivity(intent)\r\n        }\r\n\r\n    }\r\n\r\n\r\n\r\n\r\n}//onCreate\r\n\r\n\r\n
+===================================================================
+diff --git a/app/src/main/java/com/athena/projectgroupwareapp/drawer/attendance/AttendanceActivity.kt b/app/src/main/java/com/athena/projectgroupwareapp/drawer/attendance/AttendanceActivity.kt
+--- a/app/src/main/java/com/athena/projectgroupwareapp/drawer/attendance/AttendanceActivity.kt	
++++ b/app/src/main/java/com/athena/projectgroupwareapp/drawer/attendance/AttendanceActivity.kt	
+@@ -69,7 +69,8 @@
+         //시작하면 내 위치 정보제공에 대한 동적 퍼미션 시작
+         if(checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_DENIED){
+             //거부되었으니 퍼미션을 받아오자! 퍼미션 받아오는 객체 준비.
+-         permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
++
++            permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+         }else{
+             requstMyLocations()
+         }
