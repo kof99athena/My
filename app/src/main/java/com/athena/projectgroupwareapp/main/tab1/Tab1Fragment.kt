@@ -1,4 +1,4 @@
-package com.athena.projectgroupwareapp.main.tab1
+﻿package com.athena.projectgroupwareapp.main.tab1
 
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -84,6 +84,13 @@ class Tab1Fragment : Fragment() {
         //묵시적 인텐트로 넘기기 해보기
 
         var firebase: FirebaseFirestore = FirebaseFirestore.getInstance()
+        binding.viewMyteamall.setOnClickListener {
+            Toast.makeText(requireActivity(), "준비중입니다.", Toast.LENGTH_SHORT).show()
+        }
+        binding.viewTotalall.setOnClickListener {
+            Toast.makeText(requireActivity(), "준비중입니다.", Toast.LENGTH_SHORT).show()
+        }
+
 
 
         firebase.collection("notificationTotal").get().addOnSuccessListener {

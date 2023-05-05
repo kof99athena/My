@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         tab2Fragment= Tab2Fragment()
         tab3Fragment= Tab3Fragment()
 
-        supportFragmentManager.beginTransaction().replace(R.id.framelayout,tab1Fragment).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.framelayout_content,tab1Fragment).commit()
 
         setSupportActionBar(binding.toolbar)
         toggle= ActionBarDrawerToggle(this,binding.drawerLayout,R.string.drawer_open,R.string.drawer_close)
@@ -100,16 +100,16 @@ class MainActivity : AppCompatActivity() {
         binding.navBottom.setOnItemSelectedListener{item->
             when(item.itemId) {
                 R.id.home -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.framelayout,tab1Fragment).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.framelayout_content,tab1Fragment).commit()
                     true
                 }
 
                 R.id.message -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.framelayout,tab2Fragment).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.framelayout_content,tab2Fragment).commit()
                     true
                 }
                 R.id.people ->{
-                    supportFragmentManager.beginTransaction().replace(R.id.framelayout,tab3Fragment).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.framelayout_content,tab3Fragment).commit()
                     true
                 }
                 else -> false
