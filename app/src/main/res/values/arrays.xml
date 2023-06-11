@@ -7,9 +7,9 @@
     </string-array>
 
     <string-array name="salary">
-        <item>2023년 3월 급여명세서</item>
-        <item>2023년 2월 급여명세서</item>
-        <item>2023년 1월 급여명세서</item>
+        <item>3월 급여명세서</item>
+        <item>2월 급여명세서</item>
+        <item>1월 급여명세서</item>
         <item>2022년 급여명세서</item>
 
     </string-array>
