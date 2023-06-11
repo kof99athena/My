@@ -31,6 +31,7 @@
      >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etmemo"
             android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -47,6 +48,7 @@
             android:id="@+id/save"
             android:text="추가"
             android:visibility="gone"
+            android:backgroundTint="@color/maincolor"
             android:layout_margin="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -69,6 +71,19 @@
         android:layout_height="wrap_content"/>
 
 
+
+    <FrameLayout
+        android:id="@+id/framelayout_attendance_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_calendar_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+    </FrameLayout>
 
 
 </LinearLayout>

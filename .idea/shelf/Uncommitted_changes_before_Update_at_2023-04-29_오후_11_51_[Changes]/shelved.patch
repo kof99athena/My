@@ -1,0 +1,29 @@
+Index: app/build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id(\"com.android.application\")\r\n    id(\"org.jetbrains.kotlin.android\")\r\n\r\n    //buildscript :  Firebase를 쓰기위한 작업\r\n    id (\"com.google.gms.google-services\")\r\n}\r\n\r\nandroid {\r\n    namespace = \"com.athena.projectgroupwareapp\"\r\n    compileSdk = 33\r\n\r\n    defaultConfig {\r\n        applicationId = \"com.athena.projectgroupwareapp\"\r\n        minSdk = 27\r\n        targetSdk = 33\r\n        versionCode = 1\r\n        versionName = \"1.0\"\r\n\r\n        testInstrumentationRunner = \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            isMinifyEnabled = false\r\n            proguardFiles(\r\n                getDefaultProguardFile(\"proguard-android-optimize.txt\"),\r\n                \"proguard-rules.pro\"\r\n            )\r\n        }\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility = JavaVersion.VERSION_1_8\r\n        targetCompatibility = JavaVersion.VERSION_1_8\r\n    }\r\n    kotlinOptions {\r\n        jvmTarget = \"1.8\"\r\n    }\r\n\r\n    buildFeatures {\r\n        viewBinding = true\r\n        dataBinding = true\r\n\r\n\r\n    }\r\n\r\n}\r\n\r\ndependencies {\r\n    implementation(\"com.github.bumptech.glide:glide:4.15.1\") //글라이드\r\n    implementation(\"de.hdodenhof:circleimageview:3.1.0\") //서클뷰\r\n\r\n    //카카오 맵\r\n    implementation (files (\"libs/libDaumMapAndroid.jar\"))\r\n    implementation(fileTree(mapOf(\"dir\" to \"libs\", \"include\" to listOf(\"*.jar\"))))\r\n\r\n\r\n\r\n    // Firebase core library - 꼭 필요한 코어 라이브러리\r\n    implementation(platform(\"com.google.firebase:firebase-bom:31.3.0\"))\r\n    // Firebase product SDK - 데이터베이스\r\n    implementation(\"com.google.firebase:firebase-firestore-ktx\")\r\n    // Firebase product SDK - 이미지\r\n    implementation(\"com.google.firebase:firebase-storage-ktx\")\r\n\r\n\r\n\r\n\r\n    implementation(\"androidx.core:core-ktx:1.9.0\")\r\n    implementation(\"androidx.appcompat:appcompat:1.6.1\")\r\n    implementation(\"com.google.android.material:material:1.8.0\")\r\n    implementation(\"androidx.constraintlayout:constraintlayout:2.1.4\")\r\n    implementation(\"com.google.android.gms:play-services-location:21.0.1\")\r\n    testImplementation(\"junit:junit:4.13.2\")\r\n    androidTestImplementation(\"androidx.test.ext:junit:1.1.5\")\r\n    androidTestImplementation(\"androidx.test.espresso:espresso-core:3.5.1\")\r\n    implementation(\"androidx.drawerlayout:drawerlayout:1.1.1\")\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle.kts b/app/build.gradle.kts
+--- a/app/build.gradle.kts	
++++ b/app/build.gradle.kts	
+@@ -14,15 +14,15 @@
+         applicationId = "com.athena.projectgroupwareapp"
+         minSdk = 27
+         targetSdk = 33
+-        versionCode = 1
+-        versionName = "1.0"
++        versionCode = 2
++        versionName = "1.1"
+ 
+         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+     }
+ 
+     buildTypes {
+         release {
+-            isMinifyEnabled = false
++            isMinifyEnabled = true
+             proguardFiles(
+                 getDefaultProguardFile("proguard-android-optimize.txt"),
+                 "proguard-rules.pro"

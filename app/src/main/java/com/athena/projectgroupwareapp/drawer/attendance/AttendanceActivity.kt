@@ -18,6 +18,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.databinding.ActivityAttendanceBinding
 import com.athena.projectgroupwareapp.drawer.attendance.recycler.AttendanceItem
 import com.athena.projectgroupwareapp.login.G
@@ -67,7 +68,6 @@ class AttendanceActivity : AppCompatActivity() {
         binding = com.athena.projectgroupwareapp.databinding.ActivityAttendanceBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         //시작하면 내 위치 정보제공에 대한 동적 퍼미션 시작
         if(checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_DENIED){
             //거부되었으니 퍼미션을 받아오자! 퍼미션 받아오는 객체 준비.
@@ -79,25 +79,35 @@ class AttendanceActivity : AppCompatActivity() {
         //사원이 회사 근처에 있다면 출퇴근 버튼을 누를수있게하자.
         //일단 내 위치 찾아오기!
         var keyHash : String = Utility.getKeyHash(this)
-        Log.i("keyhash",keyHash)
-
-        Log.i("ahn11111","하이")
-
-
-        //binding.myattendance.paintFlags = Paint.UNDERLINE_TEXT_FLAG
-
 
         //MapView 객체 생성 및 ViewGroup에 붙이기
         val containerMapview : ViewGroup? = null
         containerMapview?.addView(mapView)
 
-        myLocation()
+        //setMapMarkersCompany() //회사 마커
+        myLocation() //내 위치 가져오기
+
 
         attendance() //출퇴근버튼 및 내역 눌렀을때 발동하는 메소드
 
     }//onCreate
 
 
+    fun setMapMarkersCompany(){
+        val marker : MapPOIItem = MapPOIItem()
+
+        marker.apply {
+            itemName = "그룹웨어 My"
+            mapPoint = MapPoint.mapPointWithGeoCoord(37.5618, 127.0342)
+            markerType= MapPOIItem.MarkerType.CustomImage
+            customImageResourceId = R.drawable.logo
+            selectedMarkerType = MapPOIItem.MarkerType.CustomImage
+            customImageResourceId = R.drawable.logo_login
+            isCustomImageAutoscale = false
+            setCustomImageAnchor(0.5f,0.5f)
+        }
+        mapView.addPOIItem(marker)
+    }
 
     //현재 사용자 위치추적
     fun myLocation(){
@@ -224,11 +234,15 @@ class AttendanceActivity : AppCompatActivity() {
 
             var myitem : MyItem = MyItem(G.employeeAccount?.name.toString())
             attenRef2.set(myitem)
+
+            Toast.makeText(this, "출결 내역이 저장되었습니다. ", Toast.LENGTH_SHORT).show()
         }
 
         binding.myattendance.setOnClickListener{
             var intent : Intent = Intent(this,AttendanceListActivity::class.java)
             startActivity(intent)
+
+
         }
 
     }

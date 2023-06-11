@@ -42,13 +42,20 @@
         <FrameLayout
             android:id="@+id/framelayout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
             tools:context=".main.MainActivity"/>
 
-        <RelativeLayout
+        <LinearLayout
+            android:weightSum="1"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:id="@+id/framelayout_content"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
 
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -60,7 +67,7 @@
                 app:menu="@menu/menu"
                 android:layout_alignParentBottom="true"/>
 
-        </RelativeLayout>
+        </LinearLayout>
 
         <!--        렐러티브에서 자동으로 안써짐 android:layout_gravity="start"-->
         <!--숨겨진애 android:clickable="true" 우선 순위 정하기-->

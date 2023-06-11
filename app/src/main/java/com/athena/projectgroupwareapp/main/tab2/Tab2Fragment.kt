@@ -54,6 +54,15 @@ class Tab2Fragment : Fragment() {
 //        Log.i("collection",chatName)
 //        Log.i("collection",chatName2)
 
+        binding.searchView.setOnClickListener {
+            Toast.makeText(requireActivity(), "준비중입니다.", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.makeChat.setOnClickListener {
+            Toast.makeText(requireActivity(), "준비중입니다.", Toast.LENGTH_SHORT).show()
+        }
+
+
 
         var firebase : FirebaseFirestore = FirebaseFirestore.getInstance()
         //채팅방 리스트에는 내가 대화했던 목록이 떠야한다.
