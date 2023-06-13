@@ -37,6 +37,9 @@ class CalendarActivity : AppCompatActivity() {
         binding = ActivityCalendarBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // 6/13 캘린더 부분 고민중
+        //저장할때 깔끔하게 되지 않는다.
+
         binding.calendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
             binding.etTask.visibility = View.VISIBLE
             binding.save.visibility = View.VISIBLE
