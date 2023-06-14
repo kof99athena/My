@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -45,7 +46,7 @@ class CalendarAdapter constructor(var context : Context, var items : MutableList
     inner class VH(itemView: View) : ViewHolder(itemView){
         val title : TextView by lazy { itemView.findViewById(R.id.tv_cal_memo) }
         val date : TextView by lazy { itemView.findViewById(R.id.tv_cal_date) }
-        //val num : TextView by lazy { itemView.findViewById(R.id.tv_cal_num) }
+        val num : TextView by lazy { itemView.findViewById(R.id.tv_cal_num) }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
@@ -64,6 +65,10 @@ class CalendarAdapter constructor(var context : Context, var items : MutableList
         holder.title.text = item.title
         holder.date.text = item.dateOfIssue
         holder.num.text = "${items.size-position}"
+
+        holder.itemView.setOnClickListener {
+            Toast.makeText(context, "삭제중", Toast.LENGTH_SHORT).show()
+        }
 
     }
 
