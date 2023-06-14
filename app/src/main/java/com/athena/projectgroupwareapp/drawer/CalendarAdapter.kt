@@ -45,7 +45,7 @@ class CalendarAdapter constructor(var context : Context, var items : MutableList
     inner class VH(itemView: View) : ViewHolder(itemView){
         val title : TextView by lazy { itemView.findViewById(R.id.tv_cal_memo) }
         val date : TextView by lazy { itemView.findViewById(R.id.tv_cal_date) }
-        val num : TextView by lazy { itemView.findViewById(R.id.tv_cal_num) }
+        //val num : TextView by lazy { itemView.findViewById(R.id.tv_cal_num) }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {

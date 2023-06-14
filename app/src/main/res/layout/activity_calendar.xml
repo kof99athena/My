@@ -11,9 +11,14 @@
     <CalendarView
         android:id="@+id/calendar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content"/>
 
+    <TextView
+        android:layout_gravity="center"
+        android:text="내 일정"
+        android:textSize="32sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -60,17 +65,7 @@
             android:id="@+id/delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-
-
     </LinearLayout>
-
-    <TextView
-        android:text="내 일정"
-        android:textSize="32sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-
 
     <FrameLayout
         android:id="@+id/framelayout_attendance_result"
@@ -80,7 +75,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_calendar_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"/>
 
 
     </FrameLayout>
