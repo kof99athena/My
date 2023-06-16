@@ -47,7 +47,6 @@ class CalendarActivity : AppCompatActivity() {
 
             Log.i("확인",year.toString()+(month+1).toString()+dayOfMonth.toString())
 
-
             scd_month = month.toString()
             scd_dayodMonth = dayOfMonth.toString()
 
@@ -70,12 +69,6 @@ class CalendarActivity : AppCompatActivity() {
                 Toast.makeText(this, "저장되었습니다. ", Toast.LENGTH_SHORT).show()
 
             }
-
-
-
-
-
-            
         }
 
         binding.delete.setOnClickListener {
@@ -91,23 +84,17 @@ class CalendarActivity : AppCompatActivity() {
             .get()
             .addOnSuccessListener {
 
-
                 for(snapshot in it.documents){
                     var dateOfIssue : String = snapshot.get("dateOfIssue").toString()
                     var title : String = snapshot.get("title").toString()
 
-
                     CalListItemItem.add(CalListItem(title, dateOfIssue))
-
                 }
-
                 //var a : List<CertiListItem> = certiListItem.reversed()
                 //certiListItem.reverse()
                 binding.recyclerCalendarList.adapter = CalendarAdapter(this,CalListItemItem.reversed().toMutableList())
                 binding.recyclerCalendarList.layoutManager = LinearLayoutManager(this,
                     LinearLayoutManager.VERTICAL, false)
             }
-
-
     }
 }

@@ -49,13 +49,13 @@ class CalendarAdapter constructor(var context : Context, var items : MutableList
         val num : TextView by lazy { itemView.findViewById(R.id.tv_cal_num) }
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         itemView = LayoutInflater.from(context).inflate(R.layout.recycler_item_calendar,parent,false)
         return VH(itemView)
     }
 
     override fun getItemCount(): Int = items.size
-
 
 
     override fun onBindViewHolder(holder: CalendarAdapter.VH, position: Int) {
@@ -68,9 +68,8 @@ class CalendarAdapter constructor(var context : Context, var items : MutableList
 
         holder.itemView.setOnClickListener {
             Toast.makeText(context, "삭제중", Toast.LENGTH_SHORT).show()
+
         }
-
     }
-
 
 }
