@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -48,13 +49,13 @@ class CalendarAdapter constructor(var context : Context, var items : MutableList
         val num : TextView by lazy { itemView.findViewById(R.id.tv_cal_num) }
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         itemView = LayoutInflater.from(context).inflate(R.layout.recycler_item_calendar,parent,false)
         return VH(itemView)
     }
 
     override fun getItemCount(): Int = items.size
-
 
 
     override fun onBindViewHolder(holder: CalendarAdapter.VH, position: Int) {
@@ -65,7 +66,10 @@ class CalendarAdapter constructor(var context : Context, var items : MutableList
         holder.date.text = item.dateOfIssue
         holder.num.text = "${items.size-position}"
 
-    }
+        holder.itemView.setOnClickListener {
+            Toast.makeText(context,holder.title.text.toString()+"!", Toast.LENGTH_SHORT).show()
 
+        }
+    }
 
 }

@@ -37,13 +37,49 @@ class CalendarActivity : AppCompatActivity() {
         binding = ActivityCalendarBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setSchedule() //스케줄을 추가하는 메소드
+        delete()// 맘이 바뀌어서 스케줄 안 적고 싶을때 쓰는 메소드
+
+        var CalListItemItem : MutableList<CalListItem> = mutableListOf()
+
+        firebase.collection("calendar").document(G.employeeAccount?.id.toString())
+            .collection("calendar")
+            .get()
+            .addOnSuccessListener {
+
+                for(snapshot in it.documents){
+                    var dateOfIssue : String = snapshot.get("dateOfIssue").toString()
+                    var title : String = snapshot.get("title").toString()
+
+                    CalListItemItem.add(CalListItem(title, dateOfIssue))
+
+                }
+                //var a : List<CertiListItem> = certiListItem.reversed()
+                //certiListItem.reverse()
+                binding.recyclerCalendarList.adapter = CalendarAdapter(this,CalListItemItem.reversed().toMutableList())
+                binding.recyclerCalendarList.layoutManager = LinearLayoutManager(this,
+                    LinearLayoutManager.VERTICAL, false)
+
+
+            }
+    }//onCreate
+
+    fun delete(){
+
+        binding.delete.setOnClickListener {
+            binding.etTask.visibility = View.GONE
+            binding.save.visibility = View.GONE
+            binding.delete.visibility = View.GONE
+        }
+    }
+
+    fun  setSchedule(){
         binding.calendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
             binding.etTask.visibility = View.VISIBLE
             binding.save.visibility = View.VISIBLE
             binding.delete.visibility = View.VISIBLE
 
             Log.i("확인",year.toString()+(month+1).toString()+dayOfMonth.toString())
-
 
             scd_month = month.toString()
             scd_dayodMonth = dayOfMonth.toString()
@@ -64,47 +100,11 @@ class CalendarActivity : AppCompatActivity() {
 
                 var myitem : MyItem = MyItem(G.employeeAccount?.name.toString())
                 calendarRef2.set(myitem)
-                Toast.makeText(this, "저장되었습니다. ", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "일정이 추가되었습니다. ", Toast.LENGTH_SHORT).show()
+
 
             }
-
-
-
-
-
-            
         }
-
-        binding.delete.setOnClickListener {
-            binding.etTask.visibility = View.GONE
-            binding.save.visibility = View.GONE
-            binding.delete.visibility = View.GONE
-        }
-
-        var CalListItemItem : MutableList<CalListItem> = mutableListOf()
-
-        firebase.collection("calendar").document(G.employeeAccount?.id.toString())
-            .collection("calendar")
-            .get()
-            .addOnSuccessListener {
-
-
-                for(snapshot in it.documents){
-                    var dateOfIssue : String = snapshot.get("dateOfIssue").toString()
-                    var title : String = snapshot.get("title").toString()
-
-
-                    CalListItemItem.add(CalListItem(title, dateOfIssue))
-
-                }
-
-                //var a : List<CertiListItem> = certiListItem.reversed()
-                //certiListItem.reverse()
-                binding.recyclerCalendarList.adapter = CalendarAdapter(this,CalListItemItem.reversed().toMutableList())
-                binding.recyclerCalendarList.layoutManager = LinearLayoutManager(this,
-                    LinearLayoutManager.VERTICAL, false)
-            }
-
 
     }
 }
