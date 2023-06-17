@@ -67,7 +67,7 @@ class CalendarAdapter constructor(var context : Context, var items : MutableList
         holder.num.text = "${items.size-position}"
 
         holder.itemView.setOnClickListener {
-            Toast.makeText(context, "삭제중", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,holder.title.text.toString()+"!", Toast.LENGTH_SHORT).show()
 
         }
     }
