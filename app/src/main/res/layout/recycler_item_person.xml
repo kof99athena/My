@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="vm"
+            type="com.athena.projectgroupwareapp.main.tab3.PersonViewModel" />
+    </data>
+    
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_margin="8dp"
     android:layout_width="match_parent"
@@ -86,3 +94,4 @@
     </RelativeLayout>
 
 </RelativeLayout>
+</layout>
