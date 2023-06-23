@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="vm"
+            type="com.athena.projectgroupwareapp.main.tab3.PersonViewModel" />
+    </data>
+    
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_margin="8dp"
     android:layout_width="match_parent"
@@ -36,7 +44,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-
+<!--데이터바인딩으로 사번을 가져오기 구현하기-->
+<!--id부분만 데이터바인딩해보기-->
         <TextView
             android:id="@+id/id"
             android:text="999999"
@@ -85,3 +94,4 @@
     </RelativeLayout>
 
 </RelativeLayout>
+</layout>

@@ -14,8 +14,8 @@ android {
         applicationId = "com.athena.projectgroupwareapp"
         minSdk = 27
         targetSdk = 33
-        versionCode = 4
-        versionName = "1.3.1"
+        versionCode = 6
+        versionName = "1.5.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
