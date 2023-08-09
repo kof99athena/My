@@ -3,7 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
 
     //buildscript :  Firebase를 쓰기위한 작업
-    id ("com.google.gms.google-services")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -41,8 +41,6 @@ android {
     buildFeatures {
         viewBinding = true
         dataBinding = true
-
-
     }
 
 }
@@ -52,9 +50,8 @@ dependencies {
     implementation("de.hdodenhof:circleimageview:3.1.0") //서클뷰
 
     //카카오 맵
-    implementation (files ("libs/libDaumMapAndroid.jar"))
+    implementation(files("libs/libDaumMapAndroid.jar"))
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-
 
 
     // Firebase core library - 꼭 필요한 코어 라이브러리
@@ -63,6 +60,12 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore-ktx")
     // Firebase product SDK - 이미지
     implementation("com.google.firebase:firebase-storage-ktx")
+
+    // Compose UI 라이브러리 의존성 추가
+    implementation ("androidx.compose.ui:ui:1.0.5")
+    implementation ("androidx.compose.ui:ui-tooling:1.0.5")
+    implementation ("androidx.compose.foundation:foundation:1.0.5")
+    implementation ("androidx.compose.material3:material3:1.0.0-beta02")
 
 
 

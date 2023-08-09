@@ -1,0 +1,35 @@
+Index: .idea/deploymentTargetDropDown.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"deploymentTargetDropDown\">\r\n    <targetSelectedWithDropDown>\r\n      <Target>\r\n        <type value=\"QUICK_BOOT_TARGET\" />\r\n        <deviceKey>\r\n          <Key>\r\n            <type value=\"VIRTUAL_DEVICE_PATH\" />\r\n            <value value=\"C:\\Users\\ebi14\\.android\\avd\\Pixel_3a_API_33.avd\" />\r\n          </Key>\r\n        </deviceKey>\r\n      </Target>\r\n    </targetSelectedWithDropDown>\r\n    <timeTargetWasSelectedWithDropDown value=\"2023-06-20T09:27:54.475529500Z\" />\r\n  </component>\r\n</project>
+===================================================================
+diff --git a/.idea/deploymentTargetDropDown.xml b/.idea/deploymentTargetDropDown.xml
+--- a/.idea/deploymentTargetDropDown.xml	
++++ b/.idea/deploymentTargetDropDown.xml	
+@@ -1,6 +1,17 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="deploymentTargetDropDown">
++    <runningDeviceTargetSelectedWithDropDown>
++      <Target>
++        <type value="RUNNING_DEVICE_TARGET" />
++        <deviceKey>
++          <Key>
++            <type value="VIRTUAL_DEVICE_PATH" />
++            <value value="C:\Users\ebi14\.android\avd\Pixel_3a_API_33.avd" />
++          </Key>
++        </deviceKey>
++      </Target>
++    </runningDeviceTargetSelectedWithDropDown>
+     <targetSelectedWithDropDown>
+       <Target>
+         <type value="QUICK_BOOT_TARGET" />
+@@ -12,6 +23,6 @@
+         </deviceKey>
+       </Target>
+     </targetSelectedWithDropDown>
+-    <timeTargetWasSelectedWithDropDown value="2023-06-20T09:27:54.475529500Z" />
++    <timeTargetWasSelectedWithDropDown value="2023-06-20T14:43:32.268218500Z" />
+   </component>
+ </project>
+\ No newline at end of file
