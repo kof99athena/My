@@ -67,6 +67,8 @@ dependencies {
     implementation ("androidx.compose.foundation:foundation:1.0.5")
     implementation ("androidx.compose.material3:material3:1.0.0-beta02")
 
+    //splash
+    implementation ("androidx.core:core-splashscreen:1.0.1")
 
 
 
