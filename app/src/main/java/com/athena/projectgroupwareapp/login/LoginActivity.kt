@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.size
 import com.athena.projectgroupwareapp.main.MainActivity
 import com.athena.projectgroupwareapp.R
@@ -21,6 +22,8 @@ class LoginActivity : AppCompatActivity() {
 //로그인할때 계정을 따로 만들자
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen = installSplashScreen()
+
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
