@@ -4,6 +4,10 @@ plugins {
 
     //buildscript :  Firebase를 쓰기위한 작업
     id("com.google.gms.google-services")
+
+    //ksp
+    id("com.google.devtools.ksp")
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -30,12 +34,17 @@ android {
             )
         }
     }
+
+    kapt {
+        correctErrorTypes = true
+        useBuildCache = true
+    }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 
     buildFeatures {
@@ -62,13 +71,16 @@ dependencies {
     implementation("com.google.firebase:firebase-storage-ktx")
 
     // Compose UI 라이브러리 의존성 추가
-    implementation ("androidx.compose.ui:ui:1.0.5")
-    implementation ("androidx.compose.ui:ui-tooling:1.0.5")
-    implementation ("androidx.compose.foundation:foundation:1.0.5")
-    implementation ("androidx.compose.material3:material3:1.0.0-beta02")
+    implementation("androidx.compose.ui:ui:1.0.5")
+    implementation("androidx.compose.ui:ui-tooling:1.0.5")
+    implementation("androidx.compose.foundation:foundation:1.0.5")
+    implementation("androidx.compose.material3:material3:1.0.0-beta02")
 
     //splash
-    implementation ("androidx.core:core-splashscreen:1.0.1")
+    implementation("androidx.core:core-splashscreen:1.0.1")
+
+    //ksp
+    ksp("androidx.room:room-compiler:2.5.0")
 
 
 

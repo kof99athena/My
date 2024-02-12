@@ -6,15 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.core.view.size
 import com.athena.projectgroupwareapp.main.MainActivity
-import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.databinding.ActivityLoginBinding
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.getField
 
 class LoginActivity : AppCompatActivity() {
     lateinit var binding: ActivityLoginBinding
