@@ -13,8 +13,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.get
 import com.athena.projectgroupwareapp.databinding.ActivityChattingBinding
-import com.athena.projectgroupwareapp.login.EmployeeAccount
-import com.athena.projectgroupwareapp.login.G
+import com.athena.projectgroupwareapp.features.login.EmployeeAccount
+import com.athena.projectgroupwareapp.features.login.G
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.DocumentReference
@@ -97,7 +97,7 @@ class ChattingActivity : AppCompatActivity() {
             .document(GU.otherAccount?.id.toString()) //상대방ID를 저장한다. 그래야 나중에 찾을수있다.
             .collection("message")//메세지에 내용을 등록한다. 밑에 도큐먼트 부분을 써줘야한다.
 
-        Log.i("ahn777",G.employeeAccount?.id.toString())
+        Log.i("ahn777", G.employeeAccount?.id.toString())
         Log.i("ahn777",GU.otherAccount?.id.toString())
 
         //2. 메세지에 필드를 넣는다(안그러면 내용물이 없다 착각함._

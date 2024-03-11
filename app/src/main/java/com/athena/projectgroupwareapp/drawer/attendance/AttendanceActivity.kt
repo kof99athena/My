@@ -21,7 +21,7 @@ import androidx.core.app.ActivityCompat
 import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.databinding.ActivityAttendanceBinding
 import com.athena.projectgroupwareapp.drawer.attendance.recycler.AttendanceItem
-import com.athena.projectgroupwareapp.login.G
+import com.athena.projectgroupwareapp.features.login.G
 import com.athena.projectgroupwareapp.main.tab2.chatting.MyItem
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
@@ -100,7 +100,7 @@ class AttendanceActivity : AppCompatActivity() {
             itemName = "그룹웨어 My"
             mapPoint = MapPoint.mapPointWithGeoCoord(37.5618, 127.0342)
             markerType= MapPOIItem.MarkerType.CustomImage
-            customImageResourceId = R.drawable.logo
+            customImageResourceId = R.drawable.img_logo
             selectedMarkerType = MapPOIItem.MarkerType.CustomImage
             customImageResourceId = R.drawable.logo_login
             isCustomImageAutoscale = false

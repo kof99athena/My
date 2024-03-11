@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.databinding.FragmentTab1Binding
 import com.athena.projectgroupwareapp.databinding.FragmentTab3Binding
-import com.athena.projectgroupwareapp.login.G
+import com.athena.projectgroupwareapp.features.login.G
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.firebase.firestore.FirebaseFirestore
 

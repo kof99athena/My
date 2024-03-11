@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.databinding.FragmentTab2Binding
-import com.athena.projectgroupwareapp.login.G
+import com.athena.projectgroupwareapp.features.login.G
 import com.athena.projectgroupwareapp.main.tab2.chatting.GU
 import com.athena.projectgroupwareapp.main.tab2.recycler.MessageListItem
 import com.athena.projectgroupwareapp.main.tab2.recycler.MsgListAdapter

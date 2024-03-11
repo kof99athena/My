@@ -56,7 +56,7 @@
             android:name=".main.tab1.Tab1Fragment"
             android:exported="false" />
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".features.login.LoginActivity"
             android:theme="@style/Theme.App.Starting"
             android:exported="true">
             <intent-filter>

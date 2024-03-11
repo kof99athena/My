@@ -19,7 +19,7 @@ import androidx.core.view.drawToBitmap
 import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.databinding.ActivityApprovalBinding
 import com.athena.projectgroupwareapp.databinding.ActivitySalaryBinding
-import com.athena.projectgroupwareapp.login.G
+import com.athena.projectgroupwareapp.features.login.G
 import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.snackbar.Snackbar

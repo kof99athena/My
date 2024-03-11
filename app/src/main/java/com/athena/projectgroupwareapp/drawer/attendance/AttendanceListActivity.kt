@@ -8,7 +8,7 @@ import com.athena.projectgroupwareapp.databinding.ActivityAttendanceListBinding
 import com.athena.projectgroupwareapp.drawer.approval.recycler.CertiListAdapter
 import com.athena.projectgroupwareapp.drawer.attendance.recycler.AttendanceAdapter
 import com.athena.projectgroupwareapp.drawer.attendance.recycler.AttendanceItem
-import com.athena.projectgroupwareapp.login.G
+import com.athena.projectgroupwareapp.features.login.G
 import com.google.firebase.firestore.FirebaseFirestore
 
 /**

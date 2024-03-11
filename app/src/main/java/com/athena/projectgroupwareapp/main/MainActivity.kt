@@ -12,7 +12,7 @@ import com.athena.projectgroupwareapp.drawer.CalendarActivity
 import com.athena.projectgroupwareapp.drawer.approval.ApprovalActivity
 import com.athena.projectgroupwareapp.drawer.attendance.AttendanceActivity
 import com.athena.projectgroupwareapp.drawer.SalaryActivity
-import com.athena.projectgroupwareapp.login.G
+import com.athena.projectgroupwareapp.features.login.G
 import com.athena.projectgroupwareapp.main.tab1.Tab1Fragment
 import com.athena.projectgroupwareapp.main.tab2.Tab2Fragment
 import com.athena.projectgroupwareapp.main.tab3.Tab3Fragment

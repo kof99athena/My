@@ -1,4 +1,4 @@
-package com.athena.projectgroupwareapp.login
+package com.athena.projectgroupwareapp.features.login
 
 class G {
 

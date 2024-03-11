@@ -15,6 +15,7 @@ abstract class BaseFragment<T : ViewDataBinding, R : ViewModel> : Fragment() {
     protected lateinit var binding: T
     protected lateinit var viewModel: R
 
+    //initialize
     protected abstract fun getLayoutId(): Int
     protected abstract fun getViewModel(): Class<R>
 
@@ -30,5 +31,4 @@ abstract class BaseFragment<T : ViewDataBinding, R : ViewModel> : Fragment() {
 
         return binding.root
     }
-
 }

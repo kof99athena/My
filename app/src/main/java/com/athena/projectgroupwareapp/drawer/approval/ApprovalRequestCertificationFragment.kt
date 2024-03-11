@@ -22,7 +22,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.databinding.FragmentApprovalRequestCertificationBinding
 import com.athena.projectgroupwareapp.databinding.FragmentApprovalRequestLeaveBinding
-import com.athena.projectgroupwareapp.login.G
+import com.athena.projectgroupwareapp.features.login.G
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat

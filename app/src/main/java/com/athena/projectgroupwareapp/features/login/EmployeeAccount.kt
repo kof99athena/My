@@ -1,4 +1,4 @@
-package com.athena.projectgroupwareapp.login
+package com.athena.projectgroupwareapp.features.login
 
 data class EmployeeAccount constructor(var id : String, var name : String, var imgProfile : String, var team : String) {
 }

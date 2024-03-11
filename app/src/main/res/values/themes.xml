@@ -12,7 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">#0000</item>
         <item name="android:windowLightStatusBar">true</item>
-<!--       Status바의 글씨 어둡게, 배경은 투명하게 -->
+        <!--       Status바의 글씨 어둡게, 배경은 투명하게 -->
         <!-- Customize your theme here. -->
         <item name="colorControlNormal">#B8B5B5</item>
     </style>

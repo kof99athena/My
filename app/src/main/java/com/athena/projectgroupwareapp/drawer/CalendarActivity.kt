@@ -12,7 +12,7 @@ import com.athena.projectgroupwareapp.databinding.ActivityCalendarBinding
 import com.athena.projectgroupwareapp.drawer.attendance.recycler.AttendanceAdapter
 import com.athena.projectgroupwareapp.drawer.attendance.recycler.AttendanceItem
 import com.athena.projectgroupwareapp.drawer.attendance.recycler.CalListItem
-import com.athena.projectgroupwareapp.login.G
+import com.athena.projectgroupwareapp.features.login.G
 import com.athena.projectgroupwareapp.main.tab2.chatting.MyItem
 import com.google.android.material.textfield.TextInputLayout.AccessibilityDelegate
 import com.google.firebase.firestore.CollectionReference

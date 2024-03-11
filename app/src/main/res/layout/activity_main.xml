@@ -2,10 +2,10 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".main.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -14,20 +14,20 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
             app:titleTextColor="@color/white">
 
 
             <ImageView
                 android:id="@+id/iv"
-                android:layout_gravity="center"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/logo_icon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_margin="8dp"/>
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:src="@drawable/logo_icon" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -43,29 +43,29 @@
             android:id="@+id/framelayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".main.MainActivity"/>
+            tools:context=".main.MainActivity" />
 
         <LinearLayout
-            android:weightSum="1"
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
 
             <FrameLayout
                 android:id="@+id/framelayout_content"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/nav_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 app:itemIconTint="@color/main"
                 app:itemTextColor="@color/main"
-                app:menu="@menu/menu"
-                android:layout_alignParentBottom="true"/>
+                app:menu="@menu/menu" />
 
         </LinearLayout>
 
@@ -76,8 +76,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:clickable="true"
-            android:background="@drawable/bg_drawer">
+            android:background="@drawable/bg_drawer"
+            android:clickable="true">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -120,8 +120,8 @@
                     android:layout_marginTop="50dp"
                     android:layout_marginRight="4dp"
                     android:background="@drawable/bg_btn"
-                    android:text="출결"
                     android:gravity="center"
+                    android:text="출결"
                     android:textSize="24dp" />
 
                 <TextView
@@ -142,8 +142,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/menu_salary"
-                    android:layout_marginRight="4dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginRight="4dp"
                     android:background="@drawable/bg_btn"
                     android:gravity="center"
                     android:text="결재"
@@ -155,9 +155,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/menu_salary"
                     android:layout_marginLeft="4dp"
+                    android:layout_marginTop="8dp"
                     android:layout_toRightOf="@id/menu_approval"
                     android:background="@drawable/bg_btn"
-                    android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:text="일정"
                     android:textSize="24dp" />

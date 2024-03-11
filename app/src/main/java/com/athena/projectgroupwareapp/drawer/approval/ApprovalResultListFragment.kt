@@ -11,7 +11,7 @@ import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.databinding.FragmentApprovalResultListBinding
 import com.athena.projectgroupwareapp.drawer.approval.recycler.CertiListAdapter
 import com.athena.projectgroupwareapp.drawer.approval.recycler.CertiListItem
-import com.athena.projectgroupwareapp.login.G
+import com.athena.projectgroupwareapp.features.login.G
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
@@ -39,7 +39,7 @@ class ApprovalResultListFragment : Fragment() {
                 var date : String = snapshot.get("dateOfIssue").toString()
 
                 Log.i("size",date)
-                Log.i("nameby",G.employeeAccount?.id.toString())
+                Log.i("nameby", G.employeeAccount?.id.toString())
 
                 certiListItem.add(CertiListItem(title,date))
             }

@@ -1,40 +1,42 @@
-package com.athena.projectgroupwareapp.login
+package com.athena.projectgroupwareapp.features.login
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AlertDialog
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.athena.projectgroupwareapp.main.MainActivity
+import com.athena.projectgroupwareapp.R
+import com.athena.projectgroupwareapp.base.BaseActivity
 import com.athena.projectgroupwareapp.databinding.ActivityLoginBinding
+import com.athena.projectgroupwareapp.main.MainActivity
+import com.athena.projectgroupwareapp.features.login.viewmodel.LoginViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 
-class LoginActivity : AppCompatActivity() {
-    lateinit var binding: ActivityLoginBinding
+class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
+    override fun getLayoutId(): Int {
+        return R.layout.activity_login
+    }
 
-//로그인할때 계정을 따로 만들자
+    override fun getViewModel(): Class<LoginViewModel> {
+        return LoginViewModel::class.java
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
-
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
-        binding.btnLogin.setOnClickListener{
+        binding.btnLogin.setOnClickListener {
             clickLogin()
         }
-
-    }//onCreate
+    }
 
     //로그인 버튼 눌렀을때 실행되느 함수
     private fun clickLogin() {
         var id: String = binding.id.text.toString()
         var password: String = binding.password.text.toString()
-        Log.i("id", id + password)
+        //Log.i("id", id + password)
 
         var firebese: FirebaseFirestore = FirebaseFirestore.getInstance()
 
@@ -84,7 +86,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-}//LoginActivity
+}
 
 
 
