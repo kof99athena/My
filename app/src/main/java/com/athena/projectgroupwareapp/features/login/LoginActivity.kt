@@ -12,6 +12,7 @@ import com.athena.projectgroupwareapp.base.BaseActivity
 import com.athena.projectgroupwareapp.databinding.ActivityLoginBinding
 import com.athena.projectgroupwareapp.main.MainActivity
 import com.athena.projectgroupwareapp.features.login.viewmodel.LoginViewModel
+import com.athena.projectgroupwareapp.main.TestActivity
 import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
@@ -29,7 +30,14 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
 
         binding.btnLogin.setOnClickListener {
             clickLogin()
+            //landingTestPage()
+            Log.i("Success", "go to MainActivity")
         }
+    }
+
+    private fun landingTestPage() {
+        var intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 
     //로그인 버튼 눌렀을때 실행되느 함수

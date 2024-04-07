@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.Window
 import androidx.appcompat.app.ActionBarDrawerToggle
 import com.athena.projectgroupwareapp.R
 import com.athena.projectgroupwareapp.databinding.ActivityMainBinding
@@ -28,15 +29,20 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     lateinit var toggle: ActionBarDrawerToggle
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //Log.i("Login Success", "MainActivity...")
         binding = ActivityMainBinding.inflate(layoutInflater)
+        //Log.i("Login Success", "inflating...")
         setContentView(binding.root)
+
+        //Log.i("Login Success", "root...")
 
         tab1Fragment= Tab1Fragment()
         tab2Fragment= Tab2Fragment()
         tab3Fragment= Tab3Fragment()
+
+        //Log.i("Login Success", "Bottom Sheet...")
 
         supportFragmentManager.beginTransaction().replace(R.id.framelayout_content,tab1Fragment).commit()
 
@@ -49,8 +55,6 @@ class MainActivity : AppCompatActivity() {
         employeeAccount() // 내 정보 보여주기
         bottomClick() //bottom 버튼 눌렀을때
         drawerOpen() //서랍 열었을때
-
-
 //        var keyHash : String = Utility.getKeyHash(this)
 //        Log.i("keyhash",keyHash)
 

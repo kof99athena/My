@@ -157,8 +157,8 @@ class AttendanceActivity : AppCompatActivity() {
 
 
     //퍼미션 받아오는 객체이다.
-    val permissionLauncher : ActivityResultLauncher<String> = registerForActivityResult(ActivityResultContracts.RequestPermission(),object :ActivityResultCallback<Boolean>{
-        override fun onActivityResult(result: Boolean?) {
+    val permissionLauncher : ActivityResultLauncher<String> = registerForActivityResult(ActivityResultContracts.RequestPermission(), object :ActivityResultCallback<Boolean>{
+        override fun onActivityResult(result: Boolean) {
             if(result!!) requstMyLocations() //내위치 찾아오는 작업메소드, resulr!!는 결과가 true일때이다.
             else Toast.makeText(this@AttendanceActivity, "위치찾기를 허용해주세요.", Toast.LENGTH_SHORT).show()
         }

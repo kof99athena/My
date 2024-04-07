@@ -19,7 +19,6 @@
             android:background="@color/white"
             app:titleTextColor="@color/white">
 
-
             <ImageView
                 android:id="@+id/iv"
                 android:layout_width="40dp"
@@ -30,7 +29,6 @@
                 android:src="@drawable/logo_icon" />
 
         </androidx.appcompat.widget.Toolbar>
-
 
     </com.google.android.material.appbar.AppBarLayout>
 
