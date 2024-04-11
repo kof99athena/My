@@ -1,19 +1,12 @@
 package com.athena.projectgroupwareapp.main.tab2.chatting
 
 import android.content.Context
-import android.hardware.camera2.CaptureResult
-import android.icu.number.IntegerWidth
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
-import android.widget.Adapter
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import com.athena.projectgroupwareapp.databinding.ActivityChattingBinding
-import com.athena.projectgroupwareapp.features.login.EmployeeAccount
 import com.athena.projectgroupwareapp.features.login.G
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentChange
@@ -24,9 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.QuerySnapshot
 import java.text.SimpleDateFormat
-import java.util.Calendar
 import java.util.Date
-import java.util.Objects
 
 
 //파이어베이스에 저장되는 document는 상대방이름이다.

@@ -31,18 +31,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //Log.i("Login Success", "MainActivity...")
         binding = ActivityMainBinding.inflate(layoutInflater)
-        //Log.i("Login Success", "inflating...")
         setContentView(binding.root)
-
-        //Log.i("Login Success", "root...")
 
         tab1Fragment= Tab1Fragment()
         tab2Fragment= Tab2Fragment()
         tab3Fragment= Tab3Fragment()
-
-        //Log.i("Login Success", "Bottom Sheet...")
+        Log.d("LOGIN", "MainActivity ID: ${G.employeeAccount?.id}")
 
         supportFragmentManager.beginTransaction().replace(R.id.framelayout_content,tab1Fragment).commit()
 

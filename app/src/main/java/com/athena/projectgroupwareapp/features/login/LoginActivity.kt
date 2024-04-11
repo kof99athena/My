@@ -12,7 +12,7 @@ import com.athena.projectgroupwareapp.base.BaseActivity
 import com.athena.projectgroupwareapp.databinding.ActivityLoginBinding
 import com.athena.projectgroupwareapp.main.MainActivity
 import com.athena.projectgroupwareapp.features.login.viewmodel.LoginViewModel
-import com.athena.projectgroupwareapp.main.TestActivity
+import com.athena.projectgroupwareapp.model.EmployeeAccount
 import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
@@ -27,49 +27,33 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
-
         binding.btnLogin.setOnClickListener {
             clickLogin()
-            //landingTestPage()
-            Log.i("Success", "go to MainActivity")
         }
+        Log.d("LOGIN", "Login Activity ID: ${G.employeeAccount?.id}")
     }
 
-    private fun landingTestPage() {
-        var intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-    }
-
-    //로그인 버튼 눌렀을때 실행되느 함수
     private fun clickLogin() {
         var id: String = binding.id.text.toString()
         var password: String = binding.password.text.toString()
-        //Log.i("id", id + password)
 
         var firebese: FirebaseFirestore = FirebaseFirestore.getInstance()
-
-
         firebese.collection("employeeList")
             .whereEqualTo("id", id)
             .whereEqualTo("password", password)
             .get().addOnSuccessListener {
                 if (it.documents.size > 0) {
-                    //사이즈가 1개 이상이라는것은 즉 null이 아니다.
                     var id: String = it.documents[0].id
                     var name: String = it.documents[0].get("name").toString()
                     var imgProfile: String = it.documents[0].get("profileUrl").toString()
                     var team: String = it.documents[0].get("team").toString()
 
-
                     G.employeeAccount = EmployeeAccount(id, name, imgProfile, team)
-                    //로그인시 사원번호와 이름, 이미지Url을 G에 넣어준다. 나중에 메신저에서 가져와야함.
 
                     var intent = Intent(this, MainActivity::class.java)
 
-                    //백스택을 깔끔하게 없애고 화면 전환하자
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-
 
                     startActivity(intent)
 
@@ -80,22 +64,13 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
                     binding.id.setText("")
                     binding.id.requestFocus()
 
-                    //키보드 내리기
                     var inputManager: InputMethodManager =
                         this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                     inputManager.hideSoftInputFromWindow(
                         this.currentFocus?.windowToken,
                         InputMethodManager.HIDE_NOT_ALWAYS
                     )
-
                 }
-
             }
     }
-
-
 }
-
-
-
-

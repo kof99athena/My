@@ -2,11 +2,8 @@ package com.athena.projectgroupwareapp.main.tab3
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.athena.projectgroupwareapp.databinding.ActivityIdCardBinding
-import com.athena.projectgroupwareapp.features.login.ChatName
-import com.athena.projectgroupwareapp.features.login.G
 import com.athena.projectgroupwareapp.main.tab2.chatting.ChattingActivity
 import com.athena.projectgroupwareapp.main.tab2.chatting.GU
 import com.athena.projectgroupwareapp.main.tab2.chatting.OtherAccount
