@@ -7,38 +7,39 @@
 
     </data>
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".features.login.LoginActivity">
 
         <ImageView
+            android:id="@+id/img_logo"
             android:layout_width="250dp"
             android:layout_height="250dp"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="56dp"
             android:layout_marginBottom="16dp"
-            android:src="@drawable/img_logo" />
-
+            android:src="@drawable/img_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_idnum"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:layout_margin="8dp"
             android:hint="사원번호 : "
             app:boxBackgroundColor="@color/white"
-            app:boxCornerRadiusBottomEnd="32dp"
-            app:boxCornerRadiusBottomStart="32dp"
-            app:boxCornerRadiusTopEnd="32dp"
-            app:boxCornerRadiusTopStart="32dp"
+            app:boxCornerRadius="32dp"
             app:boxStrokeColor="#AEDEFF"
             app:counterEnabled="true"
             app:counterMaxLength="6"
-            app:helperText="사원번호는 6자리입니다. "
-            app:hintTextColor="#AEDEFF">
+            app:helperText="사원번호는 6자리입니다."
+            app:hintTextColor="#AEDEFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_logo">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/id"
@@ -51,22 +52,21 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_pw"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/et_idnum"
             android:layout_margin="8dp"
             android:hint="비밀번호 : "
             app:boxBackgroundColor="@color/white"
-            app:boxCornerRadiusBottomEnd="32dp"
-            app:boxCornerRadiusBottomStart="32dp"
-            app:boxCornerRadiusTopEnd="32dp"
-            app:boxCornerRadiusTopStart="32dp"
+            app:boxCornerRadius="32dp"
             app:boxStrokeColor="#AEDEFF"
             app:counterEnabled="true"
             app:counterMaxLength="8"
             app:endIconMode="password_toggle"
-            app:helperText="초기비밀번호는 생년월일입니다. "
-            app:hintTextColor="#AEDEFF">
+            app:helperText="초기비밀번호는 생년월일입니다."
+            app:hintTextColor="#AEDEFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_idnum">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"
@@ -74,19 +74,29 @@
                 android:layout_height="wrap_content"
                 android:inputType="number" />
 
-
         </com.google.android.material.textfield.TextInputLayout>
+
+        <CheckBox
+            android:id="@+id/checkbox_autologin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_pw"
+            android:text="자동 로그인 "
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_pw" />
 
         <Button
             android:id="@+id/btn_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/et_pw"
-            android:layout_centerHorizontal="true"
+            android:layout_margin="8dp"
             android:backgroundTint="#AEDEFF"
-            android:hint="로그인"
-            android:textSize="16sp" />
+            android:text="로그인"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkbox_autologin" />
 
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
